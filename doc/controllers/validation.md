@@ -1,12 +1,12 @@
 # Validation
 
 ```python
-validation_api = client.validation
+validation_controller = client.validation
 ```
 
 ## Class Name
 
-`ValidationApi`
+`ValidationController`
 
 
 # Validate Routing Number
@@ -43,7 +43,7 @@ routing_number = 'routing_number4'
 
 routing_number_type = RoutingNumberType8.MY_BRANCH_CODE
 
-result = validation_api.validate_routing_number(
+result = validation_controller.validate_routing_number(
     routing_number,
     routing_number_type
 )

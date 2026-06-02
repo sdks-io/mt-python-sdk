@@ -1,12 +1,12 @@
 # Ping
 
 ```python
-ping_api = client.ping
+ping_controller = client.ping
 ```
 
 ## Class Name
 
-`PingApi`
+`PingController`
 
 
 # Ping API
@@ -30,7 +30,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ping_api.ping_api()
+result = ping_controller.ping_api()
 
 if result.is_success():
     print(result.body)

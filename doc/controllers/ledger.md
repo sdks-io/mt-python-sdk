@@ -1,12 +1,12 @@
 # Ledger
 
 ```python
-ledger_api = client.ledger
+ledger_controller = client.ledger
 ```
 
 ## Class Name
 
-`LedgerApi`
+`LedgerController`
 
 ## Methods
 
@@ -51,7 +51,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_api.list_ledgers()
+result = ledger_controller.list_ledgers()
 
 if result.is_success():
     print(result.body)
@@ -99,7 +99,7 @@ body = LedgerCreateRequest(
     }
 )
 
-result = ledger_api.create_ledger(
+result = ledger_controller.create_ledger(
     body=body
 )
 
@@ -147,7 +147,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_api.get_ledger(id)
+result = ledger_controller.get_ledger(id)
 
 if result.is_success():
     print(result.body)
@@ -202,7 +202,7 @@ body = LedgerUpdateRequest(
     }
 )
 
-result = ledger_api.update_ledger(
+result = ledger_controller.update_ledger(
     id,
     body=body
 )
@@ -252,7 +252,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_api.delete_ledger(id)
+result = ledger_controller.delete_ledger(id)
 
 if result.is_success():
     print(result.body)

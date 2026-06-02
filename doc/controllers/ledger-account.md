@@ -1,12 +1,12 @@
 # Ledger Account
 
 ```python
-ledger_account_api = client.ledger_account
+ledger_account_controller = client.ledger_account
 ```
 
 ## Class Name
 
-`LedgerAccountApi`
+`LedgerAccountController`
 
 ## Methods
 
@@ -65,7 +65,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_account_api.list_ledger_accounts()
+result = ledger_account_controller.list_ledger_accounts()
 
 if result.is_success():
     print(result.body)
@@ -122,7 +122,7 @@ body = LedgerAccountCreateRequest(
     }
 )
 
-result = ledger_account_api.create_ledger_account(
+result = ledger_account_controller.create_ledger_account(
     body=body
 )
 
@@ -172,7 +172,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_account_api.get_ledger_account(id)
+result = ledger_account_controller.get_ledger_account(id)
 
 if result.is_success():
     print(result.body)
@@ -228,7 +228,7 @@ body = LedgerAccountUpdateRequest(
     }
 )
 
-result = ledger_account_api.update_ledger_account(
+result = ledger_account_controller.update_ledger_account(
     id,
     body=body
 )
@@ -278,7 +278,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_account_api.delete_ledger_account(id)
+result = ledger_account_controller.delete_ledger_account(id)
 
 if result.is_success():
     print(result.body)

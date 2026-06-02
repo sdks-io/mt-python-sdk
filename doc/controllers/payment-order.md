@@ -1,12 +1,12 @@
 # Payment Order
 
 ```python
-payment_order_api = client.payment_order
+payment_order_controller = client.payment_order
 ```
 
 ## Class Name
 
-`PaymentOrderApi`
+`PaymentOrderController`
 
 ## Methods
 
@@ -59,7 +59,7 @@ body = PaymentOrderAsyncCreateRequest(
     }
 )
 
-result = payment_order_api.create_async_payment_order(
+result = payment_order_controller.create_async_payment_order(
     body=body
 )
 
@@ -128,7 +128,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = payment_order_api.list_payment_orders()
+result = payment_order_controller.list_payment_orders()
 
 if result.is_success():
     print(result.body)
@@ -290,7 +290,7 @@ documents = [
     )
 ]
 
-result = payment_order_api.create_payment_order(
+result = payment_order_controller.create_payment_order(
     mtype,
     amount,
     direction,
@@ -347,7 +347,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = payment_order_api.get_payment_order(id)
+result = payment_order_controller.get_payment_order(id)
 
 if result.is_success():
     print(result.body)
@@ -402,7 +402,7 @@ body = PaymentOrderUpdateRequest(
     }
 )
 
-result = payment_order_api.update_payment_order(
+result = payment_order_controller.update_payment_order(
     id,
     body=body
 )

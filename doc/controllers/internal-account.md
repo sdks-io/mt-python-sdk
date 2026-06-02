@@ -1,12 +1,12 @@
 # Internal Account
 
 ```python
-internal_account_api = client.internal_account
+internal_account_controller = client.internal_account
 ```
 
 ## Class Name
 
-`InternalAccountApi`
+`InternalAccountController`
 
 ## Methods
 
@@ -54,7 +54,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = internal_account_api.list_internal_accounts()
+result = internal_account_controller.list_internal_accounts()
 
 if result.is_success():
     print(result.body)
@@ -103,7 +103,7 @@ body = InternalAccountCreateRequest(
     }
 )
 
-result = internal_account_api.create_internal_account(
+result = internal_account_controller.create_internal_account(
     body=body
 )
 
@@ -149,7 +149,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = internal_account_api.get_internal_account(id)
+result = internal_account_controller.get_internal_account(id)
 
 if result.is_success():
     print(result.body)
@@ -194,7 +194,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = internal_account_api.update_internal_account(id)
+result = internal_account_controller.update_internal_account(id)
 
 if result.is_success():
     print(result.body)

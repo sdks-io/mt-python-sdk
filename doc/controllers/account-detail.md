@@ -1,12 +1,12 @@
 # Account Detail
 
 ```python
-account_detail_api = client.account_detail
+account_detail_controller = client.account_detail
 ```
 
 ## Class Name
 
-`AccountDetailApi`
+`AccountDetailController`
 
 ## Methods
 
@@ -54,7 +54,7 @@ accounts_type = AccountsType.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
-result = account_detail_api.list_account_details(
+result = account_detail_controller.list_account_details(
     accounts_type,
     account_id
 )
@@ -104,7 +104,7 @@ accounts_type = AccountsType1.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
-result = account_detail_api.create_account_detail(
+result = account_detail_controller.create_account_detail(
     accounts_type,
     account_id
 )
@@ -161,7 +161,7 @@ account_id = 'account_id2'
 
 id = 'id0'
 
-result = account_detail_api.get_account_detail(
+result = account_detail_controller.get_account_detail(
     accounts_type,
     account_id,
     id
@@ -218,7 +218,7 @@ account_id = 'account_id2'
 
 id = 'id0'
 
-result = account_detail_api.delete_account_detail(
+result = account_detail_controller.delete_account_detail(
     accounts_type,
     account_id,
     id

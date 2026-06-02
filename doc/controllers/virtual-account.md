@@ -1,12 +1,12 @@
 # Virtual Account
 
 ```python
-virtual_account_api = client.virtual_account
+virtual_account_controller = client.virtual_account
 ```
 
 ## Class Name
 
-`VirtualAccountApi`
+`VirtualAccountController`
 
 ## Methods
 
@@ -53,7 +53,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = virtual_account_api.list_virtual_accounts()
+result = virtual_account_controller.list_virtual_accounts()
 
 if result.is_success():
     print(result.body)
@@ -96,7 +96,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = virtual_account_api.create_virtual_account()
+result = virtual_account_controller.create_virtual_account()
 
 if result.is_success():
     print(result.body)
@@ -140,7 +140,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = virtual_account_api.get_virtual_account(id)
+result = virtual_account_controller.get_virtual_account(id)
 
 if result.is_success():
     print(result.body)
@@ -185,7 +185,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = virtual_account_api.update_virtual_account(id)
+result = virtual_account_controller.update_virtual_account(id)
 
 if result.is_success():
     print(result.body)
@@ -222,7 +222,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = virtual_account_api.delete_virtual_account(id)
+result = virtual_account_controller.delete_virtual_account(id)
 
 if result.is_success():
     print(result.body)

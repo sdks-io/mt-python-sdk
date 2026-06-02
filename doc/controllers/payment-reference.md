@@ -1,12 +1,12 @@
 # Payment Reference
 
 ```python
-payment_reference_api = client.payment_reference
+payment_reference_controller = client.payment_reference
 ```
 
 ## Class Name
 
-`PaymentReferenceApi`
+`PaymentReferenceController`
 
 ## Methods
 
@@ -48,7 +48,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = payment_reference_api.list_payment_references()
+result = payment_reference_controller.list_payment_references()
 
 if result.is_success():
     print(result.body)
@@ -85,7 +85,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = payment_reference_api.get_payment_reference(id)
+result = payment_reference_controller.get_payment_reference(id)
 
 if result.is_success():
     print(result.body)

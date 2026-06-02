@@ -1,12 +1,12 @@
 # External Account
 
 ```python
-external_account_api = client.external_account
+external_account_controller = client.external_account
 ```
 
 ## Class Name
 
-`ExternalAccountApi`
+`ExternalAccountController`
 
 ## Methods
 
@@ -51,7 +51,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = external_account_api.verify_external_account(id)
+result = external_account_controller.verify_external_account(id)
 
 if result.is_success():
     print(result.body)
@@ -105,7 +105,7 @@ body = ExternalAccountCompleteVerificationRequest(
     ]
 )
 
-result = external_account_api.complete_verification_external_account(
+result = external_account_controller.complete_verification_external_account(
     id,
     body=body
 )
@@ -157,7 +157,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = external_account_api.list_external_accounts()
+result = external_account_controller.list_external_accounts()
 
 if result.is_success():
     print(result.body)
@@ -209,7 +209,7 @@ body = ExternalAccountCreateRequest(
     }
 )
 
-result = external_account_api.create_external_account(
+result = external_account_controller.create_external_account(
     body=body
 )
 
@@ -254,7 +254,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = external_account_api.get_external_account(id)
+result = external_account_controller.get_external_account(id)
 
 if result.is_success():
     print(result.body)
@@ -299,7 +299,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = external_account_api.update_external_account(id)
+result = external_account_controller.update_external_account(id)
 
 if result.is_success():
     print(result.body)
@@ -342,7 +342,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```python
 id = 'id0'
 
-result = external_account_api.delete_external_account(id)
+result = external_account_controller.delete_external_account(id)
 
 if result.is_success():
     print(result.body)

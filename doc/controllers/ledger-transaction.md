@@ -1,12 +1,12 @@
 # Ledger Transaction
 
 ```python
-ledger_transaction_api = client.ledger_transaction
+ledger_transaction_controller = client.ledger_transaction
 ```
 
 ## Class Name
 
-`LedgerTransactionApi`
+`LedgerTransactionController`
 
 ## Methods
 
@@ -59,7 +59,7 @@ body = LedgerTransactionReversalCreateRequest(
     }
 )
 
-result = ledger_transaction_api.create_ledger_transaction_reversal(
+result = ledger_transaction_controller.create_ledger_transaction_reversal(
     id,
     body=body
 )
@@ -116,7 +116,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_transaction_api.list_ledger_transaction_versions()
+result = ledger_transaction_controller.list_ledger_transaction_versions()
 
 if result.is_success():
     print(result.body)
@@ -193,7 +193,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_transaction_api.list_ledger_transactions()
+result = ledger_transaction_controller.list_ledger_transactions()
 
 if result.is_success():
     print(result.body)
@@ -258,7 +258,7 @@ body = LedgerTransactionCreateRequest(
     }
 )
 
-result = ledger_transaction_api.create_ledger_transaction(
+result = ledger_transaction_controller.create_ledger_transaction(
     body=body
 )
 
@@ -308,7 +308,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_transaction_api.get_ledger_transaction(id)
+result = ledger_transaction_controller.get_ledger_transaction(id)
 
 if result.is_success():
     print(result.body)
@@ -363,7 +363,7 @@ body = LedgerTransactionUpdateRequest(
     }
 )
 
-result = ledger_transaction_api.update_ledger_transaction(
+result = ledger_transaction_controller.update_ledger_transaction(
     id,
     body=body
 )
@@ -423,7 +423,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_transaction_api.list_ledger_transaction_versions_1(id)
+result = ledger_transaction_controller.list_ledger_transaction_versions_1(id)
 
 if result.is_success():
     print(result.body)

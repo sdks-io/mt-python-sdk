@@ -1,12 +1,12 @@
 # Counterparty
 
 ```python
-counterparty_api = client.counterparty
+counterparty_controller = client.counterparty
 ```
 
 ## Class Name
 
-`CounterpartyApi`
+`CounterpartyController`
 
 ## Methods
 
@@ -52,7 +52,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = counterparty_api.collect_account_details(id)
+result = counterparty_controller.collect_account_details(id)
 
 if result.is_success():
     print(result.body)
@@ -107,7 +107,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = counterparty_api.list_counterparties()
+result = counterparty_controller.list_counterparties()
 
 if result.is_success():
     print(result.body)
@@ -162,7 +162,7 @@ body = CounterpartyCreateRequest(
     }
 )
 
-result = counterparty_api.create_counterparty(
+result = counterparty_controller.create_counterparty(
     body=body
 )
 
@@ -210,7 +210,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = counterparty_api.get_counterparty(id)
+result = counterparty_controller.get_counterparty(id)
 
 if result.is_success():
     print(result.body)
@@ -257,7 +257,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = counterparty_api.update_counterparty(id)
+result = counterparty_controller.update_counterparty(id)
 
 if result.is_success():
     print(result.body)
@@ -302,7 +302,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```python
 id = 'id0'
 
-result = counterparty_api.delete_counterparty(id)
+result = counterparty_controller.delete_counterparty(id)
 
 if result.is_success():
     print(result.body)

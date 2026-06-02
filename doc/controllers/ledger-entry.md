@@ -1,12 +1,12 @@
 # Ledger Entry
 
 ```python
-ledger_entry_api = client.ledger_entry
+ledger_entry_controller = client.ledger_entry
 ```
 
 ## Class Name
 
-`LedgerEntryApi`
+`LedgerEntryController`
 
 ## Methods
 
@@ -78,7 +78,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_entry_api.list_ledger_entries()
+result = ledger_entry_controller.list_ledger_entries()
 
 if result.is_success():
     print(result.body)
@@ -125,7 +125,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_entry_api.get_ledger_entry(id)
+result = ledger_entry_controller.get_ledger_entry(id)
 
 if result.is_success():
     print(result.body)

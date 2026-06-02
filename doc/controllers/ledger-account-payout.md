@@ -1,12 +1,12 @@
 # Ledger Account Payout
 
 ```python
-ledger_account_payout_api = client.ledger_account_payout
+ledger_account_payout_controller = client.ledger_account_payout
 ```
 
 ## Class Name
 
-`LedgerAccountPayoutApi`
+`LedgerAccountPayoutController`
 
 ## Methods
 
@@ -56,7 +56,7 @@ body = LedgerAccountPayoutCreateRequest(
     }
 )
 
-result = ledger_account_payout_api.create_ledger_account_payout(
+result = ledger_account_payout_controller.create_ledger_account_payout(
     body=body
 )
 
@@ -108,7 +108,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_account_payout_api.list_ledger_account_payouts()
+result = ledger_account_payout_controller.list_ledger_account_payouts()
 
 if result.is_success():
     print(result.body)
@@ -147,7 +147,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_account_payout_api.get_ledger_account_payout(id)
+result = ledger_account_payout_controller.get_ledger_account_payout(id)
 
 if result.is_success():
     print(result.body)
@@ -202,7 +202,7 @@ body = LedgerAccountPayoutUpdateRequest(
     }
 )
 
-result = ledger_account_payout_api.update_ledger_account_payout(
+result = ledger_account_payout_controller.update_ledger_account_payout(
     id,
     body=body
 )

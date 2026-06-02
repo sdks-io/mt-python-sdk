@@ -1,12 +1,12 @@
 # Balance Report
 
 ```python
-balance_report_api = client.balance_report
+balance_report_controller = client.balance_report
 ```
 
 ## Class Name
 
-`BalanceReportApi`
+`BalanceReportController`
 
 ## Methods
 
@@ -52,7 +52,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 internal_account_id = 'internal_account_id4'
 
-result = balance_report_api.list_balance_reports(internal_account_id)
+result = balance_report_controller.list_balance_reports(internal_account_id)
 
 if result.is_success():
     print(result.body)
@@ -101,7 +101,7 @@ internal_account_id = 'internal_account_id4'
 
 id = 'id0'
 
-result = balance_report_api.get_balance_report(
+result = balance_report_controller.get_balance_report(
     internal_account_id,
     id
 )

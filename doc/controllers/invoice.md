@@ -1,12 +1,12 @@
 # Invoice
 
 ```python
-invoice_api = client.invoice
+invoice_controller = client.invoice
 ```
 
 ## Class Name
 
-`InvoiceApi`
+`InvoiceController`
 
 ## Methods
 
@@ -44,7 +44,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = invoice_api.list_invoices()
+result = invoice_controller.list_invoices()
 
 if result.is_success():
     print(result.body)
@@ -81,7 +81,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = invoice_api.create_invoice()
+result = invoice_controller.create_invoice()
 
 if result.is_success():
     print(result.body)
@@ -118,7 +118,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = invoice_api.get_invoice(id)
+result = invoice_controller.get_invoice(id)
 
 if result.is_success():
     print(result.body)
@@ -157,7 +157,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = invoice_api.update_invoice(id)
+result = invoice_controller.update_invoice(id)
 
 if result.is_success():
     print(result.body)

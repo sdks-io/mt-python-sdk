@@ -1,12 +1,12 @@
 # Expected Payment
 
 ```python
-expected_payment_api = client.expected_payment
+expected_payment_controller = client.expected_payment
 ```
 
 ## Class Name
 
-`ExpectedPaymentApi`
+`ExpectedPaymentController`
 
 ## Methods
 
@@ -61,7 +61,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = expected_payment_api.list_expected_payments()
+result = expected_payment_controller.list_expected_payments()
 
 if result.is_success():
     print(result.body)
@@ -116,7 +116,7 @@ body = ExpectedPaymentCreateRequest(
     }
 )
 
-result = expected_payment_api.create_expected_payment(
+result = expected_payment_controller.create_expected_payment(
     body=body
 )
 
@@ -161,7 +161,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = expected_payment_api.get_expected_payment(id)
+result = expected_payment_controller.get_expected_payment(id)
 
 if result.is_success():
     print(result.body)
@@ -214,7 +214,7 @@ body = ExpectedPaymentUpdateRequest(
     }
 )
 
-result = expected_payment_api.update_expected_payment(
+result = expected_payment_controller.update_expected_payment(
     id,
     body=body
 )
@@ -254,7 +254,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = expected_payment_api.delete_expected_payment(id)
+result = expected_payment_controller.delete_expected_payment(id)
 
 if result.is_success():
     print(result.body)

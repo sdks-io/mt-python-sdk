@@ -1,12 +1,12 @@
 # Ledgerable Event
 
 ```python
-ledgerable_event_api = client.ledgerable_event
+ledgerable_event_controller = client.ledgerable_event
 ```
 
 ## Class Name
 
-`LedgerableEventApi`
+`LedgerableEventController`
 
 ## Methods
 
@@ -54,7 +54,7 @@ body = LedgerableEventCreateRequest(
     }
 )
 
-result = ledgerable_event_api.create_ledgerable_event(
+result = ledgerable_event_controller.create_ledgerable_event(
     body=body
 )
 
@@ -102,7 +102,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledgerable_event_api.get_ledgerable_event(id)
+result = ledgerable_event_controller.get_ledgerable_event(id)
 
 if result.is_success():
     print(result.body)

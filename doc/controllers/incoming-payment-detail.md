@@ -1,12 +1,12 @@
 # Incoming Payment Detail
 
 ```python
-incoming_payment_detail_api = client.incoming_payment_detail
+incoming_payment_detail_controller = client.incoming_payment_detail
 ```
 
 ## Class Name
 
-`IncomingPaymentDetailApi`
+`IncomingPaymentDetailController`
 
 ## Methods
 
@@ -60,7 +60,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = incoming_payment_detail_api.list_incoming_payment_details()
+result = incoming_payment_detail_controller.list_incoming_payment_details()
 
 if result.is_success():
     print(result.body)
@@ -105,7 +105,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = incoming_payment_detail_api.get_incoming_payment_detail(id)
+result = incoming_payment_detail_controller.get_incoming_payment_detail(id)
 
 if result.is_success():
     print(result.body)
@@ -152,7 +152,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = incoming_payment_detail_api.update_incoming_payment_detail(id)
+result = incoming_payment_detail_controller.update_incoming_payment_detail(id)
 
 if result.is_success():
     print(result.body)
@@ -197,7 +197,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = incoming_payment_detail_api.create_async_incoming_payment_detail()
+result = incoming_payment_detail_controller.create_async_incoming_payment_detail()
 
 if result.is_success():
     print(result.body)

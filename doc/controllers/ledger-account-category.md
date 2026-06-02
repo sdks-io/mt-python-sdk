@@ -1,12 +1,12 @@
 # Ledger Account Category
 
 ```python
-ledger_account_category_api = client.ledger_account_category
+ledger_account_category_controller = client.ledger_account_category
 ```
 
 ## Class Name
 
-`LedgerAccountCategoryApi`
+`LedgerAccountCategoryController`
 
 ## Methods
 
@@ -63,7 +63,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_account_category_api.list_ledger_account_categories()
+result = ledger_account_category_controller.list_ledger_account_categories()
 
 if result.is_success():
     print(result.body)
@@ -114,7 +114,7 @@ body = LedgerAccountCategoryCreateRequest(
     }
 )
 
-result = ledger_account_category_api.create_ledger_account_category(
+result = ledger_account_category_controller.create_ledger_account_category(
     body=body
 )
 
@@ -164,7 +164,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_account_category_api.get_ledger_account_category(id)
+result = ledger_account_category_controller.get_ledger_account_category(id)
 
 if result.is_success():
     print(result.body)
@@ -220,7 +220,7 @@ body = LedgerAccountCategoryUpdateRequest(
     }
 )
 
-result = ledger_account_category_api.update_ledger_account_category(
+result = ledger_account_category_controller.update_ledger_account_category(
     id,
     body=body
 )
@@ -270,7 +270,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_account_category_api.delete_ledger_account_category(id)
+result = ledger_account_category_controller.delete_ledger_account_category(id)
 
 if result.is_success():
     print(result.body)
@@ -320,7 +320,7 @@ id = 'id0'
 
 ledger_account_id = 'ledger_account_id4'
 
-result = ledger_account_category_api.add_ledger_account_to_ledger_account_category(
+result = ledger_account_category_controller.add_ledger_account_to_ledger_account_category(
     id,
     ledger_account_id
 )
@@ -374,7 +374,7 @@ id = 'id0'
 
 ledger_account_id = 'ledger_account_id4'
 
-result = ledger_account_category_api.remove_ledger_account_from_ledger_account_category(
+result = ledger_account_category_controller.remove_ledger_account_from_ledger_account_category(
     id,
     ledger_account_id
 )
@@ -428,7 +428,7 @@ id = 'id0'
 
 sub_category_id = 'sub_category_id0'
 
-result = ledger_account_category_api.add_ledger_account_category_to_ledger_account_category(
+result = ledger_account_category_controller.add_ledger_account_category_to_ledger_account_category(
     id,
     sub_category_id
 )
@@ -482,7 +482,7 @@ id = 'id0'
 
 sub_category_id = 'sub_category_id0'
 
-result = ledger_account_category_api.delete_ledger_account_category_from_ledger_account_category(
+result = ledger_account_category_controller.delete_ledger_account_category_from_ledger_account_category(
     id,
     sub_category_id
 )

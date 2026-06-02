@@ -1,12 +1,12 @@
 # Ledger Account Statement
 
 ```python
-ledger_account_statement_api = client.ledger_account_statement
+ledger_account_statement_controller = client.ledger_account_statement
 ```
 
 ## Class Name
 
-`LedgerAccountStatementApi`
+`LedgerAccountStatementController`
 
 ## Methods
 
@@ -55,7 +55,7 @@ body = LedgerAccountStatementCreateRequest(
     }
 )
 
-result = ledger_account_statement_api.create_ledger_account_statement(
+result = ledger_account_statement_controller.create_ledger_account_statement(
     body=body
 )
 
@@ -103,7 +103,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_account_statement_api.get_ledger_account_statement(id)
+result = ledger_account_statement_controller.get_ledger_account_statement(id)
 
 if result.is_success():
     print(result.body)

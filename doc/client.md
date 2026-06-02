@@ -63,45 +63,45 @@ See the [Environment-Based Client Initialization](../doc/environment-based-clien
 
 ## Modern Treasury Client
 
-The gateway for the SDK. This class acts as a factory for the Apis and also holds the configuration of the SDK.
+The gateway for the SDK. This class acts as a factory for the Controllers and also holds the configuration of the SDK.
 
-## Apis
+## Controllers
 
 | Name | Description |
 |  --- | --- |
-| account_detail | Gets AccountDetailApi |
-| balance_report | Gets BalanceReportApi |
-| connection | Gets ConnectionApi |
-| counterparty | Gets CounterpartyApi |
-| document | Gets DocumentApi |
-| event | Gets EventApi |
-| expected_payment | Gets ExpectedPaymentApi |
-| external_account | Gets ExternalAccountApi |
-| incoming_payment_detail | Gets IncomingPaymentDetailApi |
-| internal_account | Gets InternalAccountApi |
-| invoice_line_item | Gets InvoiceLineItemApi |
-| invoice | Gets InvoiceApi |
-| ledger_account_category | Gets LedgerAccountCategoryApi |
-| ledger_account_payout | Gets LedgerAccountPayoutApi |
-| ledger_account_statement | Gets LedgerAccountStatementApi |
-| ledger_account | Gets LedgerAccountApi |
-| ledger_entry | Gets LedgerEntryApi |
-| ledger_event_handler | Gets LedgerEventHandlerApi |
-| ledger_transaction | Gets LedgerTransactionApi |
-| ledgerable_event | Gets LedgerableEventApi |
-| ledger | Gets LedgerApi |
-| line_item | Gets LineItemApi |
-| paper_item | Gets PaperItemApi |
-| payment_order | Gets PaymentOrderApi |
-| payment_reference | Gets PaymentReferenceApi |
-| ping | Gets PingApi |
-| mreturn | Gets ReturnApi |
-| reversal | Gets ReversalApi |
-| routing_detail | Gets RoutingDetailApi |
-| transaction_line_item | Gets TransactionLineItemApi |
-| transaction | Gets TransactionApi |
-| validation | Gets ValidationApi |
-| virtual_account | Gets VirtualAccountApi |
-| account_collection_flow | Gets AccountCollectionFlowApi |
-| payment_flow | Gets PaymentFlowApi |
+| account_detail | Gets AccountDetailController |
+| balance_report | Gets BalanceReportController |
+| connection | Gets ConnectionController |
+| counterparty | Gets CounterpartyController |
+| document | Gets DocumentController |
+| event | Gets EventController |
+| expected_payment | Gets ExpectedPaymentController |
+| external_account | Gets ExternalAccountController |
+| incoming_payment_detail | Gets IncomingPaymentDetailController |
+| internal_account | Gets InternalAccountController |
+| invoice_line_item | Gets InvoiceLineItemController |
+| invoice | Gets InvoiceController |
+| ledger_account_category | Gets LedgerAccountCategoryController |
+| ledger_account_payout | Gets LedgerAccountPayoutController |
+| ledger_account_statement | Gets LedgerAccountStatementController |
+| ledger_account | Gets LedgerAccountController |
+| ledger_entry | Gets LedgerEntryController |
+| ledger_event_handler | Gets LedgerEventHandlerController |
+| ledger_transaction | Gets LedgerTransactionController |
+| ledgerable_event | Gets LedgerableEventController |
+| ledger | Gets LedgerController |
+| line_item | Gets LineItemController |
+| paper_item | Gets PaperItemController |
+| payment_order | Gets PaymentOrderController |
+| payment_reference | Gets PaymentReferenceController |
+| ping | Gets PingController |
+| mreturn | Gets ReturnController |
+| reversal | Gets ReversalController |
+| routing_detail | Gets RoutingDetailController |
+| transaction_line_item | Gets TransactionLineItemController |
+| transaction | Gets TransactionController |
+| validation | Gets ValidationController |
+| virtual_account | Gets VirtualAccountController |
+| account_collection_flow | Gets AccountCollectionFlowController |
+| payment_flow | Gets PaymentFlowController |
 

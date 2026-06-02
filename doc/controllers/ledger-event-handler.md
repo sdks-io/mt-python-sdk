@@ -1,12 +1,12 @@
 # Ledger Event Handler
 
 ```python
-ledger_event_handler_api = client.ledger_event_handler
+ledger_event_handler_controller = client.ledger_event_handler
 ```
 
 ## Class Name
 
-`LedgerEventHandlerApi`
+`LedgerEventHandlerController`
 
 ## Methods
 
@@ -52,7 +52,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = ledger_event_handler_api.list_ledger_event_handlers()
+result = ledger_event_handler_controller.list_ledger_event_handlers()
 
 if result.is_success():
     print(result.body)
@@ -114,7 +114,7 @@ body = LedgerEventHandlerCreateRequest(
     }
 )
 
-result = ledger_event_handler_api.create_ledger_event_handler(
+result = ledger_event_handler_controller.create_ledger_event_handler(
     body=body
 )
 
@@ -162,7 +162,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_event_handler_api.get_ledger_event_handler(id)
+result = ledger_event_handler_controller.get_ledger_event_handler(id)
 
 if result.is_success():
     print(result.body)
@@ -207,7 +207,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = ledger_event_handler_api.delete_ledger_event_handler(id)
+result = ledger_event_handler_controller.delete_ledger_event_handler(id)
 
 if result.is_success():
     print(result.body)

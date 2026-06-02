@@ -1,12 +1,12 @@
 # Return
 
 ```python
-mreturn_api = client.mreturn
+mreturn_controller = client.mreturn
 ```
 
 ## Class Name
 
-`ReturnApi`
+`ReturnController`
 
 ## Methods
 
@@ -53,7 +53,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = mreturn_api.list_returns()
+result = mreturn_controller.list_returns()
 
 if result.is_success():
     print(result.body)
@@ -102,7 +102,7 @@ body = ReturnCreateRequest(
     returnable_id='00000350-0000-0000-0000-000000000000'
 )
 
-result = mreturn_api.create_return(
+result = mreturn_controller.create_return(
     body=body
 )
 
@@ -150,7 +150,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = mreturn_api.get_return(id)
+result = mreturn_controller.get_return(id)
 
 if result.is_success():
     print(result.body)

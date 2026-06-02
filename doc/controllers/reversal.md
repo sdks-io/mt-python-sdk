@@ -1,12 +1,12 @@
 # Reversal
 
 ```python
-reversal_api = client.reversal
+reversal_controller = client.reversal
 ```
 
 ## Class Name
 
-`ReversalApi`
+`ReversalController`
 
 ## Methods
 
@@ -49,7 +49,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 payment_order_id = 'payment_order_id6'
 
-result = reversal_api.list_reversals(payment_order_id)
+result = reversal_controller.list_reversals(payment_order_id)
 
 if result.is_success():
     print(result.body)
@@ -101,7 +101,7 @@ body = ReversalCreateRequest(
     }
 )
 
-result = reversal_api.create_reversal(
+result = reversal_controller.create_reversal(
     payment_order_id,
     body=body
 )
@@ -154,7 +154,7 @@ payment_order_id = '0000176c-0000-0000-0000-000000000000'
 
 reversal_id = '00000f9e-0000-0000-0000-000000000000'
 
-result = reversal_api.get_reversal(
+result = reversal_controller.get_reversal(
     payment_order_id,
     reversal_id
 )

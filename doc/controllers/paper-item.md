@@ -1,12 +1,12 @@
 # Paper Item
 
 ```python
-paper_item_api = client.paper_item
+paper_item_controller = client.paper_item
 ```
 
 ## Class Name
 
-`PaperItemApi`
+`PaperItemController`
 
 ## Methods
 
@@ -50,7 +50,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = paper_item_api.list_paper_items()
+result = paper_item_controller.list_paper_items()
 
 if result.is_success():
     print(result.body)
@@ -89,7 +89,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = paper_item_api.get_paper_item(id)
+result = paper_item_controller.get_paper_item(id)
 
 if result.is_success():
     print(result.body)

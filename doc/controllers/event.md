@@ -1,12 +1,12 @@
 # Event
 
 ```python
-event_api = client.event
+event_controller = client.event
 ```
 
 ## Class Name
 
-`EventApi`
+`EventController`
 
 ## Methods
 
@@ -52,7 +52,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = event_api.list_events()
+result = event_controller.list_events()
 
 if result.is_success():
     print(result.body)
@@ -89,7 +89,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = event_api.get_event(id)
+result = event_controller.get_event(id)
 
 if result.is_success():
     print(result.body)

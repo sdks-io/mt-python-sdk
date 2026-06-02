@@ -1,12 +1,12 @@
 # Account Collection Flow
 
 ```python
-account_collection_flow_api = client.account_collection_flow
+account_collection_flow_controller = client.account_collection_flow
 ```
 
 ## Class Name
 
-`AccountCollectionFlowApi`
+`AccountCollectionFlowController`
 
 ## Methods
 
@@ -52,7 +52,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = account_collection_flow_api.list_account_collection_flows()
+result = account_collection_flow_controller.list_account_collection_flows()
 
 if result.is_success():
     print(result.body)
@@ -89,7 +89,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = account_collection_flow_api.create_account_collection_flow()
+result = account_collection_flow_controller.create_account_collection_flow()
 
 if result.is_success():
     print(result.body)
@@ -134,7 +134,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = account_collection_flow_api.get_account_collection_flow(id)
+result = account_collection_flow_controller.get_account_collection_flow(id)
 
 if result.is_success():
     print(result.body)
@@ -177,7 +177,7 @@ id = 'id0'
 
 body = AccountCollectionFlowUpdateRequest()
 
-result = account_collection_flow_api.update_account_collection_flow(
+result = account_collection_flow_controller.update_account_collection_flow(
     id,
     body=body
 )

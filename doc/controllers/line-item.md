@@ -1,12 +1,12 @@
 # Line Item
 
 ```python
-line_item_api = client.line_item
+line_item_controller = client.line_item
 ```
 
 ## Class Name
 
-`LineItemApi`
+`LineItemController`
 
 ## Methods
 
@@ -53,7 +53,7 @@ itemizable_id = 'itemizable_id4'
 
 itemizable_type = ItemizableType1.EXPECTED_PAYMENTS
 
-result = line_item_api.list_line_items(
+result = line_item_controller.list_line_items(
     itemizable_id,
     itemizable_type
 )
@@ -103,7 +103,7 @@ itemizable_type = ItemizableType1.EXPECTED_PAYMENTS
 
 id = 'id0'
 
-result = line_item_api.get_line_item(
+result = line_item_controller.get_line_item(
     itemizable_id,
     itemizable_type,
     id
@@ -162,7 +162,7 @@ body = LineItemUpdateRequest(
     }
 )
 
-result = line_item_api.update_line_item(
+result = line_item_controller.update_line_item(
     itemizable_id,
     itemizable_type,
     id,

@@ -1,12 +1,12 @@
 # Document
 
 ```python
-document_api = client.document
+document_controller = client.document
 ```
 
 ## Class Name
 
-`DocumentApi`
+`DocumentController`
 
 ## Methods
 
@@ -54,7 +54,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = document_api.list_documents()
+result = document_controller.list_documents()
 
 if result.is_success():
     print(result.body)
@@ -111,7 +111,7 @@ documentable_type = DocumentableType1.PAPER_ITEMS
 
 file = FileWrapper(Path('dummy_file').open('rb'), 'optional-content-type')
 
-result = document_api.create_document(
+result = document_controller.create_document(
     documentable_id,
     documentable_type,
     file
@@ -171,7 +171,7 @@ documentable_id = 'documentable_id0'
 
 documentable_type = DocumentableType2.PAPER_ITEMS
 
-result = document_api.list_documents_1(
+result = document_controller.list_documents_1(
     documentable_id,
     documentable_type
 )
@@ -225,7 +225,7 @@ documentable_type = DocumentableType2.PAPER_ITEMS
 
 file = FileWrapper(Path('dummy_file').open('rb'), 'optional-content-type')
 
-result = document_api.create_document_1(
+result = document_controller.create_document_1(
     documentable_id,
     documentable_type,
     file
@@ -283,7 +283,7 @@ documentable_type = DocumentableType2.PAPER_ITEMS
 
 id = '00001770-0000-0000-0000-000000000000'
 
-result = document_api.get_document(
+result = document_controller.get_document(
     documentable_id,
     documentable_type,
     id
@@ -332,7 +332,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = '00001770-0000-0000-0000-000000000000'
 
-result = document_api.get_document_1(id)
+result = document_controller.get_document_1(id)
 
 if result.is_success():
     print(result.body)
@@ -385,7 +385,7 @@ documentable_type = DocumentableType2.PAPER_ITEMS
 
 id = '00001770-0000-0000-0000-000000000000'
 
-result = document_api.download_document(
+result = document_controller.download_document(
     documentable_id,
     documentable_type,
     id
@@ -435,7 +435,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 ```python
 id = '00001770-0000-0000-0000-000000000000'
 
-result = document_api.download_document_1(id)
+result = document_controller.download_document_1(id)
 
 if result.is_success():
     print(result.body)

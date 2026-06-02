@@ -1,12 +1,12 @@
 # Transaction Line Item
 
 ```python
-transaction_line_item_api = client.transaction_line_item
+transaction_line_item_controller = client.transaction_line_item
 ```
 
 ## Class Name
 
-`TransactionLineItemApi`
+`TransactionLineItemController`
 
 
 # List Transaction Line Items
@@ -43,7 +43,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 transaction_id = 'transaction_id8'
 
-result = transaction_line_item_api.list_transaction_line_items(transaction_id)
+result = transaction_line_item_controller.list_transaction_line_items(transaction_id)
 
 if result.is_success():
     print(result.body)

@@ -1,12 +1,12 @@
 # Payment Flow
 
 ```python
-payment_flow_api = client.payment_flow
+payment_flow_controller = client.payment_flow
 ```
 
 ## Class Name
 
-`PaymentFlowApi`
+`PaymentFlowController`
 
 ## Methods
 
@@ -56,7 +56,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = payment_flow_api.list_payment_flows()
+result = payment_flow_controller.list_payment_flows()
 
 if result.is_success():
     print(result.body)
@@ -93,7 +93,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = payment_flow_api.create_payment_flow()
+result = payment_flow_controller.create_payment_flow()
 
 if result.is_success():
     print(result.body)
@@ -138,7 +138,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = payment_flow_api.get_payment_flow(id)
+result = payment_flow_controller.get_payment_flow(id)
 
 if result.is_success():
     print(result.body)
@@ -181,7 +181,7 @@ id = 'id0'
 
 body = PaymentFlowUpdateRequest()
 
-result = payment_flow_api.update_payment_flow(
+result = payment_flow_controller.update_payment_flow(
     id,
     body=body
 )

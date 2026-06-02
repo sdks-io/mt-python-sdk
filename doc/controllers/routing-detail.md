@@ -1,12 +1,12 @@
 # Routing Detail
 
 ```python
-routing_detail_api = client.routing_detail
+routing_detail_controller = client.routing_detail
 ```
 
 ## Class Name
 
-`RoutingDetailApi`
+`RoutingDetailController`
 
 ## Methods
 
@@ -54,7 +54,7 @@ accounts_type = AccountsType.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
-result = routing_detail_api.list_routing_details(
+result = routing_detail_controller.list_routing_details(
     accounts_type,
     account_id
 )
@@ -104,7 +104,7 @@ accounts_type = AccountsType1.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
-result = routing_detail_api.create_routing_detail(
+result = routing_detail_controller.create_routing_detail(
     accounts_type,
     account_id
 )
@@ -161,7 +161,7 @@ account_id = 'account_id2'
 
 id = 'id0'
 
-result = routing_detail_api.get_routing_detail(
+result = routing_detail_controller.get_routing_detail(
     accounts_type,
     account_id,
     id
@@ -218,7 +218,7 @@ account_id = 'account_id2'
 
 id = 'id0'
 
-result = routing_detail_api.delete_routing_detail(
+result = routing_detail_controller.delete_routing_detail(
     accounts_type,
     account_id,
     id

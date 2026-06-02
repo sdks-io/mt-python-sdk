@@ -1,12 +1,12 @@
 # Transaction
 
 ```python
-transaction_api = client.transaction
+transaction_controller = client.transaction
 ```
 
 ## Class Name
 
-`TransactionApi`
+`TransactionController`
 
 ## Methods
 
@@ -69,7 +69,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = transaction_api.list_transactions()
+result = transaction_controller.list_transactions()
 
 if result.is_success():
     print(result.body)
@@ -108,7 +108,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = transaction_api.get_transaction(id)
+result = transaction_controller.get_transaction(id)
 
 if result.is_success():
     print(result.body)
@@ -155,7 +155,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ```python
 id = 'id0'
 
-result = transaction_api.update_transaction(id)
+result = transaction_controller.update_transaction(id)
 
 if result.is_success():
     print(result.body)

@@ -1,12 +1,12 @@
 # Connection
 
 ```python
-connection_api = client.connection
+connection_controller = client.connection
 ```
 
 ## Class Name
 
-`ConnectionApi`
+`ConnectionController`
 
 
 # List Connections
@@ -43,7 +43,7 @@ This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The 
 ## Example Usage
 
 ```python
-result = connection_api.list_connections()
+result = connection_controller.list_connections()
 
 if result.is_success():
     print(result.body)
