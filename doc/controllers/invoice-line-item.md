@@ -1,12 +1,12 @@
 # Invoice Line Item
 
 ```python
-invoice_line_item_controller = client.invoice_line_item
+invoice_line_item_api = client.invoice_line_item
 ```
 
 ## Class Name
 
-`InvoiceLineItemController`
+`InvoiceLineItemApi`
 
 ## Methods
 
@@ -42,15 +42,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[InvoiceLineItem]`](../../doc/models/invoice-line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[InvoiceLineItem]`](../../doc/models/invoice-line-item.md).
 
 ## Example Usage
 
 ```python
 invoice_id = 'invoice_id0'
 
-result = invoice_line_item_controller.list_invoice_line_items(invoice_id)
-print(result)
+result = invoice_line_item_api.list_invoice_line_items(invoice_id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -79,15 +83,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`InvoiceLineItem`](../../doc/models/invoice-line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`InvoiceLineItem`](../../doc/models/invoice-line-item.md).
 
 ## Example Usage
 
 ```python
 invoice_id = 'invoice_id0'
 
-result = invoice_line_item_controller.create_invoice_line_item(invoice_id)
-print(result)
+result = invoice_line_item_api.create_invoice_line_item(invoice_id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -114,7 +122,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`InvoiceLineItem`](../../doc/models/invoice-line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`InvoiceLineItem`](../../doc/models/invoice-line-item.md).
 
 ## Example Usage
 
@@ -123,11 +131,15 @@ invoice_id = 'invoice_id0'
 
 id = 'id0'
 
-result = invoice_line_item_controller.get_invoice_line_item(
+result = invoice_line_item_api.get_invoice_line_item(
     invoice_id,
     id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -156,7 +168,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`InvoiceLineItem`](../../doc/models/invoice-line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`InvoiceLineItem`](../../doc/models/invoice-line-item.md).
 
 ## Example Usage
 
@@ -165,11 +177,15 @@ invoice_id = 'invoice_id0'
 
 id = 'id0'
 
-result = invoice_line_item_controller.update_invoice_line_item(
+result = invoice_line_item_api.update_invoice_line_item(
     invoice_id,
     id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -196,7 +212,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`InvoiceLineItem`](../../doc/models/invoice-line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`InvoiceLineItem`](../../doc/models/invoice-line-item.md).
 
 ## Example Usage
 
@@ -205,10 +221,14 @@ invoice_id = 'invoice_id0'
 
 id = 'id0'
 
-result = invoice_line_item_controller.delete_invoice_line_item(
+result = invoice_line_item_api.delete_invoice_line_item(
     invoice_id,
     id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

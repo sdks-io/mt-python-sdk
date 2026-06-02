@@ -9,27 +9,17 @@ from datetime import date
 import dateutil.parser
 
 from moderntreasury.api_helper import APIHelper
-from moderntreasury.models.code_1_enum import (
-    Code1Enum,
-)
-from moderntreasury.models.currency_enum import (
-    CurrencyEnum,
-)
+from moderntreasury.models.code_1 import Code1
+from moderntreasury.models.currency import Currency
 from moderntreasury.models.payment_reference import (
     PaymentReference,
 )
-from moderntreasury.models.returnable_type_enum import (
-    ReturnableTypeEnum,
+from moderntreasury.models.returnable_type import (
+    ReturnableType,
 )
-from moderntreasury.models.role_enum import (
-    RoleEnum,
-)
-from moderntreasury.models.status_4_enum import (
-    Status4Enum,
-)
-from moderntreasury.models.type_6_enum import (
-    Type6Enum,
-)
+from moderntreasury.models.role import Role
+from moderntreasury.models.status_4 import Status4
+from moderntreasury.models.type_6 import Type6
 
 
 class Return(object):
@@ -43,9 +33,8 @@ class Return(object):
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
         returnable_id (uuid|str): The ID of the object being returned or `null`.
-        returnable_type (ReturnableTypeEnum): The type of object being returned or
-            `null`.
-        code (Code1Enum): The return code. For ACH returns, this is the required ACH
+        returnable_type (ReturnableType): The type of object being returned or `null`.
+        code (Code1): The return code. For ACH returns, this is the required ACH
             return code.
         reason (str): Often the bank will provide an explanation for the return,
             which is a short human readable string.
@@ -53,19 +42,19 @@ class Return(object):
             the deceased counterparty passed away.
         additional_information (str): Some returns may include additional information
             from the bank. In these cases, this string will be present.
-        status (Status4Enum): The current status of the return.
+        status (Status4): The current status of the return.
         transaction_line_item_id (uuid|str): The ID of the relevant Transaction Line
             Item or `null`.
         transaction_id (uuid|str): The ID of the relevant Transaction or `null`.
         internal_account_id (uuid|str): The ID of the relevant Internal Account.
-        mtype (Type6Enum): The type of return. Can be one of: `ach`, `ach_noc`,
+        mtype (Type6): The type of return. Can be one of: `ach`, `ach_noc`,
             `au_becs`, `bacs`, `eft`, `interac`, `manual`, `paper_item`, `wire`.
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         failure_reason (str): If an originating return failed to be processed by the
             bank, a description of the failure reason will be available.
-        role (RoleEnum): The role of the return, can be `originating` or `receiving`.
+        role (Role): The role of the return, can be `originating` or `receiving`.
         current_return (Return): The model property of type Return.
         reference_numbers (List[PaymentReference]): An array of Payment Reference
             objects.
@@ -367,12 +356,12 @@ class Return(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.returnable_type,
                     type_callable=lambda value:
-                        ReturnableTypeEnum.validate(value),
+                        ReturnableType.validate(value),
                     is_value_nullable=True) \
                 and APIHelper.is_valid_type(
                     value=dictionary.code,
                     type_callable=lambda value:
-                        Code1Enum.validate(value),
+                        Code1.validate(value),
                     is_value_nullable=True) \
                 and APIHelper.is_valid_type(
                     value=dictionary.reason,
@@ -401,7 +390,7 @@ class Return(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.status,
                     type_callable=lambda value:
-                        Status4Enum.validate(value)) \
+                        Status4.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.transaction_line_item_id,
                     type_callable=lambda value:
@@ -429,7 +418,7 @@ class Return(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.mtype,
                     type_callable=lambda value:
-                        Type6Enum.validate(value)) \
+                        Type6.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.amount,
                     type_callable=lambda value:
@@ -440,7 +429,7 @@ class Return(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.currency,
                     type_callable=lambda value:
-                        CurrencyEnum.validate(value)) \
+                        Currency.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.failure_reason,
                     type_callable=lambda value:
@@ -452,7 +441,7 @@ class Return(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.role,
                     type_callable=lambda value:
-                        RoleEnum.validate(value)) \
+                        Role.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.current_return,
                     type_callable=lambda value:
@@ -522,12 +511,12 @@ class Return(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("returnable_type"),
                 type_callable=lambda value:
-                    ReturnableTypeEnum.validate(value),
+                    ReturnableType.validate(value),
                 is_value_nullable=True) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("code"),
                 type_callable=lambda value:
-                    Code1Enum.validate(value),
+                    Code1.validate(value),
                 is_value_nullable=True) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("reason"),
@@ -556,7 +545,7 @@ class Return(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("status"),
                 type_callable=lambda value:
-                    Status4Enum.validate(value)) \
+                    Status4.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("transaction_line_item_id"),
                 type_callable=lambda value:
@@ -584,7 +573,7 @@ class Return(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("type"),
                 type_callable=lambda value:
-                    Type6Enum.validate(value)) \
+                    Type6.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("amount"),
                 type_callable=lambda value:
@@ -595,7 +584,7 @@ class Return(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("currency"),
                 type_callable=lambda value:
-                    CurrencyEnum.validate(value)) \
+                    Currency.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("failure_reason"),
                 type_callable=lambda value:
@@ -607,7 +596,7 @@ class Return(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("role"),
                 type_callable=lambda value:
-                    RoleEnum.validate(value)) \
+                    Role.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("current_return"),
                 type_callable=lambda value:

@@ -11,8 +11,8 @@ class CounterpartyCollectAccountRequest(object):
     """Implementation of the 'counterparty_collect_account_request' model.
 
     Attributes:
-        direction (DirectionEnum): One of `credit` or `debit`. Use `credit` when you
-            want to pay a counterparty. Use `debit` when you need to charge a
+        direction (Direction): One of `credit` or `debit`. Use `credit` when you want
+            to pay a counterparty. Use `debit` when you need to charge a
             counterparty. This field helps us send a more tailored email to your
             counterparties."
         send_email (bool): By default, Modern Treasury will send an email to your
@@ -20,8 +20,8 @@ class CounterpartyCollectAccountRequest(object):
             However, if you would like to send the counterparty the link, you can set
             this parameter to `false`. The JSON body will include the link to the
             secure Modern Treasury form.
-        fields (List[FieldEnum]): The list of fields you want on the form. This field
-            is optional and if it is not set, will default to [\"nameOnAccount\",
+        fields (List[Field]): The list of fields you want on the form. This field is
+            optional and if it is not set, will default to [\"nameOnAccount\",
             \"accountType\", \"accountNumber\", \"routingNumber\", \"address\"]. The
             full list of options is [\"name\", \"nameOnAccount\",
             \"taxpayerIdentifier\", \"accountType\", \"accountNumber\",
@@ -29,6 +29,8 @@ class CounterpartyCollectAccountRequest(object):
         custom_redirect (str): The URL you want your customer to visit upon filling
             out the form. By default, they will be sent to a Modern Treasury landing
             page. This must be a valid HTTPS URL if set.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -51,7 +53,8 @@ class CounterpartyCollectAccountRequest(object):
         direction=None,
         send_email=APIHelper.SKIP,
         fields=APIHelper.SKIP,
-        custom_redirect=APIHelper.SKIP):
+        custom_redirect=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a CounterpartyCollectAccountRequest instance."""
         # Initialize members of the class
         self.direction = direction
@@ -61,6 +64,11 @@ class CounterpartyCollectAccountRequest(object):
             self.fields = fields
         if custom_redirect is not APIHelper.SKIP:
             self.custom_redirect = custom_redirect
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -97,11 +105,17 @@ class CounterpartyCollectAccountRequest(object):
             if dictionary.get("custom_redirect")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(direction,
                    send_email,
                    fields,
-                   custom_redirect)
+                   custom_redirect,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -121,12 +135,14 @@ class CounterpartyCollectAccountRequest(object):
             if hasattr(self, "custom_redirect")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"direction={_direction!r}, "
             f"send_email={_send_email!r}, "
             f"fields={_fields!r}, "
             f"custom_redirect={_custom_redirect!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -148,11 +164,13 @@ class CounterpartyCollectAccountRequest(object):
             if hasattr(self, "custom_redirect")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"direction={_direction!s}, "
             f"send_email={_send_email!s}, "
             f"fields={_fields!s}, "
             f"custom_redirect={_custom_redirect!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

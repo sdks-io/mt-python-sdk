@@ -13,17 +13,19 @@ class LedgerAccountCreateRequest(object):
     Attributes:
         name (str): The name of the ledger account.
         description (str): The description of the ledger account.
-        normal_balance (NormalBalanceEnum): The normal balance of the ledger account.
+        normal_balance (NormalBalance): The normal balance of the ledger account.
         ledger_id (uuid|str): The id of the ledger that this account belongs to.
         currency (str): The currency of the ledger account.
         currency_exponent (int): The currency exponent of the ledger account.
         ledgerable_id (uuid|str): If the ledger account links to another object in
             Modern Treasury, the id will be populated here, otherwise null.
-        ledgerable_type (LedgerableTypeEnum): If the ledger account links to another
+        ledgerable_type (LedgerableType): If the ledger account links to another
             object in Modern Treasury, the type will be populated here, otherwise
             null. The value is one of internal_account or external_account.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -63,7 +65,8 @@ class LedgerAccountCreateRequest(object):
         currency_exponent=APIHelper.SKIP,
         ledgerable_id=APIHelper.SKIP,
         ledgerable_type=APIHelper.SKIP,
-        metadata=APIHelper.SKIP):
+        metadata=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerAccountCreateRequest instance."""
         # Initialize members of the class
         self.name = name
@@ -80,6 +83,11 @@ class LedgerAccountCreateRequest(object):
             self.ledgerable_type = ledgerable_type
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -136,6 +144,11 @@ class LedgerAccountCreateRequest(object):
             if dictionary.get("metadata")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    normal_balance,
@@ -145,7 +158,8 @@ class LedgerAccountCreateRequest(object):
                    currency_exponent,
                    ledgerable_id,
                    ledgerable_type,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -178,6 +192,7 @@ class LedgerAccountCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
@@ -189,6 +204,7 @@ class LedgerAccountCreateRequest(object):
             f"ledgerable_id={_ledgerable_id!r}, "
             f"ledgerable_type={_ledgerable_type!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -223,6 +239,7 @@ class LedgerAccountCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
@@ -234,5 +251,6 @@ class LedgerAccountCreateRequest(object):
             f"ledgerable_id={_ledgerable_id!s}, "
             f"ledgerable_type={_ledgerable_type!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

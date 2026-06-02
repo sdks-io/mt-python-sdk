@@ -1,6 +1,8 @@
 
 # Payment Flow Create Request
 
+*This model accepts additional fields of type Any.*
+
 ## Structure
 
 `PaymentFlowCreateRequest`
@@ -11,9 +13,10 @@
 |  --- | --- | --- | --- |
 | `amount` | `int` | Required | Required. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. Can be any integer up to 36 digits. |
 | `currency` | `str` | Required | Required. The currency of the payment. |
-| `direction` | [`Direction10Enum`](../../doc/models/direction-10-enum.md) | Required | Required. Describes the direction money is flowing in the transaction. Can only be `debit`. A `debit` pulls money from someone else's account to your own. |
+| `direction` | [`Direction10`](../../doc/models/direction-10.md) | Required | Required. Describes the direction money is flowing in the transaction. Can only be `debit`. A `debit` pulls money from someone else's account to your own. |
 | `counterparty_id` | `uuid\|str` | Required | Required. The ID of a counterparty associated with the payment. As part of the payment workflow an external account will be associated with this model. |
 | `originating_account_id` | `uuid\|str` | Required | Required. The ID of one of your organization's internal accounts. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -23,7 +26,11 @@
   "currency": "currency6",
   "direction": "credit",
   "counterparty_id": "00002384-0000-0000-0000-000000000000",
-  "originating_account_id": "00000b00-0000-0000-0000-000000000000"
+  "originating_account_id": "00000b00-0000-0000-0000-000000000000",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

@@ -15,8 +15,8 @@
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
 | `discarded_at` | `datetime` | Required | - |
-| `mtype` | [`Type12Enum`](../../doc/models/type-12-enum.md) | Required | Indicates whether the line item is `originating` or `receiving` (see https://www.moderntreasury.com/journal/beginners-guide-to-ach for more). |
-| `transactable_type` | [`TransactableTypeEnum`](../../doc/models/transactable-type-enum.md) | Required | If a matching object exists in Modern Treasury, the type will be populated here, otherwise `null`. |
+| `mtype` | [`Type12`](../../doc/models/type-12.md) | Required | Indicates whether the line item is `originating` or `receiving` (see https://www.moderntreasury.com/journal/beginners-guide-to-ach for more). |
+| `transactable_type` | [`TransactableType`](../../doc/models/transactable-type.md) | Required | If a matching object exists in Modern Treasury, the type will be populated here, otherwise `null`. |
 | `transactable_id` | `str` | Required | If a matching object exists in Modern Treasury, the ID will be populated here, otherwise `null`. |
 | `amount` | `int` | Required | If a matching object exists in Modern Treasury, `amount` will be populated. Value in specified currency's smallest unit (taken from parent Transaction). |
 | `description` | `str` | Required | If no matching object is found, `description` will be a free-form text field describing the line item. This field may contain personally identifiable information (PII) and is not included in API responses by default. Learn more about changing your settings at https://docs.moderntreasury.com/reference/personally-identifiable-information. |

@@ -15,8 +15,8 @@
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
 | `discarded_at` | `datetime` | Required | - |
-| `account_type` | [`AccountTypeEnum`](../../doc/models/account-type-enum.md) | Required | Can be `checking`, `savings` or `other`. |
-| `party_type` | [`PartyTypeEnum`](../../doc/models/party-type-enum.md) | Required | Either `individual` or `business`. |
+| `account_type` | [`AccountType`](../../doc/models/account-type.md) | Required | Can be `checking`, `savings` or `other`. |
+| `party_type` | [`PartyType`](../../doc/models/party-type.md) | Required | Either `individual` or `business`. |
 | `party_address` | [`Address`](../../doc/models/address.md) | Required | - |
 | `name` | `str` | Required | A nickname for the external account. This is only for internal usage and won't affect any payments |
 | `counterparty_id` | `uuid\|str` | Required | - |
@@ -26,7 +26,7 @@
 | `party_name` | `str` | Required | The legal name of the entity which owns the account. |
 | `contact_details` | [`List[ContactDetail]`](../../doc/models/contact-detail.md) | Required | - |
 | `ledger_account_id` | `uuid\|str` | Required | If the external account links to a ledger account in Modern Treasury, the id of the ledger account will be populated here. |
-| `verification_status` | [`VerificationStatusEnum`](../../doc/models/verification-status-enum.md) | Required | - |
+| `verification_status` | [`VerificationStatus`](../../doc/models/verification-status.md) | Required | - |
 
 ## Example (as JSON)
 

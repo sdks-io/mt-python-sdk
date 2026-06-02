@@ -27,7 +27,7 @@ class LedgerAccountStatement(object):
             entries are queried against, and its balances are computed as a result.
         ledger_account_lock_version (int): Lock version of the ledger account at the
             time of statement generation.
-        ledger_account_normal_balance (LedgerAccountNormalBalanceEnum): The normal
+        ledger_account_normal_balance (LedgerAccountNormalBalance): The normal
             balance of the ledger account.
         effective_at_lower_bound (datetime): The inclusive lower bound of the
             effective_at timestamp of the ledger entries to be included in the ledger

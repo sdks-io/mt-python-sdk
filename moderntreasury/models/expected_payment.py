@@ -25,13 +25,13 @@ class ExpectedPayment(object):
         amount_lower_bound (int): The lowest amount this expected payment may be
             equal to. Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.
-        direction (Direction1Enum): One of credit or debit. When you are receiving
-            money, use credit. When you are being charged, use debit.
+        direction (Direction1): One of credit or debit. When you are receiving money,
+            use credit. When you are being charged, use debit.
         internal_account_id (uuid|str): The ID of the Internal Account for the
             expected payment.
-        mtype (Type1Enum): One of: ach, au_becs, bacs, book, check, eft, interac,
+        mtype (Type1): One of: ach, au_becs, bacs, book, check, eft, interac,
             provxchange, rtp, sen, sepa, signet, wire.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         date_upper_bound (date): The latest date the payment may come in. Format:
             yyyy-mm-dd
         date_lower_bound (date): The earliest date the payment may come in. Format:
@@ -57,10 +57,10 @@ class ExpectedPayment(object):
             object has been matched to.
         transaction_line_item_id (uuid|str): The ID of the Transaction Line Item this
             expected payment has been matched to.
-        status (Status1Enum): One of unreconciled, reconciled, or archived.
-        reconciliation_method (ReconciliationMethodEnum): One of manual if this
-            expected payment was manually reconciled in the dashboard, automatic if
-            it was automatically reconciled by Modern Treasury, or null if it is
+        status (Status1): One of unreconciled, reconciled, or archived.
+        reconciliation_method (ReconciliationMethod): One of manual if this expected
+            payment was manually reconciled in the dashboard, automatic if it was
+            automatically reconciled by Modern Treasury, or null if it is
             unreconciled.
         ledger_transaction_id (uuid|str): The ID of the ledger transaction linked to
             the expected payment.

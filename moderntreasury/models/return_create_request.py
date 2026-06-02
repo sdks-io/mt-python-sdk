@@ -14,7 +14,7 @@ class ReturnCreateRequest(object):
 
     Attributes:
         returnable_id (uuid|str): The ID of the object being returned or `null`.
-        code (Code1Enum): The return code. For ACH returns, this is the required ACH
+        code (Code1): The return code. For ACH returns, this is the required ACH
             return code.
         reason (str): An optional description of the reason for the return. This is
             for internal usage and will not be transmitted to the bank.”
@@ -24,6 +24,8 @@ class ReturnCreateRequest(object):
             from the bank. In these cases, this string will be present.
         returnable_type (str): The type of object being returned. Currently, this may
             only be incoming_payment_detail.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -58,7 +60,8 @@ class ReturnCreateRequest(object):
         code=APIHelper.SKIP,
         reason=APIHelper.SKIP,
         date_of_death=APIHelper.SKIP,
-        additional_information=APIHelper.SKIP):
+        additional_information=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ReturnCreateRequest instance."""
         # Initialize members of the class
         self.returnable_id = returnable_id
@@ -71,6 +74,11 @@ class ReturnCreateRequest(object):
         if additional_information is not APIHelper.SKIP:
             self.additional_information = additional_information
         self.returnable_type = "incoming_payment_detail"
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -114,12 +122,18 @@ class ReturnCreateRequest(object):
             if "additional_information" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(returnable_id,
                    code,
                    reason,
                    date_of_death,
-                   additional_information)
+                   additional_information,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -145,6 +159,7 @@ class ReturnCreateRequest(object):
             else None
         )
         _returnable_type=self.returnable_type
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"returnable_id={_returnable_id!r}, "
@@ -153,6 +168,7 @@ class ReturnCreateRequest(object):
             f"date_of_death={_date_of_death!r}, "
             f"additional_information={_additional_information!r}, "
             f"returnable_type={_returnable_type!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -180,6 +196,7 @@ class ReturnCreateRequest(object):
             else None
         )
         _returnable_type=self.returnable_type
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"returnable_id={_returnable_id!s}, "
@@ -188,5 +205,6 @@ class ReturnCreateRequest(object):
             f"date_of_death={_date_of_death!s}, "
             f"additional_information={_additional_information!s}, "
             f"returnable_type={_returnable_type!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

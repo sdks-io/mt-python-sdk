@@ -22,15 +22,15 @@ class Transaction(object):
         discarded_at (datetime): The model property of type datetime.
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         direction (str): Either `credit` or `debit`.
         vendor_description (str): The transaction detail text that often appears in
             on your bank statement and in your banking portal.
         vendor_code (str): When applicable, the bank-given code that determines the
             transaction's category. For most banks this is the BAI2/BTRS transaction
             code.
-        vendor_code_type (VendorCodeType1Enum): The type of `vendor_code` being
-            reported. Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`,
+        vendor_code_type (VendorCodeType1): The type of `vendor_code` being reported.
+            Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`,
             `currencycloud`, `cross_river`, `dc_bank`, `dwolla`, `evolve`,
             `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`,
             `swift`, or `us_bank`.
@@ -57,7 +57,7 @@ class Transaction(object):
             details field will vary based on your banking partner. Currently, the
             following keys may be in the details object: `originator_name`,
             `originator_to_beneficiary_information`.
-        mtype (Type11Enum): The type of the transaction. Can be one of `ach`, `wire`,
+        mtype (Type11): The type of the transaction. Can be one of `ach`, `wire`,
             `check`, `rtp`, `book`, or `sen`.
 
     """

@@ -18,7 +18,7 @@
 | `document_type` | `str` | Required | A category given to the document, can be `null`. |
 | `source` | `str` | Required | The source of the document. Can be `vendor`, `customer`, or `modern_treasury`. |
 | `documentable_id` | `uuid\|str` | Required | The unique identifier for the associated object. |
-| `documentable_type` | [`DocumentableTypeEnum`](../../doc/models/documentable-type-enum.md) | Required | The type of the associated object. Currently can be one of `payment_order`, `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`, `case`, `internal_account`, `decision`, or `external_account`. |
+| `documentable_type` | [`DocumentableType`](../../doc/models/documentable-type.md) | Required | The type of the associated object. Currently can be one of `payment_order`, `transaction`, `paper_item`, `expected_payment`, `counterparty`, `organization`, `case`, `internal_account`, `decision`, or `external_account`. |
 | `document_details` | [`List[DocumentDetail]`](../../doc/models/document-detail.md) | Required | - |
 | `file` | [`File`](../../doc/models/file.md) | Required | - |
 

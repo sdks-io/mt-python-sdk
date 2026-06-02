@@ -18,6 +18,8 @@ class Accounting(object):
             system. Class objects track segments of your business independent of
             client or project. Note that these will only be accessible if your
             accounting system has been connected.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -40,13 +42,19 @@ class Accounting(object):
     def __init__(
         self,
         account_id=APIHelper.SKIP,
-        class_id=APIHelper.SKIP):
+        class_id=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a Accounting instance."""
         # Initialize members of the class
         if account_id is not APIHelper.SKIP:
             self.account_id = account_id
         if class_id is not APIHelper.SKIP:
             self.class_id = class_id
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -75,9 +83,15 @@ class Accounting(object):
             if "class_id" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(account_id,
-                   class_id)
+                   class_id,
+                   additional_properties)
 
     @classmethod
     def validate(cls, dictionary):
@@ -112,10 +126,12 @@ class Accounting(object):
             if hasattr(self, "class_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"account_id={_account_id!r}, "
             f"class_id={_class_id!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -131,9 +147,11 @@ class Accounting(object):
             if hasattr(self, "class_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"account_id={_account_id!s}, "
             f"class_id={_class_id!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

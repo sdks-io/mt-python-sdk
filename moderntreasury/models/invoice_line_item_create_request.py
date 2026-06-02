@@ -21,6 +21,8 @@ class InvoiceLineItemCreateRequest(object):
         direction (str): Either `debit` or `credit`. `debit` indicates that a client
             owes the business money           and increases the invoice's
             `total_amount` due. `credit` has the opposite intention and effect.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -45,7 +47,8 @@ class InvoiceLineItemCreateRequest(object):
         unit_amount=None,
         description=APIHelper.SKIP,
         quantity=APIHelper.SKIP,
-        direction=APIHelper.SKIP):
+        direction=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a InvoiceLineItemCreateRequest instance."""
         # Initialize members of the class
         self.name = name
@@ -56,6 +59,11 @@ class InvoiceLineItemCreateRequest(object):
         self.unit_amount = unit_amount
         if direction is not APIHelper.SKIP:
             self.direction = direction
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -96,12 +104,18 @@ class InvoiceLineItemCreateRequest(object):
             if dictionary.get("direction")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    unit_amount,
                    description,
                    quantity,
-                   direction)
+                   direction,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -122,6 +136,7 @@ class InvoiceLineItemCreateRequest(object):
             if hasattr(self, "direction")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
@@ -129,6 +144,7 @@ class InvoiceLineItemCreateRequest(object):
             f"quantity={_quantity!r}, "
             f"unit_amount={_unit_amount!r}, "
             f"direction={_direction!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -151,6 +167,7 @@ class InvoiceLineItemCreateRequest(object):
             if hasattr(self, "direction")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
@@ -158,5 +175,6 @@ class InvoiceLineItemCreateRequest(object):
             f"quantity={_quantity!s}, "
             f"unit_amount={_unit_amount!s}, "
             f"direction={_direction!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

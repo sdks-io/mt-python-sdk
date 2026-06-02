@@ -19,13 +19,15 @@ class InternalAccountCreateRequest(object):
         name (str): The nickname of the account.
         party_name (str): The legal name of the entity which owns the account.
         party_address (PartyAddress): The address associated with the owner or null.
-        currency (Currency1Enum): Either "USD" or "CAD". Internal accounts created at
+        currency (Currency1): Either "USD" or "CAD". Internal accounts created at
             Increase only supports "USD".
         vendor_attributes (Dict[str, str]): A hash of vendor specific attributes that
             will be used when creating the account at the vendor specified by the
             given connection.
         parent_account_id (str): The parent internal account of this new account.
         counterparty_id (str): The Counterparty associated to this account.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -57,7 +59,8 @@ class InternalAccountCreateRequest(object):
         party_address=APIHelper.SKIP,
         vendor_attributes=APIHelper.SKIP,
         parent_account_id=APIHelper.SKIP,
-        counterparty_id=APIHelper.SKIP):
+        counterparty_id=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a InternalAccountCreateRequest instance."""
         # Initialize members of the class
         self.connection_id = connection_id
@@ -72,6 +75,11 @@ class InternalAccountCreateRequest(object):
             self.parent_account_id = parent_account_id
         if counterparty_id is not APIHelper.SKIP:
             self.counterparty_id = counterparty_id
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -125,6 +133,11 @@ class InternalAccountCreateRequest(object):
             if dictionary.get("counterparty_id")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(connection_id,
                    name,
@@ -133,7 +146,8 @@ class InternalAccountCreateRequest(object):
                    party_address,
                    vendor_attributes,
                    parent_account_id,
-                   counterparty_id)
+                   counterparty_id,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -161,6 +175,7 @@ class InternalAccountCreateRequest(object):
             if hasattr(self, "counterparty_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"connection_id={_connection_id!r}, "
@@ -171,6 +186,7 @@ class InternalAccountCreateRequest(object):
             f"vendor_attributes={_vendor_attributes!r}, "
             f"parent_account_id={_parent_account_id!r}, "
             f"counterparty_id={_counterparty_id!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -200,6 +216,7 @@ class InternalAccountCreateRequest(object):
             if hasattr(self, "counterparty_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"connection_id={_connection_id!s}, "
@@ -210,5 +227,6 @@ class InternalAccountCreateRequest(object):
             f"vendor_attributes={_vendor_attributes!s}, "
             f"parent_account_id={_parent_account_id!s}, "
             f"counterparty_id={_counterparty_id!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

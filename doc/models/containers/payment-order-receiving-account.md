@@ -41,9 +41,9 @@ value = InternalAccount(
     live_mode=False,
     created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
     updated_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
-    account_type=AccountType5Enum.SAVINGS,
+    account_type=AccountType5.SAVINGS,
     party_name='party_name0',
-    party_type=PartyType5Enum.BUSINESS,
+    party_type=PartyType5.BUSINESS,
     party_address=Address(
         id='00000cb8-0000-0000-0000-000000000000',
         object='object6',
@@ -66,7 +66,7 @@ value = InternalAccount(
             created_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
             updated_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
             discarded_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
-            account_number_type=AccountNumberTypeEnum.OTHER,
+            account_number_type=AccountNumberType.OTHER,
             account_number_safe='account_number_safe6'
         )
     ],
@@ -79,8 +79,8 @@ value = InternalAccount(
             updated_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
             discarded_at=dateutil.parser.parse('2016-03-13T12:52:32.123Z'),
             routing_number='routing_number6',
-            routing_number_type=RoutingNumberTypeEnum.GB_SORT_CODE,
-            payment_type=PaymentType1Enum.EFT,
+            routing_number_type=RoutingNumberType.GB_SORT_CODE,
+            payment_type=PaymentType1.EFT,
             bank_name='bank_name2',
             bank_address=Address(
                 id='000004a8-0000-0000-0000-000000000000',
@@ -108,7 +108,7 @@ value = InternalAccount(
         vendor_customer_id='0000080c-0000-0000-0000-000000000000',
         vendor_name='vendor_name0'
     ),
-    currency=CurrencyEnum.EGP,
+    currency=Currency.EGP,
     metadata={
         'key': 'value',
         'foo': 'bar',

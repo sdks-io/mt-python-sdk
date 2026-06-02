@@ -20,7 +20,7 @@ class LedgerAccountPayout(object):
         ledger_id (uuid|str): The id of the ledger that this ledger account payout
             belongs to.
         description (str): The description of the ledger account payout.
-        status (Status6Enum): The status of the ledger account payout. One of
+        status (Status6): The status of the ledger account payout. One of
             `processing`, `pending`, `posted`, `archiving` or `archived`.
         payout_ledger_account_id (uuid|str): The id of the payout ledger account
             whose ledger entries are queried against, and its balance is reduced as a

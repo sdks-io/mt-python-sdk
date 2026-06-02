@@ -1,6 +1,8 @@
 
 # Ledger Transaction Update Request
 
+*This model accepts additional fields of type Any.*
+
 ## Structure
 
 `LedgerTransactionUpdateRequest`
@@ -10,10 +12,11 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `description` | `str` | Optional | An optional description for internal use. |
-| `status` | [`Status11Enum`](../../doc/models/status-11-enum.md) | Optional | To post a ledger transaction at creation, use `posted`. |
+| `status` | [`Status11`](../../doc/models/status-11.md) | Optional | To post a ledger transaction at creation, use `posted`. |
 | `metadata` | `Dict[str, str]` | Optional | Additional data represented as key-value pairs. Both the key and value must be strings. |
 | `effective_at` | `date` | Optional | The timestamp (ISO8601 format) at which the ledger transaction happened for reporting purposes. |
 | `ledger_entries` | [`List[LedgerEntryCreateRequest]`](../../doc/models/ledger-entry-create-request.md) | Optional | An array of ledger entry objects. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -47,7 +50,11 @@
         "key1": 188,
         "key2": 189
       },
-      "show_resulting_ledger_account_balances": false
+      "show_resulting_ledger_account_balances": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     },
     {
       "amount": 60,
@@ -68,9 +75,17 @@
         "key1": 188,
         "key2": 189
       },
-      "show_resulting_ledger_account_balances": false
+      "show_resulting_ledger_account_balances": false,
+      "exampleAdditionalProperty": {
+        "key1": "val1",
+        "key2": "val2"
+      }
     }
-  ]
+  ],
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

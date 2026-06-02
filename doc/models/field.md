@@ -1,0 +1,33 @@
+
+# Field
+
+## Enumeration
+
+`Field`
+
+## Fields
+
+| Name |
+|  --- |
+| `NAME` |
+| `NAMEONACCOUNT` |
+| `TAXPAYERIDENTIFIER` |
+| `ACCOUNTTYPE` |
+| `ACCOUNTNUMBER` |
+| `IBANNUMBER` |
+| `CLABENUMBER` |
+| `WALLETADDRESS` |
+| `PANNUMBER` |
+| `ROUTINGNUMBER` |
+| `ABAWIREROUTINGNUMBER` |
+| `SWIFTCODE` |
+| `AUBSB` |
+| `CACPA` |
+| `CNAPS` |
+| `GBSORTCODE` |
+| `INIFSC` |
+| `MYBRANCHCODE` |
+| `BRCODIGO` |
+| `ROUTINGNUMBERTYPE` |
+| `ADDRESS` |
+

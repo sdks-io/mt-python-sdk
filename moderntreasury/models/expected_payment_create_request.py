@@ -22,13 +22,13 @@ class ExpectedPaymentCreateRequest(object):
         amount_lower_bound (int): The lowest amount this expected payment may be
             equal to. Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.
-        direction (Direction1Enum): One of credit or debit. When you are receiving
-            money, use credit. When you are being charged, use debit.
+        direction (Direction1): One of credit or debit. When you are receiving money,
+            use credit. When you are being charged, use debit.
         internal_account_id (uuid|str): The ID of the Internal Account for the
             expected payment.
-        mtype (Type1Enum): One of: ach, au_becs, bacs, book, check, eft, interac,
+        mtype (Type1): One of: ach, au_becs, bacs, book, check, eft, interac,
             provxchange, rtp, sen, sepa, signet, wire.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         date_upper_bound (date): The latest date the payment may come in. Format:
             yyyy-mm-dd
         date_lower_bound (date): The earliest date the payment may come in. Format:
@@ -52,6 +52,8 @@ class ExpectedPaymentCreateRequest(object):
             payment.
         line_items (List[LineItemRequest]): The model property of type
             List[LineItemRequest].
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -119,7 +121,8 @@ class ExpectedPaymentCreateRequest(object):
         remittance_information=APIHelper.SKIP,
         reconciliation_groups=APIHelper.SKIP,
         reconciliation_filters=APIHelper.SKIP,
-        line_items=APIHelper.SKIP):
+        line_items=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ExpectedPaymentCreateRequest instance."""
         # Initialize members of the class
         self.amount_upper_bound = amount_upper_bound
@@ -150,6 +153,11 @@ class ExpectedPaymentCreateRequest(object):
             self.reconciliation_filters = reconciliation_filters
         if line_items is not APIHelper.SKIP:
             self.line_items = line_items
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -244,6 +252,11 @@ class ExpectedPaymentCreateRequest(object):
         else:
             line_items = APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(amount_upper_bound,
                    amount_lower_bound,
@@ -260,7 +273,8 @@ class ExpectedPaymentCreateRequest(object):
                    remittance_information,
                    reconciliation_groups,
                    reconciliation_filters,
-                   line_items)
+                   line_items,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -328,6 +342,7 @@ class ExpectedPaymentCreateRequest(object):
             if hasattr(self, "line_items")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount_upper_bound={_amount_upper_bound!r}, "
@@ -346,6 +361,7 @@ class ExpectedPaymentCreateRequest(object):
             f"reconciliation_groups={_reconciliation_groups!r}, "
             f"reconciliation_filters={_reconciliation_filters!r}, "
             f"line_items={_line_items!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -415,6 +431,7 @@ class ExpectedPaymentCreateRequest(object):
             if hasattr(self, "line_items")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount_upper_bound={_amount_upper_bound!s}, "
@@ -433,5 +450,6 @@ class ExpectedPaymentCreateRequest(object):
             f"reconciliation_groups={_reconciliation_groups!s}, "
             f"reconciliation_filters={_reconciliation_filters!s}, "
             f"line_items={_line_items!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

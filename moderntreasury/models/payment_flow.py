@@ -19,12 +19,12 @@ class PaymentFlow(object):
         updated_at (datetime): The model property of type datetime.
         client_token (str): The client token of the payment flow. This token can be
             used to embed a payment workflow in your client-side application.
-        status (Status17Enum): The current status of the payment flow. One of
-            `pending`, `completed`, `expired`, or `cancelled`.
+        status (Status17): The current status of the payment flow. One of `pending`,
+            `completed`, `expired`, or `cancelled`.
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000. Can be any integer up to 36 digits.
         currency (str): The currency of the payment.
-        direction (Direction9Enum): Describes the direction money is flowing in the
+        direction (Direction9): Describes the direction money is flowing in the
             transaction. Can only be `debit`. A `debit` pulls money from someone
             else's account to your own.
         counterparty_id (uuid|str): The ID of a counterparty associated with the

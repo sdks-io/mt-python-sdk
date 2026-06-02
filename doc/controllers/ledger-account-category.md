@@ -1,12 +1,12 @@
 # Ledger Account Category
 
 ```python
-ledger_account_category_controller = client.ledger_account_category
+ledger_account_category_api = client.ledger_account_category
 ```
 
 ## Class Name
 
-`LedgerAccountCategoryController`
+`LedgerAccountCategoryApi`
 
 ## Methods
 
@@ -58,13 +58,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[LedgerAccountCategory]`](../../doc/models/ledger-account-category.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LedgerAccountCategory]`](../../doc/models/ledger-account-category.md).
 
 ## Example Usage
 
 ```python
-result = ledger_account_category_controller.list_ledger_account_categories()
-print(result)
+result = ledger_account_category_api.list_ledger_account_categories()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -93,7 +97,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`LedgerAccountCategory`](../../doc/models/ledger-account-category.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountCategory`](../../doc/models/ledger-account-category.md).
 
 ## Example Usage
 
@@ -102,7 +106,7 @@ body = LedgerAccountCategoryCreateRequest(
     name='name6',
     currency='currency6',
     ledger_id='00002576-0000-0000-0000-000000000000',
-    normal_balance=NormalBalance2Enum.CREDIT,
+    normal_balance=NormalBalance2.CREDIT,
     metadata={
         'key': 'value',
         'foo': 'bar',
@@ -110,10 +114,14 @@ body = LedgerAccountCategoryCreateRequest(
     }
 )
 
-result = ledger_account_category_controller.create_ledger_account_category(
+result = ledger_account_category_api.create_ledger_account_category(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -149,15 +157,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerAccountCategory`](../../doc/models/ledger-account-category.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountCategory`](../../doc/models/ledger-account-category.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_account_category_controller.get_ledger_account_category(id)
-print(result)
+result = ledger_account_category_api.get_ledger_account_category(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -193,7 +205,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerAccountCategory`](../../doc/models/ledger-account-category.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountCategory`](../../doc/models/ledger-account-category.md).
 
 ## Example Usage
 
@@ -208,11 +220,15 @@ body = LedgerAccountCategoryUpdateRequest(
     }
 )
 
-result = ledger_account_category_controller.update_ledger_account_category(
+result = ledger_account_category_api.update_ledger_account_category(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -247,15 +263,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerAccountCategory`](../../doc/models/ledger-account-category.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountCategory`](../../doc/models/ledger-account-category.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_account_category_controller.delete_ledger_account_category(id)
-print(result)
+result = ledger_account_category_api.delete_ledger_account_category(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -291,7 +311,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-`void`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -300,10 +320,15 @@ id = 'id0'
 
 ledger_account_id = 'ledger_account_id4'
 
-ledger_account_category_controller.add_ledger_account_to_ledger_account_category(
+result = ledger_account_category_api.add_ledger_account_to_ledger_account_category(
     id,
     ledger_account_id
 )
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -340,7 +365,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-`void`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -349,10 +374,15 @@ id = 'id0'
 
 ledger_account_id = 'ledger_account_id4'
 
-ledger_account_category_controller.remove_ledger_account_from_ledger_account_category(
+result = ledger_account_category_api.remove_ledger_account_from_ledger_account_category(
     id,
     ledger_account_id
 )
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -389,7 +419,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-`void`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -398,10 +428,15 @@ id = 'id0'
 
 sub_category_id = 'sub_category_id0'
 
-ledger_account_category_controller.add_ledger_account_category_to_ledger_account_category(
+result = ledger_account_category_api.add_ledger_account_category_to_ledger_account_category(
     id,
     sub_category_id
 )
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -438,7 +473,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-`void`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
@@ -447,10 +482,15 @@ id = 'id0'
 
 sub_category_id = 'sub_category_id0'
 
-ledger_account_category_controller.delete_ledger_account_category_from_ledger_account_category(
+result = ledger_account_category_api.delete_ledger_account_category_from_ledger_account_category(
     id,
     sub_category_id
 )
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

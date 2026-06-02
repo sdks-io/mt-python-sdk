@@ -23,7 +23,7 @@ class LedgerTransactionVersion(object):
         created_at (datetime): The model property of type datetime.
         ledger_transaction_id (uuid|str): The ID of the ledger transaction
         description (str): An optional description for internal use.
-        status (Status12Enum): One of `pending`, `posted`, or `archived`
+        status (Status12): One of `pending`, `posted`, or `archived`
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
         effective_at (datetime): The timestamp (ISO8601 format) at which the ledger
@@ -35,7 +35,7 @@ class LedgerTransactionVersion(object):
         posted_at (datetime): The time on which the ledger transaction posted. This
             is null if the ledger transaction is pending.
         ledger_id (uuid|str): The ID of the ledger this ledger transaction belongs to.
-        ledgerable_type (LedgerableType2Enum): If the ledger transaction can be
+        ledgerable_type (LedgerableType2): If the ledger transaction can be
             reconciled to another object in Modern Treasury, the type will be
             populated here, otherwise null. This can be one of payment_order,
             incoming_payment_detail, expected_payment, return, or reversal.

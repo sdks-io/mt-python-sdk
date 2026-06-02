@@ -1,6 +1,8 @@
 
 # Counterparty Update Request
 
+*This model accepts additional fields of type Any.*
+
 ## Structure
 
 `CounterpartyUpdateRequest`
@@ -14,6 +16,7 @@
 | `metadata` | `Dict[str, str]` | Optional | Additional data in the form of key-value pairs. Pairs can be removed by passing an empty string or `null` as the value. |
 | `send_remittance_advice` | `bool` | Optional | If this is `true`, Modern Treasury will send an email to the counterparty whenever an associated payment order is sent to the bank. |
 | `taxpayer_identifier` | `str` | Optional | Either a valid SSN or EIN. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
     "key2": "metadata3"
   },
   "send_remittance_advice": false,
-  "taxpayer_identifier": "taxpayer_identifier6"
+  "taxpayer_identifier": "taxpayer_identifier6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

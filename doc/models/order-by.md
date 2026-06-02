@@ -9,8 +9,8 @@
 
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `created_at` | [`CreatedAtEnum`](../../doc/models/created-at-enum.md) | Optional | - |
-| `effective_at` | [`EffectiveAtEnum`](../../doc/models/effective-at-enum.md) | Optional | - |
+| `created_at` | [`CreatedAt`](../../doc/models/created-at.md) | Optional | - |
+| `effective_at` | [`EffectiveAt`](../../doc/models/effective-at.md) | Optional | - |
 
 ## Example (as JSON)
 

@@ -1,12 +1,12 @@
 # Ping
 
 ```python
-ping_controller = client.ping
+ping_api = client.ping
 ```
 
 ## Class Name
 
-`PingController`
+`PingApi`
 
 
 # Ping API
@@ -25,13 +25,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`PingResponse`](../../doc/models/ping-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`PingResponse`](../../doc/models/ping-response.md).
 
 ## Example Usage
 
 ```python
-result = ping_controller.ping_api()
-print(result)
+result = ping_api.ping_api()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -39,6 +43,6 @@ print(result)
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
 | 401 | unsuccessful | [`ErrorMessageException`](../../doc/models/error-message-exception.md) |
-| 429 | unsuccessful | `APIException` |
-| 500 | internal server error | `APIException` |
+| 429 | unsuccessful | `ApiException` |
+| 500 | internal server error | `ApiException` |
 

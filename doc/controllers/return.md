@@ -1,12 +1,12 @@
 # Return
 
 ```python
-mreturn_controller = client.mreturn
+mreturn_api = client.mreturn
 ```
 
 ## Class Name
 
-`ReturnController`
+`ReturnApi`
 
 ## Methods
 
@@ -42,19 +42,23 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 | `internal_account_id` | `str` | Query, Optional | Specify `internal_account_id` if you wish to see returns to/from a specific account. |
 | `counterparty_id` | `str` | Query, Optional | Specify `counterparty_id` if you wish to see returns that occurred with a specific counterparty. |
 | `returnable_id` | `str` | Query, Optional | The ID of a valid returnable. Must be accompanied by `returnable_type`. |
-| `returnable_type` | [`ReturnableType1Enum`](../../doc/models/returnable-type-1-enum.md) | Query, Optional | One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`. Must be accompanied by `returnable_id`. |
+| `returnable_type` | [`ReturnableType1`](../../doc/models/returnable-type-1.md) | Query, Optional | One of `payment_order`, `paper_item`, `reversal`, or `incoming_payment_detail`. Must be accompanied by `returnable_id`. |
 
 ## Response Type
 
 **200**: successful
 
-[`List[Return]`](../../doc/models/return.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[Return]`](../../doc/models/return.md).
 
 ## Example Usage
 
 ```python
-result = mreturn_controller.list_returns()
-print(result)
+result = mreturn_api.list_returns()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -89,7 +93,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`Return`](../../doc/models/return.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Return`](../../doc/models/return.md).
 
 ## Example Usage
 
@@ -98,10 +102,14 @@ body = ReturnCreateRequest(
     returnable_id='00000350-0000-0000-0000-000000000000'
 )
 
-result = mreturn_controller.create_return(
+result = mreturn_api.create_return(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -135,15 +143,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Return`](../../doc/models/return.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Return`](../../doc/models/return.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = mreturn_controller.get_return(id)
-print(result)
+result = mreturn_api.get_return(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

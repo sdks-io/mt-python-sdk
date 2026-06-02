@@ -12,6 +12,8 @@ class ExternalAccountCompleteVerificationRequest(object):
 
     Attributes:
         amounts (List[int]): The model property of type List[int].
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -26,11 +28,17 @@ class ExternalAccountCompleteVerificationRequest(object):
 
     def __init__(
         self,
-        amounts=APIHelper.SKIP):
+        amounts=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ExternalAccountCompleteVerificationRequest instance."""
         # Initialize members of the class
         if amounts is not APIHelper.SKIP:
             self.amounts = amounts
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -55,8 +63,14 @@ class ExternalAccountCompleteVerificationRequest(object):
             if dictionary.get("amounts")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
-        return cls(amounts)
+        return cls(amounts,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -65,9 +79,11 @@ class ExternalAccountCompleteVerificationRequest(object):
             if hasattr(self, "amounts")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amounts={_amounts!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -78,8 +94,10 @@ class ExternalAccountCompleteVerificationRequest(object):
             if hasattr(self, "amounts")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amounts={_amounts!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

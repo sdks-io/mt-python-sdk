@@ -11,9 +11,11 @@ class Errors(object):
     """Implementation of the 'Errors' model.
 
     Attributes:
-        code (CodeEnum): The model property of type CodeEnum.
+        code (Code): The model property of type Code.
         message (str): The model property of type str.
         parameter (str): The model property of type str.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -34,7 +36,8 @@ class Errors(object):
         self,
         code=APIHelper.SKIP,
         message=APIHelper.SKIP,
-        parameter=APIHelper.SKIP):
+        parameter=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a Errors instance."""
         # Initialize members of the class
         if code is not APIHelper.SKIP:
@@ -43,6 +46,11 @@ class Errors(object):
             self.message = message
         if parameter is not APIHelper.SKIP:
             self.parameter = parameter
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -75,10 +83,16 @@ class Errors(object):
             if dictionary.get("parameter")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(code,
                    message,
-                   parameter)
+                   parameter,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -97,11 +111,13 @@ class Errors(object):
             if hasattr(self, "parameter")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"code={_code!r}, "
             f"message={_message!r}, "
             f"parameter={_parameter!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -122,10 +138,12 @@ class Errors(object):
             if hasattr(self, "parameter")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"code={_code!s}, "
             f"message={_message!s}, "
             f"parameter={_parameter!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

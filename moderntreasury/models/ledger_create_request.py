@@ -15,6 +15,8 @@ class LedgerCreateRequest(object):
         description (str): An optional free-form description for internal use.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -38,7 +40,8 @@ class LedgerCreateRequest(object):
         self,
         name=None,
         description=APIHelper.SKIP,
-        metadata=APIHelper.SKIP):
+        metadata=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerCreateRequest instance."""
         # Initialize members of the class
         self.name = name
@@ -46,6 +49,11 @@ class LedgerCreateRequest(object):
             self.description = description
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -78,10 +86,16 @@ class LedgerCreateRequest(object):
             if dictionary.get("metadata")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    description,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -96,11 +110,13 @@ class LedgerCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
             f"description={_description!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -117,10 +133,12 @@ class LedgerCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
             f"description={_description!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

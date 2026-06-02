@@ -1,6 +1,8 @@
 
 # Ledger Account Statement Create Request
 
+*This model accepts additional fields of type Any.*
+
 ## Structure
 
 `LedgerAccountStatementCreateRequest`
@@ -14,6 +16,7 @@
 | `effective_at_lower_bound` | `datetime` | Required | The inclusive lower bound of the effective_at timestamp of the ledger entries to be included in the ledger account statement. |
 | `effective_at_upper_bound` | `datetime` | Required | The exclusive upper bound of the effective_at timestamp of the ledger entries to be included in the ledger account statement. |
 | `metadata` | `Dict[str, str]` | Optional | Additional data represented as key-value pairs. Both the key and value must be strings. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -27,7 +30,11 @@
     "foo": "bar",
     "modern": "treasury"
   },
-  "description": "description6"
+  "description": "description6",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

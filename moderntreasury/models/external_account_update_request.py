@@ -14,8 +14,8 @@ class ExternalAccountUpdateRequest(object):
     """Implementation of the 'external_account_update_request' model.
 
     Attributes:
-        party_type (PartyTypeEnum): Either `individual` or `business`.
-        account_type (AccountTypeEnum): Can be `checking`, `savings` or `other`.
+        party_type (PartyType): Either `individual` or `business`.
+        account_type (AccountType): Can be `checking`, `savings` or `other`.
         counterparty_id (uuid|str): The model property of type uuid|str.
         name (str): A nickname for the external account. This is only for internal
             usage and won't affect any payments
@@ -24,6 +24,8 @@ class ExternalAccountUpdateRequest(object):
         party_address (AddressRequest): The model property of type AddressRequest.
         metadata (Dict[str, str]): Additional data in the form of key-value pairs.
             Pairs can be removed by passing an empty string or `null` as the value.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -62,7 +64,8 @@ class ExternalAccountUpdateRequest(object):
         name=APIHelper.SKIP,
         party_name=APIHelper.SKIP,
         party_address=APIHelper.SKIP,
-        metadata=APIHelper.SKIP):
+        metadata=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ExternalAccountUpdateRequest instance."""
         # Initialize members of the class
         if party_type is not APIHelper.SKIP:
@@ -79,6 +82,11 @@ class ExternalAccountUpdateRequest(object):
             self.party_address = party_address
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -128,6 +136,11 @@ class ExternalAccountUpdateRequest(object):
             if dictionary.get("metadata")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(party_type,
                    account_type,
@@ -135,7 +148,8 @@ class ExternalAccountUpdateRequest(object):
                    name,
                    party_name,
                    party_address,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -174,6 +188,7 @@ class ExternalAccountUpdateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"party_type={_party_type!r}, "
@@ -183,6 +198,7 @@ class ExternalAccountUpdateRequest(object):
             f"party_name={_party_name!r}, "
             f"party_address={_party_address!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -223,6 +239,7 @@ class ExternalAccountUpdateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"party_type={_party_type!s}, "
@@ -232,5 +249,6 @@ class ExternalAccountUpdateRequest(object):
             f"party_name={_party_name!s}, "
             f"party_address={_party_address!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

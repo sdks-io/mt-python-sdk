@@ -1,6 +1,8 @@
 
 # Ledgerable Event Create Request
 
+*This model accepts additional fields of type Any.*
+
 ## Structure
 
 `LedgerableEventCreateRequest`
@@ -17,6 +19,7 @@
 | `currency_exponent` | `int` | Optional | Must be included if currency is a custom currency. The currency_exponent cannot exceed 30. |
 | `custom_data` | `Any` | Optional | Additionally data to be used by the Ledger Event Handler. |
 | `metadata` | `Dict[str, str]` | Optional | Additional data represented as key-value pairs. Both the key and value must be strings. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -34,6 +37,10 @@
   "currency": "currency8",
   "currency_exponent": 198,
   "custom_data": {
+    "key1": "val1",
+    "key2": "val2"
+  },
+  "exampleAdditionalProperty": {
     "key1": "val1",
     "key2": "val2"
   }

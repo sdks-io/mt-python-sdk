@@ -1,12 +1,12 @@
 # Payment Reference
 
 ```python
-payment_reference_controller = client.payment_reference
+payment_reference_api = client.payment_reference
 ```
 
 ## Class Name
 
-`PaymentReferenceController`
+`PaymentReferenceApi`
 
 ## Methods
 
@@ -36,20 +36,24 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 | `after_cursor` | `str` | Query, Optional | - |
 | `per_page` | `int` | Query, Optional | - |
 | `referenceable_id` | `str` | Query, Optional | The id of the referenceable to search for. Must be accompanied by the referenceable_type or will return an error. |
-| `referenceable_type` | [`ReferenceableType1Enum`](../../doc/models/referenceable-type-1-enum.md) | Query, Optional | One of the referenceable types. This must be accompanied by the id of the referenceable or will return an error. |
+| `referenceable_type` | [`ReferenceableType1`](../../doc/models/referenceable-type-1.md) | Query, Optional | One of the referenceable types. This must be accompanied by the id of the referenceable or will return an error. |
 | `reference_number` | `str` | Query, Optional | The actual reference number assigned by the bank. |
 
 ## Response Type
 
 **200**: successful
 
-[`List[PaymentReferenceObject]`](../../doc/models/payment-reference-object.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[PaymentReferenceObject]`](../../doc/models/payment-reference-object.md).
 
 ## Example Usage
 
 ```python
-result = payment_reference_controller.list_payment_references()
-print(result)
+result = payment_reference_api.list_payment_references()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -74,14 +78,18 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`PaymentReferenceObject`](../../doc/models/payment-reference-object.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`PaymentReferenceObject`](../../doc/models/payment-reference-object.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = payment_reference_controller.get_payment_reference(id)
-print(result)
+result = payment_reference_api.get_payment_reference(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

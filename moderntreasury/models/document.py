@@ -26,7 +26,7 @@ class Document(object):
         source (str): The source of the document. Can be `vendor`, `customer`, or
             `modern_treasury`.
         documentable_id (uuid|str): The unique identifier for the associated object.
-        documentable_type (DocumentableTypeEnum): The type of the associated object.
+        documentable_type (DocumentableType): The type of the associated object.
             Currently can be one of `payment_order`, `transaction`, `paper_item`,
             `expected_payment`, `counterparty`, `organization`, `case`,
             `internal_account`, `decision`, or `external_account`.

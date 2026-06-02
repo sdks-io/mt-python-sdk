@@ -14,13 +14,15 @@ class ReversalCreateRequest(object):
     """Implementation of the 'reversal_create_request' model.
 
     Attributes:
-        reason (Reason1Enum): The reason for the reversal. Must be one of
-            `duplicate`, `incorrect_amount`, `incorrect_receiving_account`,
+        reason (Reason1): The reason for the reversal. Must be one of `duplicate`,
+            `incorrect_amount`, `incorrect_receiving_account`,
             `date_earlier_than_intended`, `date_later_than_intended`.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
         ledger_transaction (LedgerTransactionCreateRequest): The model property of
             type LedgerTransactionCreateRequest.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -40,7 +42,8 @@ class ReversalCreateRequest(object):
         self,
         reason=None,
         metadata=APIHelper.SKIP,
-        ledger_transaction=APIHelper.SKIP):
+        ledger_transaction=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ReversalCreateRequest instance."""
         # Initialize members of the class
         self.reason = reason
@@ -48,6 +51,11 @@ class ReversalCreateRequest(object):
             self.metadata = metadata
         if ledger_transaction is not APIHelper.SKIP:
             self.ledger_transaction = ledger_transaction
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -81,10 +89,16 @@ class ReversalCreateRequest(object):
                 if "ledger_transaction" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(reason,
                    metadata,
-                   ledger_transaction)
+                   ledger_transaction,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -99,11 +113,13 @@ class ReversalCreateRequest(object):
             if hasattr(self, "ledger_transaction")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"reason={_reason!r}, "
             f"metadata={_metadata!r}, "
             f"ledger_transaction={_ledger_transaction!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -120,10 +136,12 @@ class ReversalCreateRequest(object):
             if hasattr(self, "ledger_transaction")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"reason={_reason!s}, "
             f"metadata={_metadata!s}, "
             f"ledger_transaction={_ledger_transaction!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

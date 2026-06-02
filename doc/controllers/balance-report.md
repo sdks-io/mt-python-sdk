@@ -1,12 +1,12 @@
 # Balance Report
 
 ```python
-balance_report_controller = client.balance_report
+balance_report_api = client.balance_report
 ```
 
 ## Class Name
 
-`BalanceReportController`
+`BalanceReportApi`
 
 ## Methods
 
@@ -37,7 +37,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 |  --- | --- | --- | --- |
 | `internal_account_id` | `str` | Template, Required | - |
 | `as_of_date` | `date` | Query, Optional | The date of the balance report in local time. |
-| `balance_report_type` | [`BalanceReportType1Enum`](../../doc/models/balance-report-type-1-enum.md) | Query, Optional | The specific type of balance report. One of `intraday`, `previous_day`, `real_time`, or `other`. |
+| `balance_report_type` | [`BalanceReportType1`](../../doc/models/balance-report-type-1.md) | Query, Optional | The specific type of balance report. One of `intraday`, `previous_day`, `real_time`, or `other`. |
 | `after_cursor` | `str` | Query, Optional | - |
 | `per_page` | `int` | Query, Optional | - |
 
@@ -45,15 +45,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[BalanceReport]`](../../doc/models/balance-report.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[BalanceReport]`](../../doc/models/balance-report.md).
 
 ## Example Usage
 
 ```python
 internal_account_id = 'internal_account_id4'
 
-result = balance_report_controller.list_balance_reports(internal_account_id)
-print(result)
+result = balance_report_api.list_balance_reports(internal_account_id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -88,7 +92,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`BalanceReport`](../../doc/models/balance-report.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`BalanceReport`](../../doc/models/balance-report.md).
 
 ## Example Usage
 
@@ -97,11 +101,15 @@ internal_account_id = 'internal_account_id4'
 
 id = 'id0'
 
-result = balance_report_controller.get_balance_report(
+result = balance_report_api.get_balance_report(
     internal_account_id,
     id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

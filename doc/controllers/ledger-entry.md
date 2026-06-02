@@ -1,12 +1,12 @@
 # Ledger Entry
 
 ```python
-ledger_entry_controller = client.ledger_entry
+ledger_entry_api = client.ledger_entry
 ```
 
 ## Class Name
 
-`LedgerEntryController`
+`LedgerEntryApi`
 
 ## Methods
 
@@ -63,8 +63,8 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 | `ledger_account_category_id` | `str` | Query, Optional | Get all ledger entries that match the direction specified. One of `credit`, `debit`. |
 | `ledger_account_statement_id` | `str` | Query, Optional | Get all ledger entries that are included in the ledger account statement. |
 | `show_deleted` | `bool` | Query, Optional | If true, response will include ledger entries that were deleted. When you update a ledger transaction to specify a new set of entries, the previous entries are deleted. |
-| `direction` | [`Direction15Enum`](../../doc/models/direction-15-enum.md) | Query, Optional | If true, response will include ledger entries that were deleted. When you update a ledger transaction to specify a new set of entries, the previous entries are deleted. |
-| `status` | [`Status22Enum`](../../doc/models/status-22-enum.md) | Query, Optional | Get all ledger entries that match the status specified. One of `pending`, `posted`, or `archived`. |
+| `direction` | [`Direction15`](../../doc/models/direction-15.md) | Query, Optional | If true, response will include ledger entries that were deleted. When you update a ledger transaction to specify a new set of entries, the previous entries are deleted. |
+| `status` | [`Status22`](../../doc/models/status-22.md) | Query, Optional | Get all ledger entries that match the status specified. One of `pending`, `posted`, or `archived`. |
 | `order_by` | [`OrderBy`](../../doc/models/order-by.md) | Query, Optional | Order by `created_at` or `effective_at` in `asc` or `desc` order. For example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering by only one field at a time is supported. |
 | `show_balances` | `bool` | Query, Optional | If true, response will include the balances attached to the ledger entry. If there is no balance available, null will be returned instead. |
 | `metadata` | `Dict[str, str]` | Query, Optional | For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters. |
@@ -73,13 +73,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[LedgerEntry]`](../../doc/models/ledger-entry.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LedgerEntry]`](../../doc/models/ledger-entry.md).
 
 ## Example Usage
 
 ```python
-result = ledger_entry_controller.list_ledger_entries()
-print(result)
+result = ledger_entry_api.list_ledger_entries()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -114,15 +118,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerEntry`](../../doc/models/ledger-entry.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerEntry`](../../doc/models/ledger-entry.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_entry_controller.get_ledger_entry(id)
-print(result)
+result = ledger_entry_api.get_ledger_entry(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

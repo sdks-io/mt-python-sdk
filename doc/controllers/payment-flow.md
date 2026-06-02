@@ -1,12 +1,12 @@
 # Payment Flow
 
 ```python
-payment_flow_controller = client.payment_flow
+payment_flow_api = client.payment_flow
 ```
 
 ## Class Name
 
-`PaymentFlowController`
+`PaymentFlowApi`
 
 ## Methods
 
@@ -51,13 +51,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[PaymentFlow]`](../../doc/models/payment-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[PaymentFlow]`](../../doc/models/payment-flow.md).
 
 ## Example Usage
 
 ```python
-result = payment_flow_controller.list_payment_flows()
-print(result)
+result = payment_flow_api.list_payment_flows()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -84,13 +88,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`PaymentFlow`](../../doc/models/payment-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`PaymentFlow`](../../doc/models/payment-flow.md).
 
 ## Example Usage
 
 ```python
-result = payment_flow_controller.create_payment_flow()
-print(result)
+result = payment_flow_api.create_payment_flow()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -123,15 +131,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`PaymentFlow`](../../doc/models/payment-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`PaymentFlow`](../../doc/models/payment-flow.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = payment_flow_controller.get_payment_flow(id)
-print(result)
+result = payment_flow_api.get_payment_flow(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -160,7 +172,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`PaymentFlow`](../../doc/models/payment-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`PaymentFlow`](../../doc/models/payment-flow.md).
 
 ## Example Usage
 
@@ -169,11 +181,15 @@ id = 'id0'
 
 body = PaymentFlowUpdateRequest()
 
-result = payment_flow_controller.update_payment_flow(
+result = payment_flow_api.update_payment_flow(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

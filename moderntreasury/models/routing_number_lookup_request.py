@@ -15,12 +15,12 @@ class RoutingNumberLookupRequest(object):
 
     Attributes:
         routing_number (str): The routing number of the bank.
-        routing_number_type (RoutingNumberType7Enum): One of `aba`, `au_bsb`,
+        routing_number_type (RoutingNumberType7): One of `aba`, `au_bsb`,
             `br_codigo`, `ca_cpa`, `cnaps`, `gb_sort_code`, `in_ifsc`,
             `my_branch_code`, or `swift`. In sandbox mode we currently only support
             `aba` and `swift` with routing numbers '123456789' and 'GRINUST0XXX'
             respectively.
-        supported_payment_types (List[SupportedPaymentTypeEnum]): An array of payment
+        supported_payment_types (List[SupportedPaymentType]): An array of payment
             types that are supported for this routing number. This can include `ach`,
             `wire`, `rtp`, `sepa`, `bacs`, `au_becs` currently.
         bank_name (str): The name of the bank.

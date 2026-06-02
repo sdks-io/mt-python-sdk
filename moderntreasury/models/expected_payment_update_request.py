@@ -19,13 +19,13 @@ class ExpectedPaymentUpdateRequest(object):
         amount_lower_bound (int): The lowest amount this expected payment may be
             equal to. Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.
-        direction (Direction1Enum): One of credit or debit. When you are receiving
-            money, use credit. When you are being charged, use debit.
+        direction (Direction1): One of credit or debit. When you are receiving money,
+            use credit. When you are being charged, use debit.
         internal_account_id (uuid|str): The ID of the Internal Account for the
             expected payment.
-        mtype (Type1Enum): One of: ach, au_becs, bacs, book, check, eft, interac,
+        mtype (Type1): One of: ach, au_becs, bacs, book, check, eft, interac,
             provxchange, rtp, sen, sepa, signet, wire.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         date_upper_bound (date): The latest date the payment may come in. Format:
             yyyy-mm-dd
         date_lower_bound (date): The earliest date the payment may come in. Format:
@@ -47,6 +47,8 @@ class ExpectedPaymentUpdateRequest(object):
             payment.
         reconciliation_filters (Any): The reconciliation filters you have for this
             payment.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -115,7 +117,8 @@ class ExpectedPaymentUpdateRequest(object):
         counterparty_id=APIHelper.SKIP,
         remittance_information=APIHelper.SKIP,
         reconciliation_groups=APIHelper.SKIP,
-        reconciliation_filters=APIHelper.SKIP):
+        reconciliation_filters=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ExpectedPaymentUpdateRequest instance."""
         # Initialize members of the class
         if amount_upper_bound is not APIHelper.SKIP:
@@ -148,6 +151,11 @@ class ExpectedPaymentUpdateRequest(object):
             self.reconciliation_groups = reconciliation_groups
         if reconciliation_filters is not APIHelper.SKIP:
             self.reconciliation_filters = reconciliation_filters
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -234,6 +242,11 @@ class ExpectedPaymentUpdateRequest(object):
             if "reconciliation_filters" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(amount_upper_bound,
                    amount_lower_bound,
@@ -249,7 +262,8 @@ class ExpectedPaymentUpdateRequest(object):
                    counterparty_id,
                    remittance_information,
                    reconciliation_groups,
-                   reconciliation_filters)
+                   reconciliation_filters,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -328,6 +342,7 @@ class ExpectedPaymentUpdateRequest(object):
             if hasattr(self, "reconciliation_filters")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount_upper_bound={_amount_upper_bound!r}, "
@@ -345,6 +360,7 @@ class ExpectedPaymentUpdateRequest(object):
             f"remittance_information={_remittance_information!r}, "
             f"reconciliation_groups={_reconciliation_groups!r}, "
             f"reconciliation_filters={_reconciliation_filters!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -425,6 +441,7 @@ class ExpectedPaymentUpdateRequest(object):
             if hasattr(self, "reconciliation_filters")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount_upper_bound={_amount_upper_bound!s}, "
@@ -442,5 +459,6 @@ class ExpectedPaymentUpdateRequest(object):
             f"remittance_information={_remittance_information!s}, "
             f"reconciliation_groups={_reconciliation_groups!s}, "
             f"reconciliation_filters={_reconciliation_filters!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

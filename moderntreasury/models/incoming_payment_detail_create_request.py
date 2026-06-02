@@ -13,16 +13,18 @@ class IncomingPaymentDetailCreateRequest(object):
     """Implementation of the 'incoming_payment_detail_create_request' model.
 
     Attributes:
-        mtype (Type10Enum): One of `ach`, `wire`, `check`.
-        direction (Direction14Enum): One of `credit`, `debit`.
+        mtype (Type10): One of `ach`, `wire`, `check`.
+        direction (Direction14): One of `credit`, `debit`.
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         internal_account_id (uuid|str): The ID of one of your internal accounts.
         virtual_account_id (uuid|str): An optional parameter to associate the
             incoming payment detail to a virtual account.
         as_of_date (date): Defaults to today.
         description (str): Defaults to a random description.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -64,7 +66,8 @@ class IncomingPaymentDetailCreateRequest(object):
         internal_account_id=APIHelper.SKIP,
         virtual_account_id=APIHelper.SKIP,
         as_of_date=APIHelper.SKIP,
-        description=APIHelper.SKIP):
+        description=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a IncomingPaymentDetailCreateRequest instance."""
         # Initialize members of the class
         if mtype is not APIHelper.SKIP:
@@ -83,6 +86,11 @@ class IncomingPaymentDetailCreateRequest(object):
             self.as_of_date = as_of_date
         if description is not APIHelper.SKIP:
             self.description = description
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -138,6 +146,11 @@ class IncomingPaymentDetailCreateRequest(object):
             if "description" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(mtype,
                    direction,
@@ -146,7 +159,8 @@ class IncomingPaymentDetailCreateRequest(object):
                    internal_account_id,
                    virtual_account_id,
                    as_of_date,
-                   description)
+                   description,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -190,6 +204,7 @@ class IncomingPaymentDetailCreateRequest(object):
             if hasattr(self, "description")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"mtype={_mtype!r}, "
@@ -200,6 +215,7 @@ class IncomingPaymentDetailCreateRequest(object):
             f"virtual_account_id={_virtual_account_id!r}, "
             f"as_of_date={_as_of_date!r}, "
             f"description={_description!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -245,6 +261,7 @@ class IncomingPaymentDetailCreateRequest(object):
             if hasattr(self, "description")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"mtype={_mtype!s}, "
@@ -255,5 +272,6 @@ class IncomingPaymentDetailCreateRequest(object):
             f"virtual_account_id={_virtual_account_id!s}, "
             f"as_of_date={_as_of_date!s}, "
             f"description={_description!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

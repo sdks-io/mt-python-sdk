@@ -14,8 +14,10 @@ class ExternalAccountVerifyRequest(object):
         originating_account_id (uuid|str): The ID of the internal account where the
             micro-deposits originate from. Both credit and debit capabilities must be
             enabled.
-        payment_type (PaymentType4Enum): Both ach and eft are supported payment types.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        payment_type (PaymentType4): Both ach and eft are supported payment types.
+        currency (Currency): Three-letter ISO currency code.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -34,13 +36,19 @@ class ExternalAccountVerifyRequest(object):
         self,
         originating_account_id=None,
         payment_type=None,
-        currency=APIHelper.SKIP):
+        currency=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ExternalAccountVerifyRequest instance."""
         # Initialize members of the class
         self.originating_account_id = originating_account_id
         self.payment_type = payment_type
         if currency is not APIHelper.SKIP:
             self.currency = currency
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -73,10 +81,16 @@ class ExternalAccountVerifyRequest(object):
             if dictionary.get("currency")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(originating_account_id,
                    payment_type,
-                   currency)
+                   currency,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -87,11 +101,13 @@ class ExternalAccountVerifyRequest(object):
             if hasattr(self, "currency")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"originating_account_id={_originating_account_id!r}, "
             f"payment_type={_payment_type!r}, "
             f"currency={_currency!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -104,10 +120,12 @@ class ExternalAccountVerifyRequest(object):
             if hasattr(self, "currency")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"originating_account_id={_originating_account_id!s}, "
             f"payment_type={_payment_type!s}, "
             f"currency={_currency!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

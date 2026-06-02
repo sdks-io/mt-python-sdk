@@ -13,7 +13,7 @@ class LedgerEntryCreateRequest(object):
     Attributes:
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000. Can be any integer up to 36 digits.
-        direction (Direction5Enum): One of `credit`, `debit`. Describes the direction
+        direction (Direction5): One of `credit`, `debit`. Describes the direction
             money is flowing in the transaction. A `credit` moves money from your
             account to someone else's. A `debit` pulls money from someone else's
             account to your own. Note that wire, rtp, and check payments will always
@@ -40,6 +40,8 @@ class LedgerEntryCreateRequest(object):
             the balance of the associated ledger account for the entry.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -84,7 +86,8 @@ class LedgerEntryCreateRequest(object):
         posted_balance_amount=APIHelper.SKIP,
         available_balance_amount=APIHelper.SKIP,
         show_resulting_ledger_account_balances=APIHelper.SKIP,
-        metadata=APIHelper.SKIP):
+        metadata=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerEntryCreateRequest instance."""
         # Initialize members of the class
         self.amount = amount
@@ -103,6 +106,11 @@ class LedgerEntryCreateRequest(object):
                  show_resulting_ledger_account_balances
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -159,6 +167,11 @@ class LedgerEntryCreateRequest(object):
             if dictionary.get("metadata")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(amount,
                    direction,
@@ -168,7 +181,8 @@ class LedgerEntryCreateRequest(object):
                    posted_balance_amount,
                    available_balance_amount,
                    show_resulting_ledger_account_balances,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -205,6 +219,7 @@ class LedgerEntryCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount={_amount!r}, "
@@ -216,6 +231,7 @@ class LedgerEntryCreateRequest(object):
             f"available_balance_amount={_available_balance_amount!r}, "
             f"show_resulting_ledger_account_balances={_show_resulting_ledger_account_balances!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -254,6 +270,7 @@ class LedgerEntryCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount={_amount!s}, "
@@ -265,5 +282,6 @@ class LedgerEntryCreateRequest(object):
             f"available_balance_amount={_available_balance_amount!s}, "
             f"show_resulting_ledger_account_balances={_show_resulting_ledger_account_balances!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

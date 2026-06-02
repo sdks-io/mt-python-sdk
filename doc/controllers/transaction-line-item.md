@@ -1,12 +1,12 @@
 # Transaction Line Item
 
 ```python
-transaction_line_item_controller = client.transaction_line_item
+transaction_line_item_api = client.transaction_line_item
 ```
 
 ## Class Name
 
-`TransactionLineItemController`
+`TransactionLineItemApi`
 
 
 # List Transaction Line Items
@@ -29,21 +29,25 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 |  --- | --- | --- | --- |
 | `transaction_id` | `str` | Template, Required | transaction_id |
 | `after_cursor` | `str` | Query, Optional | - |
-| `mtype` | [`Type16Enum`](../../doc/models/type-16-enum.md) | Query, Optional | - |
+| `mtype` | [`Type16`](../../doc/models/type-16.md) | Query, Optional | - |
 | `per_page` | `int` | Query, Optional | - |
 
 ## Response Type
 
 **200**: successful
 
-[`List[TransactionLineItem]`](../../doc/models/transaction-line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[TransactionLineItem]`](../../doc/models/transaction-line-item.md).
 
 ## Example Usage
 
 ```python
 transaction_id = 'transaction_id8'
 
-result = transaction_line_item_controller.list_transaction_line_items(transaction_id)
-print(result)
+result = transaction_line_item_api.list_transaction_line_items(transaction_id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

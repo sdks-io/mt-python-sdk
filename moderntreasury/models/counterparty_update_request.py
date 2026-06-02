@@ -19,6 +19,8 @@ class CounterpartyUpdateRequest(object):
             an email to the counterparty whenever an associated payment order is sent
             to the bank.
         taxpayer_identifier (str): Either a valid SSN or EIN.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -45,7 +47,8 @@ class CounterpartyUpdateRequest(object):
         email=APIHelper.SKIP,
         metadata=APIHelper.SKIP,
         send_remittance_advice=APIHelper.SKIP,
-        taxpayer_identifier=APIHelper.SKIP):
+        taxpayer_identifier=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a CounterpartyUpdateRequest instance."""
         # Initialize members of the class
         if name is not APIHelper.SKIP:
@@ -58,6 +61,11 @@ class CounterpartyUpdateRequest(object):
             self.send_remittance_advice = send_remittance_advice
         if taxpayer_identifier is not APIHelper.SKIP:
             self.taxpayer_identifier = taxpayer_identifier
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -98,12 +106,18 @@ class CounterpartyUpdateRequest(object):
             if dictionary.get("taxpayer_identifier")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    email,
                    metadata,
                    send_remittance_advice,
-                   taxpayer_identifier)
+                   taxpayer_identifier,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -132,6 +146,7 @@ class CounterpartyUpdateRequest(object):
             if hasattr(self, "taxpayer_identifier")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
@@ -139,6 +154,7 @@ class CounterpartyUpdateRequest(object):
             f"metadata={_metadata!r}, "
             f"send_remittance_advice={_send_remittance_advice!r}, "
             f"taxpayer_identifier={_taxpayer_identifier!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -169,6 +185,7 @@ class CounterpartyUpdateRequest(object):
             if hasattr(self, "taxpayer_identifier")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
@@ -176,5 +193,6 @@ class CounterpartyUpdateRequest(object):
             f"metadata={_metadata!s}, "
             f"send_remittance_advice={_send_remittance_advice!s}, "
             f"taxpayer_identifier={_taxpayer_identifier!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

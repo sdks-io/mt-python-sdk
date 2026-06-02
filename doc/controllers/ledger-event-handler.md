@@ -1,12 +1,12 @@
 # Ledger Event Handler
 
 ```python
-ledger_event_handler_controller = client.ledger_event_handler
+ledger_event_handler_api = client.ledger_event_handler
 ```
 
 ## Class Name
 
-`LedgerEventHandlerController`
+`LedgerEventHandlerApi`
 
 ## Methods
 
@@ -47,13 +47,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[LedgerEventHandler]`](../../doc/models/ledger-event-handler.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LedgerEventHandler]`](../../doc/models/ledger-event-handler.md).
 
 ## Example Usage
 
 ```python
-result = ledger_event_handler_controller.list_ledger_event_handlers()
-print(result)
+result = ledger_event_handler_api.list_ledger_event_handlers()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -80,7 +84,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`LedgerEventHandler`](../../doc/models/ledger-event-handler.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerEventHandler`](../../doc/models/ledger-event-handler.md).
 
 ## Example Usage
 
@@ -110,17 +114,21 @@ body = LedgerEventHandlerCreateRequest(
     }
 )
 
-result = ledger_event_handler_controller.create_ledger_event_handler(
+result = ledger_event_handler_api.create_ledger_event_handler(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | parameter_invalid | `APIException` |
+| 400 | parameter_invalid | `ApiException` |
 | 422 | unsuccessful | [`ErrorMessageException`](../../doc/models/error-message-exception.md) |
 
 
@@ -147,15 +155,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerEventHandler`](../../doc/models/ledger-event-handler.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerEventHandler`](../../doc/models/ledger-event-handler.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_event_handler_controller.get_ledger_event_handler(id)
-print(result)
+result = ledger_event_handler_api.get_ledger_event_handler(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -188,15 +200,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerEventHandler`](../../doc/models/ledger-event-handler.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerEventHandler`](../../doc/models/ledger-event-handler.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_event_handler_controller.delete_ledger_event_handler(id)
-print(result)
+result = ledger_event_handler_api.delete_ledger_event_handler(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

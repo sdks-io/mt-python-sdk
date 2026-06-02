@@ -24,12 +24,14 @@ class CounterpartyCreateRequest(object):
             Both the key and value must be strings.
         send_remittance_advice (bool): Send an email to the counterparty whenever an
             associated payment order is sent to the bank.
-        verification_status (VerificationStatus1Enum): The verification status of the
+        verification_status (VerificationStatus1): The verification status of the
             counterparty.
         accounting (Accounting1): The model property of type Accounting1.
-        ledger_type (LedgerTypeEnum): An optional type to auto-sync the counterparty
-            to your ledger. Either `customer` or `vendor`.
+        ledger_type (LedgerType): An optional type to auto-sync the counterparty to
+            your ledger. Either `customer` or `vendor`.
         taxpayer_identifier (str): Either a valid SSN or EIN.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -72,7 +74,8 @@ class CounterpartyCreateRequest(object):
         verification_status=APIHelper.SKIP,
         accounting=APIHelper.SKIP,
         ledger_type=APIHelper.SKIP,
-        taxpayer_identifier=APIHelper.SKIP):
+        taxpayer_identifier=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a CounterpartyCreateRequest instance."""
         # Initialize members of the class
         self.name = name
@@ -92,6 +95,11 @@ class CounterpartyCreateRequest(object):
             self.ledger_type = ledger_type
         if taxpayer_identifier is not APIHelper.SKIP:
             self.taxpayer_identifier = taxpayer_identifier
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -153,6 +161,11 @@ class CounterpartyCreateRequest(object):
             if dictionary.get("taxpayer_identifier")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    accounts,
@@ -162,7 +175,8 @@ class CounterpartyCreateRequest(object):
                    verification_status,
                    accounting,
                    ledger_type,
-                   taxpayer_identifier)
+                   taxpayer_identifier,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -207,6 +221,7 @@ class CounterpartyCreateRequest(object):
             if hasattr(self, "taxpayer_identifier")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
@@ -218,6 +233,7 @@ class CounterpartyCreateRequest(object):
             f"accounting={_accounting!r}, "
             f"ledger_type={_ledger_type!r}, "
             f"taxpayer_identifier={_taxpayer_identifier!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -264,6 +280,7 @@ class CounterpartyCreateRequest(object):
             if hasattr(self, "taxpayer_identifier")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
@@ -275,5 +292,6 @@ class CounterpartyCreateRequest(object):
             f"accounting={_accounting!s}, "
             f"ledger_type={_ledger_type!s}, "
             f"taxpayer_identifier={_taxpayer_identifier!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

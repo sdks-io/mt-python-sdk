@@ -1,12 +1,12 @@
 # Paper Item
 
 ```python
-paper_item_controller = client.paper_item
+paper_item_api = client.paper_item
 ```
 
 ## Class Name
 
-`PaperItemController`
+`PaperItemApi`
 
 ## Methods
 
@@ -45,13 +45,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[PaperItem]`](../../doc/models/paper-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[PaperItem]`](../../doc/models/paper-item.md).
 
 ## Example Usage
 
 ```python
-result = paper_item_controller.list_paper_items()
-print(result)
+result = paper_item_api.list_paper_items()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -78,15 +82,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`PaperItem`](../../doc/models/paper-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`PaperItem`](../../doc/models/paper-item.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = paper_item_controller.get_paper_item(id)
-print(result)
+result = paper_item_api.get_paper_item(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

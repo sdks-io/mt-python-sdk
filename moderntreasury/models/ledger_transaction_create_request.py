@@ -17,7 +17,7 @@ class LedgerTransactionCreateRequest(object):
 
     Attributes:
         description (str): An optional description for internal use.
-        status (Status11Enum): To post a ledger transaction at creation, use `posted`.
+        status (Status11): To post a ledger transaction at creation, use `posted`.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
         effective_at (date): The timestamp (ISO8601 format) at which the ledger
@@ -28,13 +28,15 @@ class LedgerTransactionCreateRequest(object):
             objects.
         external_id (str): A unique string to represent the ledger transaction. Only
             one pending or posted ledger transaction may have this ID in the ledger.
-        ledgerable_type (LedgerableType2Enum): If the ledger transaction can be
+        ledgerable_type (LedgerableType2): If the ledger transaction can be
             reconciled to another object in Modern Treasury, the type will be
             populated here, otherwise null. This can be one of payment_order,
             incoming_payment_detail, expected_payment, return, or reversal.
         ledgerable_id (uuid|str): If the ledger transaction can be reconciled to
             another object in Modern Treasury, the id will be populated here,
             otherwise null.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -76,7 +78,8 @@ class LedgerTransactionCreateRequest(object):
         effective_date=APIHelper.SKIP,
         external_id=APIHelper.SKIP,
         ledgerable_type=APIHelper.SKIP,
-        ledgerable_id=APIHelper.SKIP):
+        ledgerable_id=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerTransactionCreateRequest instance."""
         # Initialize members of the class
         if description is not APIHelper.SKIP:
@@ -96,6 +99,11 @@ class LedgerTransactionCreateRequest(object):
             self.ledgerable_type = ledgerable_type
         if ledgerable_id is not APIHelper.SKIP:
             self.ledgerable_id = ledgerable_id
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -152,6 +160,11 @@ class LedgerTransactionCreateRequest(object):
             if dictionary.get("ledgerable_id")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(ledger_entries,
                    description,
@@ -161,7 +174,8 @@ class LedgerTransactionCreateRequest(object):
                    effective_date,
                    external_id,
                    ledgerable_type,
-                   ledgerable_id)
+                   ledgerable_id,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -206,6 +220,7 @@ class LedgerTransactionCreateRequest(object):
             if hasattr(self, "ledgerable_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"description={_description!r}, "
@@ -217,6 +232,7 @@ class LedgerTransactionCreateRequest(object):
             f"external_id={_external_id!r}, "
             f"ledgerable_type={_ledgerable_type!r}, "
             f"ledgerable_id={_ledgerable_id!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -263,6 +279,7 @@ class LedgerTransactionCreateRequest(object):
             if hasattr(self, "ledgerable_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"description={_description!s}, "
@@ -274,5 +291,6 @@ class LedgerTransactionCreateRequest(object):
             f"external_id={_external_id!s}, "
             f"ledgerable_type={_ledgerable_type!s}, "
             f"ledgerable_id={_ledgerable_id!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

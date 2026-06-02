@@ -19,6 +19,8 @@ class LineItemRequest(object):
         accounting_category_id (str): The ID of one of your accounting categories.
             Note that these will only be accessible if your accounting system has
             been connected.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -46,7 +48,8 @@ class LineItemRequest(object):
         amount=None,
         metadata=APIHelper.SKIP,
         description=APIHelper.SKIP,
-        accounting_category_id=APIHelper.SKIP):
+        accounting_category_id=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LineItemRequest instance."""
         # Initialize members of the class
         self.amount = amount
@@ -56,6 +59,11 @@ class LineItemRequest(object):
             self.description = description
         if accounting_category_id is not APIHelper.SKIP:
             self.accounting_category_id = accounting_category_id
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -92,11 +100,17 @@ class LineItemRequest(object):
             if "accounting_category_id" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(amount,
                    metadata,
                    description,
-                   accounting_category_id)
+                   accounting_category_id,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -116,12 +130,14 @@ class LineItemRequest(object):
             if hasattr(self, "accounting_category_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount={_amount!r}, "
             f"metadata={_metadata!r}, "
             f"description={_description!r}, "
             f"accounting_category_id={_accounting_category_id!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -143,11 +159,13 @@ class LineItemRequest(object):
             if hasattr(self, "accounting_category_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"amount={_amount!s}, "
             f"metadata={_metadata!s}, "
             f"description={_description!s}, "
             f"accounting_category_id={_accounting_category_id!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

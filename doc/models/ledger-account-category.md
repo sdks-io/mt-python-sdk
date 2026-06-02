@@ -19,7 +19,7 @@
 | `description` | `str` | Required | The description of the ledger account category. |
 | `metadata` | `Dict[str, str]` | Required | Additional data represented as key-value pairs. Both the key and value must be strings. |
 | `ledger_id` | `uuid\|str` | Required | The id of the ledger that this account category belongs to. |
-| `normal_balance` | [`NormalBalance2Enum`](../../doc/models/normal-balance-2-enum.md) | Required | The normal balance of the ledger account category. |
+| `normal_balance` | [`NormalBalance2`](../../doc/models/normal-balance-2.md) | Required | The normal balance of the ledger account category. |
 | `balances` | [`LedgerBalances`](../../doc/models/ledger-balances.md) | Required | - |
 
 ## Example (as JSON)

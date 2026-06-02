@@ -18,15 +18,15 @@ class Balance(object):
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
         amount (int): The balance amount.
-        currency (CurrencyEnum): Three-letter ISO currency code.
-        balance_type (BalanceTypeEnum): The specific type of balance reported. One of
+        currency (Currency): Three-letter ISO currency code.
+        balance_type (BalanceType): The specific type of balance reported. One of
             `opening_ledger`, `closing_ledger`, `current_ledger`,
             `opening_available`, `opening_available_next_business_day`,
             `closing_available`, `current_available`, or `other`.
         vendor_code (str): The code used by the bank when reporting this specific
             balance.
-        vendor_code_type (VendorCodeTypeEnum): The code used by the bank when
-            reporting this specific balance.
+        vendor_code_type (VendorCodeType): The code used by the bank when reporting
+            this specific balance.
 
     """
 

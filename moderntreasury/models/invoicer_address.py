@@ -19,6 +19,8 @@ class InvoicerAddress(object):
         region (str): Region or State.
         postal_code (str): The postal code of the address.
         country (str): Country code conforms to [ISO 3166-1 alpha-2]
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -43,7 +45,8 @@ class InvoicerAddress(object):
         region=None,
         postal_code=None,
         country=None,
-        line_2=APIHelper.SKIP):
+        line_2=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a InvoicerAddress instance."""
         # Initialize members of the class
         self.line_1 = line_1
@@ -53,6 +56,11 @@ class InvoicerAddress(object):
         self.region = region
         self.postal_code = postal_code
         self.country = country
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -97,13 +105,19 @@ class InvoicerAddress(object):
             if dictionary.get("line2")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(line_1,
                    locality,
                    region,
                    postal_code,
                    country,
-                   line_2)
+                   line_2,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -117,6 +131,7 @@ class InvoicerAddress(object):
         _region=self.region
         _postal_code=self.postal_code
         _country=self.country
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"line_1={_line_1!r}, "
@@ -125,6 +140,7 @@ class InvoicerAddress(object):
             f"region={_region!r}, "
             f"postal_code={_postal_code!r}, "
             f"country={_country!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -140,6 +156,7 @@ class InvoicerAddress(object):
         _region=self.region
         _postal_code=self.postal_code
         _country=self.country
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"line_1={_line_1!s}, "
@@ -148,5 +165,6 @@ class InvoicerAddress(object):
             f"region={_region!s}, "
             f"postal_code={_postal_code!s}, "
             f"country={_country!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

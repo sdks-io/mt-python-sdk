@@ -17,13 +17,15 @@ class LedgerTransactionUpdateRequest(object):
 
     Attributes:
         description (str): An optional description for internal use.
-        status (Status11Enum): To post a ledger transaction at creation, use `posted`.
+        status (Status11): To post a ledger transaction at creation, use `posted`.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
         effective_at (date): The timestamp (ISO8601 format) at which the ledger
             transaction happened for reporting purposes.
         ledger_entries (List[LedgerEntryCreateRequest]): An array of ledger entry
             objects.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -54,7 +56,8 @@ class LedgerTransactionUpdateRequest(object):
         status=APIHelper.SKIP,
         metadata=APIHelper.SKIP,
         effective_at=APIHelper.SKIP,
-        ledger_entries=APIHelper.SKIP):
+        ledger_entries=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerTransactionUpdateRequest instance."""
         # Initialize members of the class
         if description is not APIHelper.SKIP:
@@ -67,6 +70,11 @@ class LedgerTransactionUpdateRequest(object):
             self.effective_at = effective_at
         if ledger_entries is not APIHelper.SKIP:
             self.ledger_entries = ledger_entries
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -110,12 +118,18 @@ class LedgerTransactionUpdateRequest(object):
         else:
             ledger_entries = APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(description,
                    status,
                    metadata,
                    effective_at,
-                   ledger_entries)
+                   ledger_entries,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -144,6 +158,7 @@ class LedgerTransactionUpdateRequest(object):
             if hasattr(self, "ledger_entries")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"description={_description!r}, "
@@ -151,6 +166,7 @@ class LedgerTransactionUpdateRequest(object):
             f"metadata={_metadata!r}, "
             f"effective_at={_effective_at!r}, "
             f"ledger_entries={_ledger_entries!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -181,6 +197,7 @@ class LedgerTransactionUpdateRequest(object):
             if hasattr(self, "ledger_entries")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"description={_description!s}, "
@@ -188,5 +205,6 @@ class LedgerTransactionUpdateRequest(object):
             f"metadata={_metadata!s}, "
             f"effective_at={_effective_at!s}, "
             f"ledger_entries={_ledger_entries!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

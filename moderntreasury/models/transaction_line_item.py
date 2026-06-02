@@ -18,11 +18,11 @@ class TransactionLineItem(object):
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
         discarded_at (datetime): The model property of type datetime.
-        mtype (Type12Enum): Indicates whether the line item is `originating` or
+        mtype (Type12): Indicates whether the line item is `originating` or
             `receiving` (see
             https://www.moderntreasury.com/journal/beginners-guide-to-ach for more).
-        transactable_type (TransactableTypeEnum): If a matching object exists in
-            Modern Treasury, the type will be populated here, otherwise `null`.
+        transactable_type (TransactableType): If a matching object exists in Modern
+            Treasury, the type will be populated here, otherwise `null`.
         transactable_id (str): If a matching object exists in Modern Treasury, the ID
             will be populated here, otherwise `null`.
         amount (int): If a matching object exists in Modern Treasury, `amount` will

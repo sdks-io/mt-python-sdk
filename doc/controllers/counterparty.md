@@ -1,12 +1,12 @@
 # Counterparty
 
 ```python
-counterparty_controller = client.counterparty
+counterparty_api = client.counterparty
 ```
 
 ## Class Name
 
-`CounterpartyController`
+`CounterpartyApi`
 
 ## Methods
 
@@ -45,15 +45,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`CounterpartyCollectAccountResponse`](../../doc/models/counterparty-collect-account-response.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`CounterpartyCollectAccountResponse`](../../doc/models/counterparty-collect-account-response.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = counterparty_controller.collect_account_details(id)
-print(result)
+result = counterparty_api.collect_account_details(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -98,20 +102,24 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[Counterparty]`](../../doc/models/counterparty.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[Counterparty]`](../../doc/models/counterparty.md).
 
 ## Example Usage
 
 ```python
-result = counterparty_controller.list_counterparties()
-print(result)
+result = counterparty_api.list_counterparties()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
 
 | HTTP Status Code | Error Description | Exception Class |
 |  --- | --- | --- |
-| 400 | bad_request | `APIException` |
+| 400 | bad_request | `ApiException` |
 | 401 | unsuccessful | [`ErrorMessageException`](../../doc/models/error-message-exception.md) |
 
 
@@ -140,7 +148,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`Counterparty`](../../doc/models/counterparty.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Counterparty`](../../doc/models/counterparty.md).
 
 ## Example Usage
 
@@ -154,10 +162,14 @@ body = CounterpartyCreateRequest(
     }
 )
 
-result = counterparty_controller.create_counterparty(
+result = counterparty_api.create_counterparty(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -191,15 +203,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Counterparty`](../../doc/models/counterparty.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Counterparty`](../../doc/models/counterparty.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = counterparty_controller.get_counterparty(id)
-print(result)
+result = counterparty_api.get_counterparty(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -234,15 +250,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Counterparty`](../../doc/models/counterparty.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Counterparty`](../../doc/models/counterparty.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = counterparty_controller.update_counterparty(id)
-print(result)
+result = counterparty_api.update_counterparty(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -275,13 +295,18 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **204**: successful
 
-`void`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-counterparty_controller.delete_counterparty(id)
+result = counterparty_api.delete_counterparty(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

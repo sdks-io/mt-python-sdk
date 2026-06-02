@@ -15,14 +15,14 @@
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
 | `description` | `str` | Required | An optional description for internal use. |
-| `status` | [`Status11Enum`](../../doc/models/status-11-enum.md) | Required | To post a ledger transaction at creation, use `posted`. |
+| `status` | [`Status11`](../../doc/models/status-11.md) | Required | To post a ledger transaction at creation, use `posted`. |
 | `metadata` | `Dict[str, str]` | Required | Additional data represented as key-value pairs. Both the key and value must be strings. |
 | `effective_at` | `date` | Required | The timestamp (ISO8601 format) at which the ledger transaction happened for reporting purposes. |
 | `effective_date` | `date` | Required | The date (YYYY-MM-DD) on which the ledger transaction happened for reporting purposes. |
 | `ledger_entries` | [`List[LedgerEntry]`](../../doc/models/ledger-entry.md) | Required | An array of ledger entry objects. |
 | `posted_at` | `datetime` | Required | The time on which the ledger transaction posted. This is null if the ledger transaction is pending. |
 | `ledger_id` | `uuid\|str` | Required | The ID of the ledger this ledger transaction belongs to. |
-| `ledgerable_type` | [`LedgerableType2Enum`](../../doc/models/ledgerable-type-2-enum.md) | Required | If the ledger transaction can be reconciled to another object in Modern Treasury, the type will be populated here, otherwise null. This can be one of payment_order, incoming_payment_detail, expected_payment, return, or reversal. |
+| `ledgerable_type` | [`LedgerableType2`](../../doc/models/ledgerable-type-2.md) | Required | If the ledger transaction can be reconciled to another object in Modern Treasury, the type will be populated here, otherwise null. This can be one of payment_order, incoming_payment_detail, expected_payment, return, or reversal. |
 | `ledgerable_id` | `uuid\|str` | Required | If the ledger transaction can be reconciled to another object in Modern Treasury, the id will be populated here, otherwise null. |
 | `external_id` | `str` | Required | A unique string to represent the ledger transaction. Only one pending or posted ledger transaction may have this ID in the ledger. |
 | `reverses_ledger_transaction_id` | `str` | Required | The ID of the original ledger transaction that this ledger transaction reverses. |

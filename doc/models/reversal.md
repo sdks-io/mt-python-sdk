@@ -14,10 +14,10 @@
 | `live_mode` | `bool` | Required | This field will be true if this object exists in the live environment or false if it exists in the test environment. |
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
-| `status` | [`Status19Enum`](../../doc/models/status-19-enum.md) | Required | The current status of the reversal. |
+| `status` | [`Status19`](../../doc/models/status-19.md) | Required | The current status of the reversal. |
 | `payment_order_id` | `uuid\|str` | Required | The ID of the relevant Payment Order. |
 | `metadata` | `Dict[str, str]` | Required | Additional data represented as key-value pairs. Both the key and value must be strings. |
-| `reason` | [`ReasonEnum`](../../doc/models/reason-enum.md) | Required | The reason for the reversal. |
+| `reason` | [`Reason`](../../doc/models/reason.md) | Required | The reason for the reversal. |
 
 ## Example (as JSON)
 

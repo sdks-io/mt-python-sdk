@@ -32,7 +32,7 @@ class InvoiceCreateRequest(object):
             billing address.
         counterparty_shipping_address (CounterpartyShippingAddress): The
             counterparty's shipping address where physical goods should be delivered.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         description (str): A free-form description of the invoice.
         due_date (datetime): A future date by when the invoice needs to be paid.
         invoicer_address (InvoicerAddress): The invoice issuer's business address.
@@ -44,16 +44,18 @@ class InvoiceCreateRequest(object):
             participants' account. Defaults to the current business day or the next
             business day if the current day is a bank holiday or weekend. Format:
             yyyy-mm-dd.
-        payment_type (PaymentType6Enum): One of `ach`, `eft`, `wire`, `check`, `sen`,
+        payment_type (PaymentType6): One of `ach`, `eft`, `wire`, `check`, `sen`,
             `book`, `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `signet`,
             `provexchange`.
-        payment_method (PaymentMethod1Enum): The method by which the invoice can be
-            paid. `ui` will show the embedded payment collection flow. `automatic`
-            will automatically initiate payment based upon the account details of the
+        payment_method (PaymentMethod1): The method by which the invoice can be paid.
+            `ui` will show the embedded payment collection flow. `automatic` will
+            automatically initiate payment based upon the account details of the
             receiving_account id.\nIf the invoice amount is positive, the
             automatically initiated payment order's direction will be debit. If the
             invoice amount is negative, the automatically initiated payment order's
             direction will be credit. One of `manual`, `ui`, or `automatic`.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -107,7 +109,8 @@ class InvoiceCreateRequest(object):
         receiving_account_id=APIHelper.SKIP,
         payment_effective_date=APIHelper.SKIP,
         payment_type=APIHelper.SKIP,
-        payment_method=APIHelper.SKIP):
+        payment_method=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a InvoiceCreateRequest instance."""
         # Initialize members of the class
         if contact_details is not APIHelper.SKIP:
@@ -136,6 +139,11 @@ class InvoiceCreateRequest(object):
             self.payment_type = payment_type
         if payment_method is not APIHelper.SKIP:
             self.payment_method = payment_method
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -219,6 +227,11 @@ class InvoiceCreateRequest(object):
             if dictionary.get("payment_method")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(counterparty_id,
                    due_date,
@@ -232,7 +245,8 @@ class InvoiceCreateRequest(object):
                    receiving_account_id,
                    payment_effective_date,
                    payment_type,
-                   payment_method)
+                   payment_method,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -289,6 +303,7 @@ class InvoiceCreateRequest(object):
             if hasattr(self, "payment_method")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"contact_details={_contact_details!r}, "
@@ -304,6 +319,7 @@ class InvoiceCreateRequest(object):
             f"payment_effective_date={_payment_effective_date!r}, "
             f"payment_type={_payment_type!r}, "
             f"payment_method={_payment_method!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -362,6 +378,7 @@ class InvoiceCreateRequest(object):
             if hasattr(self, "payment_method")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"contact_details={_contact_details!s}, "
@@ -377,5 +394,6 @@ class InvoiceCreateRequest(object):
             f"payment_effective_date={_payment_effective_date!s}, "
             f"payment_type={_payment_type!s}, "
             f"payment_method={_payment_method!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

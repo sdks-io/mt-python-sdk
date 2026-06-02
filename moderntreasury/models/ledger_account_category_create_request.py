@@ -19,8 +19,10 @@ class LedgerAccountCategoryCreateRequest(object):
         currency_exponent (int): The currency exponent of the ledger account category.
         ledger_id (uuid|str): The id of the ledger that this account category belongs
             to.
-        normal_balance (NormalBalance2Enum): The normal balance of the ledger account
+        normal_balance (NormalBalance2): The normal balance of the ledger account
             category.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -54,7 +56,8 @@ class LedgerAccountCategoryCreateRequest(object):
         normal_balance=None,
         description=APIHelper.SKIP,
         metadata=APIHelper.SKIP,
-        currency_exponent=APIHelper.SKIP):
+        currency_exponent=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerAccountCategoryCreateRequest instance."""
         # Initialize members of the class
         self.name = name
@@ -67,6 +70,11 @@ class LedgerAccountCategoryCreateRequest(object):
             self.currency_exponent = currency_exponent
         self.ledger_id = ledger_id
         self.normal_balance = normal_balance
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -115,6 +123,11 @@ class LedgerAccountCategoryCreateRequest(object):
             if "currency_exponent" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    currency,
@@ -122,7 +135,8 @@ class LedgerAccountCategoryCreateRequest(object):
                    normal_balance,
                    description,
                    metadata,
-                   currency_exponent)
+                   currency_exponent,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -145,6 +159,7 @@ class LedgerAccountCategoryCreateRequest(object):
         )
         _ledger_id=self.ledger_id
         _normal_balance=self.normal_balance
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
@@ -154,6 +169,7 @@ class LedgerAccountCategoryCreateRequest(object):
             f"currency_exponent={_currency_exponent!r}, "
             f"ledger_id={_ledger_id!r}, "
             f"normal_balance={_normal_balance!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -178,6 +194,7 @@ class LedgerAccountCategoryCreateRequest(object):
         )
         _ledger_id=self.ledger_id
         _normal_balance=self.normal_balance
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
@@ -187,5 +204,6 @@ class LedgerAccountCategoryCreateRequest(object):
             f"currency_exponent={_currency_exponent!s}, "
             f"ledger_id={_ledger_id!s}, "
             f"normal_balance={_normal_balance!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

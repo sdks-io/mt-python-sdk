@@ -22,13 +22,13 @@ class PaperItem(object):
         transaction_line_item_id (uuid|str): The ID of the reconciled Transaction
             Line Item or `null`.
         transaction_id (uuid|str): The ID of the reconciled Transaction or `null`.
-        status (Status16Enum): The current status of the paper item. One of
-            `pending`, `completed`, or `returned`.
+        status (Status16): The current status of the paper item. One of `pending`,
+            `completed`, or `returned`.
         lockbox_number (str): The identifier for the lockbox assigned by the bank.
         deposit_date (date): The date the paper item was deposited into your
             organization's bank account.
         amount (int): The amount of the paper item.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         account_number (str): The account number on the paper item.
         account_number_safe (str): The last 4 digits of the account_number.
         routing_number (str): The routing number on the paper item.

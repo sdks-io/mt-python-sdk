@@ -21,7 +21,7 @@ class LineItem(object):
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
         itemizable_id (uuid|str): The ID of the payment order or expected payment.
-        itemizable_type (ItemizableTypeEnum): One of `payment_orders` or
+        itemizable_type (ItemizableType): One of `payment_orders` or
             `expected_payments`.
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.

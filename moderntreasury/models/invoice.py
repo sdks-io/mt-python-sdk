@@ -41,7 +41,7 @@ class Invoice(object):
             billing address.
         counterparty_shipping_address (CounterpartyShippingAddress): The
             counterparty's shipping address where physical goods should be delivered.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         description (str): A free-form description of the invoice.
         due_date (datetime): A future date by when the invoice needs to be paid.
         invoicer_address (InvoicerAddress): The invoice issuer's business address.
@@ -53,9 +53,9 @@ class Invoice(object):
             participants' account. Defaults to the current business day or the next
             business day if the current day is a bank holiday or weekend. Format:
             yyyy-mm-dd.
-        payment_type (PaymentType5Enum): One of `ach` or `eft`
-        payment_method (PaymentMethodEnum): When opening an invoice, whether to show
-            the embedded payment UI , automatically debit the recipient, or rely on
+        payment_type (PaymentType5): One of `ach` or `eft`
+        payment_method (PaymentMethod): When opening an invoice, whether to show the
+            embedded payment UI , automatically debit the recipient, or rely on
             manual payment from the recipient.
         hosted_url (str): The URL of the hosted web UI where the invoice can be
             viewed.
@@ -63,7 +63,7 @@ class Invoice(object):
         payment_orders (List[PaymentOrder]): The payment orders created for paying
             the invoice through the invoice payment UI.
         pdf_url (str): The URL where the invoice PDF can be downloaded.
-        status (Status5Enum): The status of the invoice.
+        status (Status5): The status of the invoice.
         total_amount (int): Total amount due in specified currency's smallest unit,
             e.g., $10 USD would be represented as 1000.
 

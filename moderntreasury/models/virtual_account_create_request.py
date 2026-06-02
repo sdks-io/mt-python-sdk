@@ -35,6 +35,8 @@ class VirtualAccountCreateRequest(object):
             be credited. Must be accompanied by a debit_ledger_account_id if present.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -71,7 +73,8 @@ class VirtualAccountCreateRequest(object):
         routing_details=APIHelper.SKIP,
         debit_ledger_account_id=APIHelper.SKIP,
         credit_ledger_account_id=APIHelper.SKIP,
-        metadata=APIHelper.SKIP):
+        metadata=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a VirtualAccountCreateRequest instance."""
         # Initialize members of the class
         self.name = name
@@ -90,6 +93,11 @@ class VirtualAccountCreateRequest(object):
             self.credit_ledger_account_id = credit_ledger_account_id
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -154,6 +162,11 @@ class VirtualAccountCreateRequest(object):
             if dictionary.get("metadata")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    internal_account_id,
@@ -163,7 +176,8 @@ class VirtualAccountCreateRequest(object):
                    routing_details,
                    debit_ledger_account_id,
                    credit_ledger_account_id,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -204,6 +218,7 @@ class VirtualAccountCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
@@ -215,6 +230,7 @@ class VirtualAccountCreateRequest(object):
             f"debit_ledger_account_id={_debit_ledger_account_id!r}, "
             f"credit_ledger_account_id={_credit_ledger_account_id!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -257,6 +273,7 @@ class VirtualAccountCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
@@ -268,5 +285,6 @@ class VirtualAccountCreateRequest(object):
             f"debit_ledger_account_id={_debit_ledger_account_id!s}, "
             f"credit_ledger_account_id={_credit_ledger_account_id!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

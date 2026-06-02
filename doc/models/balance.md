@@ -15,10 +15,10 @@
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
 | `amount` | `int` | Required | The balance amount. |
-| `currency` | [`CurrencyEnum`](../../doc/models/currency-enum.md) | Required | Three-letter ISO currency code. |
-| `balance_type` | [`BalanceTypeEnum`](../../doc/models/balance-type-enum.md) | Required | The specific type of balance reported. One of `opening_ledger`, `closing_ledger`, `current_ledger`, `opening_available`, `opening_available_next_business_day`, `closing_available`, `current_available`, or `other`. |
+| `currency` | [`Currency`](../../doc/models/currency.md) | Required | Three-letter ISO currency code. |
+| `balance_type` | [`BalanceType`](../../doc/models/balance-type.md) | Required | The specific type of balance reported. One of `opening_ledger`, `closing_ledger`, `current_ledger`, `opening_available`, `opening_available_next_business_day`, `closing_available`, `current_available`, or `other`. |
 | `vendor_code` | `str` | Required | The code used by the bank when reporting this specific balance. |
-| `vendor_code_type` | [`VendorCodeTypeEnum`](../../doc/models/vendor-code-type-enum.md) | Required | The code used by the bank when reporting this specific balance. |
+| `vendor_code_type` | [`VendorCodeType`](../../doc/models/vendor-code-type.md) | Required | The code used by the bank when reporting this specific balance. |
 
 ## Example (as JSON)
 

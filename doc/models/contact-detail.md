@@ -16,7 +16,7 @@
 | `updated_at` | `datetime` | Required | - |
 | `discarded_at` | `datetime` | Required | - |
 | `contact_identifier` | `str` | Required | - |
-| `contact_identifier_type` | [`ContactIdentifierTypeEnum`](../../doc/models/contact-identifier-type-enum.md) | Required | - |
+| `contact_identifier_type` | [`ContactIdentifierType`](../../doc/models/contact-identifier-type.md) | Required | - |
 
 ## Example (as JSON)
 

@@ -20,8 +20,8 @@ class BalanceReport(object):
             environment or false if it exists in the test environment.
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
-        balance_report_type (BalanceReportTypeEnum): The specific type of balance
-            report. One of `intraday`, `previous_day`, `real_time`, or `other`.
+        balance_report_type (BalanceReportType): The specific type of balance report.
+            One of `intraday`, `previous_day`, `real_time`, or `other`.
         as_of_date (date): The date of the balance report in local time.
         as_of_time (datetime): The time (24-hour clock) of the balance report in
             local time.

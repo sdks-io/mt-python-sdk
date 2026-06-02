@@ -28,8 +28,8 @@ class ExternalAccount(object):
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
         discarded_at (datetime): The model property of type datetime.
-        account_type (AccountTypeEnum): Can be `checking`, `savings` or `other`.
-        party_type (PartyTypeEnum): Either `individual` or `business`.
+        account_type (AccountType): Can be `checking`, `savings` or `other`.
+        party_type (PartyType): Either `individual` or `business`.
         party_address (Address): The model property of type Address.
         name (str): A nickname for the external account. This is only for internal
             usage and won't affect any payments
@@ -46,8 +46,8 @@ class ExternalAccount(object):
         ledger_account_id (uuid|str): If the external account links to a ledger
             account in Modern Treasury, the id of the ledger account will be
             populated here.
-        verification_status (VerificationStatusEnum): The model property of type
-            VerificationStatusEnum.
+        verification_status (VerificationStatus): The model property of type
+            VerificationStatus.
 
     """
 

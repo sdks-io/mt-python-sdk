@@ -1,12 +1,12 @@
 # Ledgerable Event
 
 ```python
-ledgerable_event_controller = client.ledgerable_event
+ledgerable_event_api = client.ledgerable_event
 ```
 
 ## Class Name
 
-`LedgerableEventController`
+`LedgerableEventApi`
 
 ## Methods
 
@@ -39,7 +39,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`LedgerableEvent`](../../doc/models/ledgerable-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerableEvent`](../../doc/models/ledgerable-event.md).
 
 ## Example Usage
 
@@ -54,10 +54,14 @@ body = LedgerableEventCreateRequest(
     }
 )
 
-result = ledgerable_event_controller.create_ledgerable_event(
+result = ledgerable_event_api.create_ledgerable_event(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -91,15 +95,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerableEvent`](../../doc/models/ledgerable-event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerableEvent`](../../doc/models/ledgerable-event.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledgerable_event_controller.get_ledgerable_event(id)
-print(result)
+result = ledgerable_event_api.get_ledgerable_event(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

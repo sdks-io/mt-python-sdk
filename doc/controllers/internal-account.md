@@ -1,12 +1,12 @@
 # Internal Account
 
 ```python
-internal_account_controller = client.internal_account
+internal_account_api = client.internal_account
 ```
 
 ## Class Name
 
-`InternalAccountController`
+`InternalAccountApi`
 
 ## Methods
 
@@ -39,23 +39,27 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 |  --- | --- | --- | --- |
 | `after_cursor` | `str` | Query, Optional | - |
 | `per_page` | `int` | Query, Optional | - |
-| `currency` | [`CurrencyEnum`](../../doc/models/currency-enum.md) | Query, Optional | The currency associated with the internal account. |
+| `currency` | [`Currency`](../../doc/models/currency.md) | Query, Optional | The currency associated with the internal account. |
 | `counterparty_id` | `str` | Query, Optional | The counterparty associated with the internal account. |
-| `payment_type` | [`PaymentType13Enum`](../../doc/models/payment-type-13-enum.md) | Query, Optional | The type of payment that can be made by the internal account. |
-| `payment_direction` | [`PaymentDirectionEnum`](../../doc/models/payment-direction-enum.md) | Query, Optional | The direction of payments that can be made by internal account. |
+| `payment_type` | [`PaymentType13`](../../doc/models/payment-type-13.md) | Query, Optional | The type of payment that can be made by the internal account. |
+| `payment_direction` | [`PaymentDirection`](../../doc/models/payment-direction.md) | Query, Optional | The direction of payments that can be made by internal account. |
 | `metadata` | `Dict[str, str]` | Query, Optional | For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters. |
 
 ## Response Type
 
 **200**: successful
 
-[`List[InternalAccount]`](../../doc/models/internal-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[InternalAccount]`](../../doc/models/internal-account.md).
 
 ## Example Usage
 
 ```python
-result = internal_account_controller.list_internal_accounts()
-print(result)
+result = internal_account_api.list_internal_accounts()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -82,7 +86,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`InternalAccount`](../../doc/models/internal-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`InternalAccount`](../../doc/models/internal-account.md).
 
 ## Example Usage
 
@@ -91,7 +95,7 @@ body = InternalAccountCreateRequest(
     connection_id='connection_id6',
     name='name6',
     party_name='party_name8',
-    currency=Currency1Enum.USD,
+    currency=Currency1.USD,
     vendor_attributes={
         'key': 'value',
         'foo': 'bar',
@@ -99,10 +103,14 @@ body = InternalAccountCreateRequest(
     }
 )
 
-result = internal_account_controller.create_internal_account(
+result = internal_account_api.create_internal_account(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -134,15 +142,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`InternalAccount`](../../doc/models/internal-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`InternalAccount`](../../doc/models/internal-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = internal_account_controller.get_internal_account(id)
-print(result)
+result = internal_account_api.get_internal_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -175,15 +187,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`InternalAccount`](../../doc/models/internal-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`InternalAccount`](../../doc/models/internal-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = internal_account_controller.update_internal_account(id)
-print(result)
+result = internal_account_api.update_internal_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

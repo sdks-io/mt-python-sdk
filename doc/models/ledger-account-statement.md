@@ -18,7 +18,7 @@
 | `description` | `str` | Required | The description of the ledger account statement. |
 | `ledger_account_id` | `uuid\|str` | Required | The id of the ledger account whose ledger entries are queried against, and its balances are computed as a result. |
 | `ledger_account_lock_version` | `int` | Required | Lock version of the ledger account at the time of statement generation. |
-| `ledger_account_normal_balance` | [`LedgerAccountNormalBalanceEnum`](../../doc/models/ledger-account-normal-balance-enum.md) | Required | The normal balance of the ledger account. |
+| `ledger_account_normal_balance` | [`LedgerAccountNormalBalance`](../../doc/models/ledger-account-normal-balance.md) | Required | The normal balance of the ledger account. |
 | `effective_at_lower_bound` | `datetime` | Required | The inclusive lower bound of the effective_at timestamp of the ledger entries to be included in the ledger account statement. |
 | `effective_at_upper_bound` | `datetime` | Required | The exclusive upper bound of the effective_at timestamp of the ledger entries to be included in the ledger account statement. |
 | `starting_balance` | [`LedgerBalances`](../../doc/models/ledger-balances.md) | Required | - |

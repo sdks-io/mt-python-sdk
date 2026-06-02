@@ -1,12 +1,12 @@
 # Line Item
 
 ```python
-line_item_controller = client.line_item
+line_item_api = client.line_item
 ```
 
 ## Class Name
 
-`LineItemController`
+`LineItemApi`
 
 ## Methods
 
@@ -36,7 +36,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `itemizable_id` | `str` | Template, Required | The ID of the payment order or expected payment. |
-| `itemizable_type` | [`ItemizableType1Enum`](../../doc/models/itemizable-type-1-enum.md) | Template, Required | One of `payment_orders` or `expected_payments`. |
+| `itemizable_type` | [`ItemizableType1`](../../doc/models/itemizable-type-1.md) | Template, Required | One of `payment_orders` or `expected_payments`. |
 | `after_cursor` | `str` | Query, Optional | - |
 | `per_page` | `int` | Query, Optional | - |
 
@@ -44,20 +44,24 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[LineItem]`](../../doc/models/line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LineItem]`](../../doc/models/line-item.md).
 
 ## Example Usage
 
 ```python
 itemizable_id = 'itemizable_id4'
 
-itemizable_type = ItemizableType1Enum.EXPECTED_PAYMENTS
+itemizable_type = ItemizableType1.EXPECTED_PAYMENTS
 
-result = line_item_controller.list_line_items(
+result = line_item_api.list_line_items(
     itemizable_id,
     itemizable_type
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -81,30 +85,34 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `itemizable_id` | `str` | Template, Required | The ID of the payment order or expected payment. |
-| `itemizable_type` | [`ItemizableType1Enum`](../../doc/models/itemizable-type-1-enum.md) | Template, Required | One of `payment_orders` or `expected_payments`. |
+| `itemizable_type` | [`ItemizableType1`](../../doc/models/itemizable-type-1.md) | Template, Required | One of `payment_orders` or `expected_payments`. |
 | `id` | `str` | Template, Required | The ID of the line item. |
 
 ## Response Type
 
 **200**: successful
 
-[`LineItem`](../../doc/models/line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LineItem`](../../doc/models/line-item.md).
 
 ## Example Usage
 
 ```python
 itemizable_id = 'itemizable_id4'
 
-itemizable_type = ItemizableType1Enum.EXPECTED_PAYMENTS
+itemizable_type = ItemizableType1.EXPECTED_PAYMENTS
 
 id = 'id0'
 
-result = line_item_controller.get_line_item(
+result = line_item_api.get_line_item(
     itemizable_id,
     itemizable_type,
     id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -127,7 +135,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `itemizable_id` | `str` | Template, Required | The ID of the payment order or expected payment. |
-| `itemizable_type` | [`ItemizableType1Enum`](../../doc/models/itemizable-type-1-enum.md) | Template, Required | One of `payment_orders` or `expected_payments`. |
+| `itemizable_type` | [`ItemizableType1`](../../doc/models/itemizable-type-1.md) | Template, Required | One of `payment_orders` or `expected_payments`. |
 | `id` | `str` | Template, Required | The ID of the line item. |
 | `body` | [`LineItemUpdateRequest`](../../doc/models/line-item-update-request.md) | Body, Optional | - |
 
@@ -135,14 +143,14 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LineItem`](../../doc/models/line-item.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LineItem`](../../doc/models/line-item.md).
 
 ## Example Usage
 
 ```python
 itemizable_id = 'itemizable_id4'
 
-itemizable_type = ItemizableType1Enum.EXPECTED_PAYMENTS
+itemizable_type = ItemizableType1.EXPECTED_PAYMENTS
 
 id = 'id0'
 
@@ -154,13 +162,17 @@ body = LineItemUpdateRequest(
     }
 )
 
-result = line_item_controller.update_line_item(
+result = line_item_api.update_line_item(
     itemizable_id,
     itemizable_type,
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

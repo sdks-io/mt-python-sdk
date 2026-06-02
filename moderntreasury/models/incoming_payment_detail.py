@@ -32,30 +32,30 @@ class IncomingPaymentDetail(object):
         transaction_id (uuid|str): The ID of the reconciled Transaction or `null`.
         ledger_transaction_id (uuid|str): The ID of the ledger transaction linked to
             the incoming payment detail or `null`.
-        mtype (Type4Enum): One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`,
+        mtype (Type4): One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`,
             `sepa`, `signet`, or `wire`.
         data (Any): The raw data from the payment pre-notification file that we get
             from the bank.
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000.
-        currency (CurrencyEnum): Three-letter ISO currency code.
-        direction (Direction4Enum): One of `credit` or `debit`.
-        status (Status2Enum): The current status of the incoming payment order. One
-            of `pending`, `completed`, or `returned`.
+        currency (Currency): Three-letter ISO currency code.
+        direction (Direction4): One of `credit` or `debit`.
+        status (Status2): The current status of the incoming payment order. One of
+            `pending`, `completed`, or `returned`.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
         as_of_date (date): The date on which the corresponding transaction will occur.
         vendor_id (uuid|str): The identifier of the vendor bank.
         originating_routing_number (str): The routing number of the originating
             account for the incoming payment detail.
-        originating_routing_number_type (OriginatingRoutingNumberTypeEnum): The type
-            of the originating routing number for the incoming payment detail.
+        originating_routing_number_type (OriginatingRoutingNumberType): The type of
+            the originating routing number for the incoming payment detail.
         originating_account_number (str): The account number of the originating
             account for the incoming payment detail.
         originating_account_number_safe (str): The last 4 digits of the originating
             account_number for the incoming payment detail.
-        originating_account_number_type (OriginatingAccountNumberTypeEnum): The type
-            of the originating account number for the incoming payment detail.
+        originating_account_number_type (OriginatingAccountNumberType): The type of
+            the originating account number for the incoming payment detail.
 
     """
 

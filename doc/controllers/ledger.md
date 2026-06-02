@@ -1,12 +1,12 @@
 # Ledger
 
 ```python
-ledger_controller = client.ledger
+ledger_api = client.ledger
 ```
 
 ## Class Name
 
-`LedgerController`
+`LedgerApi`
 
 ## Methods
 
@@ -46,13 +46,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[Ledger]`](../../doc/models/ledger.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[Ledger]`](../../doc/models/ledger.md).
 
 ## Example Usage
 
 ```python
-result = ledger_controller.list_ledgers()
-print(result)
+result = ledger_api.list_ledgers()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -81,7 +85,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`Ledger`](../../doc/models/ledger.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Ledger`](../../doc/models/ledger.md).
 
 ## Example Usage
 
@@ -95,10 +99,14 @@ body = LedgerCreateRequest(
     }
 )
 
-result = ledger_controller.create_ledger(
+result = ledger_api.create_ledger(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -132,15 +140,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Ledger`](../../doc/models/ledger.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Ledger`](../../doc/models/ledger.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_controller.get_ledger(id)
-print(result)
+result = ledger_api.get_ledger(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -175,7 +187,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Ledger`](../../doc/models/ledger.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Ledger`](../../doc/models/ledger.md).
 
 ## Example Usage
 
@@ -190,11 +202,15 @@ body = LedgerUpdateRequest(
     }
 )
 
-result = ledger_controller.update_ledger(
+result = ledger_api.update_ledger(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -229,15 +245,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Ledger`](../../doc/models/ledger.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Ledger`](../../doc/models/ledger.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_controller.delete_ledger(id)
-print(result)
+result = ledger_api.delete_ledger(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

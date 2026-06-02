@@ -1,12 +1,12 @@
 # External Account
 
 ```python
-external_account_controller = client.external_account
+external_account_api = client.external_account
 ```
 
 ## Class Name
 
-`ExternalAccountController`
+`ExternalAccountApi`
 
 ## Methods
 
@@ -44,15 +44,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`ExternalAccount`](../../doc/models/external-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExternalAccount`](../../doc/models/external-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = external_account_controller.verify_external_account(id)
-print(result)
+result = external_account_api.verify_external_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -87,7 +91,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`ExternalAccount`](../../doc/models/external-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExternalAccount`](../../doc/models/external-account.md).
 
 ## Example Usage
 
@@ -101,11 +105,15 @@ body = ExternalAccountCompleteVerificationRequest(
     ]
 )
 
-result = external_account_controller.complete_verification_external_account(
+result = external_account_api.complete_verification_external_account(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -144,13 +152,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[ExternalAccount]`](../../doc/models/external-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[ExternalAccount]`](../../doc/models/external-account.md).
 
 ## Example Usage
 
 ```python
-result = external_account_controller.list_external_accounts()
-print(result)
+result = external_account_api.list_external_accounts()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -183,7 +195,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`ExternalAccount`](../../doc/models/external-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExternalAccount`](../../doc/models/external-account.md).
 
 ## Example Usage
 
@@ -197,10 +209,14 @@ body = ExternalAccountCreateRequest(
     }
 )
 
-result = external_account_controller.create_external_account(
+result = external_account_api.create_external_account(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -231,15 +247,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`ExternalAccount`](../../doc/models/external-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExternalAccount`](../../doc/models/external-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = external_account_controller.get_external_account(id)
-print(result)
+result = external_account_api.get_external_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -272,15 +292,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`ExternalAccount`](../../doc/models/external-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExternalAccount`](../../doc/models/external-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = external_account_controller.update_external_account(id)
-print(result)
+result = external_account_api.update_external_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -311,13 +335,18 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **204**: successful
 
-`void`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-external_account_controller.delete_external_account(id)
+result = external_account_api.delete_external_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

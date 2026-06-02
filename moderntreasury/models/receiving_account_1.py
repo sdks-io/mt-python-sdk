@@ -30,8 +30,8 @@ class ReceivingAccount1(object):
     account.
 
     Attributes:
-        account_type (AccountTypeEnum): Can be `checking`, `savings` or `other`.
-        party_type (PartyTypeEnum): Either `individual` or `business`.
+        account_type (AccountType): Can be `checking`, `savings` or `other`.
+        party_type (PartyType): Either `individual` or `business`.
         party_address (AddressRequest): The model property of type AddressRequest.
         name (str): A nickname for the external account. This is only for internal
             usage and won't affect any payments
@@ -51,6 +51,8 @@ class ReceivingAccount1(object):
             this field.
         contact_details (List[ContactDetailCreateRequest]): The model property of
             type List[ContactDetailCreateRequest].
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -103,7 +105,8 @@ class ReceivingAccount1(object):
         party_identifier=APIHelper.SKIP,
         ledger_account=APIHelper.SKIP,
         plaid_processor_token=APIHelper.SKIP,
-        contact_details=APIHelper.SKIP):
+        contact_details=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ReceivingAccount1 instance."""
         # Initialize members of the class
         if account_type is not APIHelper.SKIP:
@@ -130,6 +133,11 @@ class ReceivingAccount1(object):
             self.plaid_processor_token = plaid_processor_token
         if contact_details is not APIHelper.SKIP:
             self.contact_details = contact_details
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -212,6 +220,11 @@ class ReceivingAccount1(object):
         else:
             contact_details = APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(account_type,
                    party_type,
@@ -224,7 +237,8 @@ class ReceivingAccount1(object):
                    party_identifier,
                    ledger_account,
                    plaid_processor_token,
-                   contact_details)
+                   contact_details,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -288,6 +302,7 @@ class ReceivingAccount1(object):
             if hasattr(self, "contact_details")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"account_type={_account_type!r}, "
@@ -302,6 +317,7 @@ class ReceivingAccount1(object):
             f"ledger_account={_ledger_account!r}, "
             f"plaid_processor_token={_plaid_processor_token!r}, "
             f"contact_details={_contact_details!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -367,6 +383,7 @@ class ReceivingAccount1(object):
             if hasattr(self, "contact_details")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"account_type={_account_type!s}, "
@@ -381,5 +398,6 @@ class ReceivingAccount1(object):
             f"ledger_account={_ledger_account!s}, "
             f"plaid_processor_token={_plaid_processor_token!s}, "
             f"contact_details={_contact_details!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

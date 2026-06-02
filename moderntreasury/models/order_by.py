@@ -11,8 +11,8 @@ class OrderBy(object):
     """Implementation of the 'order_by' model.
 
     Attributes:
-        created_at (CreatedAtEnum): The model property of type CreatedAtEnum.
-        effective_at (EffectiveAtEnum): The model property of type EffectiveAtEnum.
+        created_at (CreatedAt): The model property of type CreatedAt.
+        effective_at (EffectiveAt): The model property of type EffectiveAt.
 
     """
 

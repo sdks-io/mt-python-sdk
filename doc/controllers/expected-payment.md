@@ -1,12 +1,12 @@
 # Expected Payment
 
 ```python
-expected_payment_controller = client.expected_payment
+expected_payment_api = client.expected_payment
 ```
 
 ## Class Name
 
-`ExpectedPaymentController`
+`ExpectedPaymentApi`
 
 ## Methods
 
@@ -43,10 +43,10 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 |  --- | --- | --- | --- |
 | `after_cursor` | `str` | Query, Optional | - |
 | `per_page` | `int` | Query, Optional | - |
-| `status` | [`Status20Enum`](../../doc/models/status-20-enum.md) | Query, Optional | One of unreconciled, reconciled, or archived. |
+| `status` | [`Status20`](../../doc/models/status-20.md) | Query, Optional | One of unreconciled, reconciled, or archived. |
 | `internal_account_id` | `str` | Query, Optional | Specify internal_account_id to see expected_payments for a specific account. |
-| `direction` | [`Direction15Enum`](../../doc/models/direction-15-enum.md) | Query, Optional | One of credit, debit |
-| `mtype` | [`Type13Enum`](../../doc/models/type-13-enum.md) | Query, Optional | One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen, sepa, signet, wire |
+| `direction` | [`Direction15`](../../doc/models/direction-15.md) | Query, Optional | One of credit, debit |
+| `mtype` | [`Type13`](../../doc/models/type-13.md) | Query, Optional | One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp,sen, sepa, signet, wire |
 | `counterparty_id` | `str` | Query, Optional | Specify counterparty_id to see expected_payments for a specific account. |
 | `metadata` | `Dict[str, str]` | Query, Optional | For example, if you want to query for records with metadata key `Type` and value `Loan`, the query would be `metadata%5BType%5D=Loan`. This encodes the query parameters. |
 | `created_at_lower_bound` | `datetime` | Query, Optional | Used to return expected payments created after some datetime |
@@ -56,13 +56,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[ExpectedPayment]`](../../doc/models/expected-payment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[ExpectedPayment]`](../../doc/models/expected-payment.md).
 
 ## Example Usage
 
 ```python
-result = expected_payment_controller.list_expected_payments()
-print(result)
+result = expected_payment_api.list_expected_payments()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -95,7 +99,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`ExpectedPayment`](../../doc/models/expected-payment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExpectedPayment`](../../doc/models/expected-payment.md).
 
 ## Example Usage
 
@@ -103,7 +107,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 body = ExpectedPaymentCreateRequest(
     amount_upper_bound=80,
     amount_lower_bound=142,
-    direction=Direction1Enum.CREDIT,
+    direction=Direction1.CREDIT,
     internal_account_id='0000118a-0000-0000-0000-000000000000',
     metadata={
         'key': 'value',
@@ -112,10 +116,14 @@ body = ExpectedPaymentCreateRequest(
     }
 )
 
-result = expected_payment_controller.create_expected_payment(
+result = expected_payment_api.create_expected_payment(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -146,15 +154,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`ExpectedPayment`](../../doc/models/expected-payment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExpectedPayment`](../../doc/models/expected-payment.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = expected_payment_controller.get_expected_payment(id)
-print(result)
+result = expected_payment_api.get_expected_payment(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -187,7 +199,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`ExpectedPayment`](../../doc/models/expected-payment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExpectedPayment`](../../doc/models/expected-payment.md).
 
 ## Example Usage
 
@@ -202,11 +214,15 @@ body = ExpectedPaymentUpdateRequest(
     }
 )
 
-result = expected_payment_controller.update_expected_payment(
+result = expected_payment_api.update_expected_payment(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -231,15 +247,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`ExpectedPayment`](../../doc/models/expected-payment.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`ExpectedPayment`](../../doc/models/expected-payment.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = expected_payment_controller.delete_expected_payment(id)
-print(result)
+result = expected_payment_api.delete_expected_payment(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

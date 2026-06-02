@@ -22,6 +22,8 @@ class Ledger(object):
         description (str): An optional free-form description for internal use.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -53,7 +55,8 @@ class Ledger(object):
         discarded_at=None,
         name=None,
         description=None,
-        metadata=None):
+        metadata=None,
+        additional_properties=None):
         """Initialize a Ledger instance."""
         # Initialize members of the class
         self.id = id
@@ -74,6 +77,11 @@ class Ledger(object):
         self.name = name
         self.description = description
         self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -127,6 +135,11 @@ class Ledger(object):
             if dictionary.get("metadata")\
                 else None
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(id,
                    object,
@@ -136,7 +149,8 @@ class Ledger(object):
                    discarded_at,
                    name,
                    description,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -149,6 +163,7 @@ class Ledger(object):
         _name=self.name
         _description=self.description
         _metadata=self.metadata
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"id={_id!r}, "
@@ -160,6 +175,7 @@ class Ledger(object):
             f"name={_name!r}, "
             f"description={_description!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -174,6 +190,7 @@ class Ledger(object):
         _name=self.name
         _description=self.description
         _metadata=self.metadata
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"id={_id!s}, "
@@ -185,5 +202,6 @@ class Ledger(object):
             f"name={_name!s}, "
             f"description={_description!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

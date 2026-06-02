@@ -20,14 +20,14 @@ class AccountCollectionFlow(object):
         client_token (str): The client token of the account collection flow.  This
             token can be used to embed account collection in your client-side
             application.
-        status (StatusEnum): The current status of the account collection flow. One
-            of `pending`, `completed`, `expired`, or `cancelled`.
+        status (Status): The current status of the account collection flow. One of
+            `pending`, `completed`, `expired`, or `cancelled`.
         counterparty_id (uuid|str): The ID of a counterparty. An external account
             created with this flow will be associated with this counterparty.
         external_account_id (uuid|str): If present, the ID of the external account
             created using this flow.
-        payment_types (List[PaymentTypeEnum]): The model property of type
-            List[PaymentTypeEnum].
+        payment_types (List[PaymentType]): The model property of type
+            List[PaymentType].
 
     """
 

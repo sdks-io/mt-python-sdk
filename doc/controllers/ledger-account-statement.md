@@ -1,12 +1,12 @@
 # Ledger Account Statement
 
 ```python
-ledger_account_statement_controller = client.ledger_account_statement
+ledger_account_statement_api = client.ledger_account_statement
 ```
 
 ## Class Name
 
-`LedgerAccountStatementController`
+`LedgerAccountStatementApi`
 
 ## Methods
 
@@ -39,7 +39,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`LedgerAccountStatement`](../../doc/models/ledger-account-statement.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountStatement`](../../doc/models/ledger-account-statement.md).
 
 ## Example Usage
 
@@ -55,10 +55,14 @@ body = LedgerAccountStatementCreateRequest(
     }
 )
 
-result = ledger_account_statement_controller.create_ledger_account_statement(
+result = ledger_account_statement_api.create_ledger_account_statement(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -92,15 +96,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerAccountStatement`](../../doc/models/ledger-account-statement.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountStatement`](../../doc/models/ledger-account-statement.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_account_statement_controller.get_ledger_account_statement(id)
-print(result)
+result = ledger_account_statement_api.get_ledger_account_statement(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

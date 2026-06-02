@@ -1,12 +1,12 @@
 # Routing Detail
 
 ```python
-routing_detail_controller = client.routing_detail
+routing_detail_api = client.routing_detail
 ```
 
 ## Class Name
 
-`RoutingDetailController`
+`RoutingDetailApi`
 
 ## Methods
 
@@ -36,7 +36,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accounts_type` | [`AccountsTypeEnum`](../../doc/models/accounts-type-enum.md) | Template, Required | - |
+| `accounts_type` | [`AccountsType`](../../doc/models/accounts-type.md) | Template, Required | - |
 | `account_id` | `str` | Template, Required | The ID of the account. |
 | `after_cursor` | `str` | Query, Optional | - |
 | `per_page` | `int` | Query, Optional | - |
@@ -45,20 +45,24 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[RoutingDetail]`](../../doc/models/routing-detail.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[RoutingDetail]`](../../doc/models/routing-detail.md).
 
 ## Example Usage
 
 ```python
-accounts_type = AccountsTypeEnum.EXTERNAL_ACCOUNTS
+accounts_type = AccountsType.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
-result = routing_detail_controller.list_routing_details(
+result = routing_detail_api.list_routing_details(
     accounts_type,
     account_id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -82,7 +86,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accounts_type` | [`AccountsType1Enum`](../../doc/models/accounts-type-1-enum.md) | Template, Required | - |
+| `accounts_type` | [`AccountsType1`](../../doc/models/accounts-type-1.md) | Template, Required | - |
 | `account_id` | `str` | Template, Required | The ID of the account. |
 | `idempotency_key` | `str` | Header, Optional | This key should be something unique, preferably something like an UUID. |
 | `body` | [`RoutingDetailCreateRequest`](../../doc/models/routing-detail-create-request.md) | Body, Optional | - |
@@ -91,20 +95,24 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`RoutingDetail`](../../doc/models/routing-detail.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`RoutingDetail`](../../doc/models/routing-detail.md).
 
 ## Example Usage
 
 ```python
-accounts_type = AccountsType1Enum.EXTERNAL_ACCOUNTS
+accounts_type = AccountsType1.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
-result = routing_detail_controller.create_routing_detail(
+result = routing_detail_api.create_routing_detail(
     accounts_type,
     account_id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -134,7 +142,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accounts_type` | [`AccountsTypeEnum`](../../doc/models/accounts-type-enum.md) | Template, Required | - |
+| `accounts_type` | [`AccountsType`](../../doc/models/accounts-type.md) | Template, Required | - |
 | `account_id` | `str` | Template, Required | The ID of the account. |
 | `id` | `str` | Template, Required | The ID of the routing detail. |
 
@@ -142,23 +150,27 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`RoutingDetail`](../../doc/models/routing-detail.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`RoutingDetail`](../../doc/models/routing-detail.md).
 
 ## Example Usage
 
 ```python
-accounts_type = AccountsTypeEnum.EXTERNAL_ACCOUNTS
+accounts_type = AccountsType.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
 id = 'id0'
 
-result = routing_detail_controller.get_routing_detail(
+result = routing_detail_api.get_routing_detail(
     accounts_type,
     account_id,
     id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -187,7 +199,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
-| `accounts_type` | [`AccountsType1Enum`](../../doc/models/accounts-type-1-enum.md) | Template, Required | - |
+| `accounts_type` | [`AccountsType1`](../../doc/models/accounts-type-1.md) | Template, Required | - |
 | `account_id` | `str` | Template, Required | The ID of the account. |
 | `id` | `str` | Template, Required | The ID of the routing detail. |
 
@@ -195,21 +207,26 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **204**: successful
 
-`void`
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance.
 
 ## Example Usage
 
 ```python
-accounts_type = AccountsType1Enum.EXTERNAL_ACCOUNTS
+accounts_type = AccountsType1.EXTERNAL_ACCOUNTS
 
 account_id = 'account_id2'
 
 id = 'id0'
 
-routing_detail_controller.delete_routing_detail(
+result = routing_detail_api.delete_routing_detail(
     accounts_type,
     account_id,
     id
 )
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

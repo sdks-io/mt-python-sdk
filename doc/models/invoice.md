@@ -18,20 +18,20 @@
 | `counterparty_id` | `str` | Required | The ID of the counterparty receiving the invoice. |
 | `counterparty_billing_address` | [`CounterpartyBillingAddress`](../../doc/models/counterparty-billing-address.md) | Required | The counterparty's billing address. |
 | `counterparty_shipping_address` | [`CounterpartyShippingAddress`](../../doc/models/counterparty-shipping-address.md) | Required | The counterparty's shipping address where physical goods should be delivered. |
-| `currency` | [`CurrencyEnum`](../../doc/models/currency-enum.md) | Required | Three-letter ISO currency code. |
+| `currency` | [`Currency`](../../doc/models/currency.md) | Required | Three-letter ISO currency code. |
 | `description` | `str` | Required | A free-form description of the invoice. |
 | `due_date` | `datetime` | Required | A future date by when the invoice needs to be paid. |
 | `invoicer_address` | [`InvoicerAddress`](../../doc/models/invoicer-address.md) | Required | The invoice issuer's business address. |
 | `originating_account_id` | `str` | Required | The ID of the internal account the invoice should be paid to. |
 | `receiving_account_id` | `uuid\|str` | Required | The receiving account ID. Can be an `internal_account`. |
 | `payment_effective_date` | `date` | Required | Date transactions are to be posted to the participants' account. Defaults to the current business day or the next business day if the current day is a bank holiday or weekend. Format: yyyy-mm-dd. |
-| `payment_type` | [`PaymentType5Enum`](../../doc/models/payment-type-5-enum.md) | Required | One of `ach` or `eft` |
-| `payment_method` | [`PaymentMethodEnum`](../../doc/models/payment-method-enum.md) | Required | When opening an invoice, whether to show the embedded payment UI , automatically debit the recipient, or rely on manual payment from the recipient. |
+| `payment_type` | [`PaymentType5`](../../doc/models/payment-type-5.md) | Required | One of `ach` or `eft` |
+| `payment_method` | [`PaymentMethod`](../../doc/models/payment-method.md) | Required | When opening an invoice, whether to show the embedded payment UI , automatically debit the recipient, or rely on manual payment from the recipient. |
 | `hosted_url` | `str` | Required | The URL of the hosted web UI where the invoice can be viewed. |
 | `number` | `str` | Required | A unique record number assigned to each invoice that is issued. |
 | `payment_orders` | [`List[PaymentOrder]`](../../doc/models/payment-order.md) | Required | The payment orders created for paying the invoice through the invoice payment UI. |
 | `pdf_url` | `str` | Required | The URL where the invoice PDF can be downloaded. |
-| `status` | [`Status5Enum`](../../doc/models/status-5-enum.md) | Required | The status of the invoice. |
+| `status` | [`Status5`](../../doc/models/status-5.md) | Required | The status of the invoice. |
 | `total_amount` | `int` | Required | Total amount due in specified currency's smallest unit, e.g., $10 USD would be represented as 1000. |
 
 ## Example (as JSON)
@@ -62,7 +62,11 @@
     "locality": "locality0",
     "region": "region6",
     "postal_code": "postal_code2",
-    "country": "country4"
+    "country": "country4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "counterparty_shipping_address": {
     "line1": "line12",
@@ -70,7 +74,11 @@
     "locality": "locality0",
     "region": "region6",
     "postal_code": "postal_code2",
-    "country": "country4"
+    "country": "country4",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "currency": "MNT",
   "description": "description4",
@@ -81,7 +89,11 @@
     "locality": "locality2",
     "region": "region4",
     "postal_code": "postal_code0",
-    "country": "country2"
+    "country": "country2",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "originating_account_id": "originating_account_id4",
   "receiving_account_id": "000022c8-0000-0000-0000-000000000000",
@@ -106,7 +118,11 @@
       "receiving_account_id": "00000e22-0000-0000-0000-000000000000",
       "accounting": {
         "account_id": "0000183c-0000-0000-0000-000000000000",
-        "class_id": "00001c78-0000-0000-0000-000000000000"
+        "class_id": "00001c78-0000-0000-0000-000000000000",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "accounting_category_id": "00000726-0000-0000-0000-000000000000",
       "accounting_ledger_class_id": "00001568-0000-0000-0000-000000000000",
@@ -143,7 +159,11 @@
         "object": "object4",
         "live_mode": false,
         "created_at": "2016-03-13T12:52:32.123Z",
-        "updated_at": "2016-03-13T12:52:32.123Z"
+        "updated_at": "2016-03-13T12:52:32.123Z",
+        "exampleAdditionalProperty": {
+          "key1": "val1",
+          "key2": "val2"
+        }
       },
       "receiving_account_type": "internal_account",
       "counterparty_id": "00000678-0000-0000-0000-000000000000",

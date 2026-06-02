@@ -1,12 +1,12 @@
 # Account Collection Flow
 
 ```python
-account_collection_flow_controller = client.account_collection_flow
+account_collection_flow_api = client.account_collection_flow
 ```
 
 ## Class Name
 
-`AccountCollectionFlowController`
+`AccountCollectionFlowApi`
 
 ## Methods
 
@@ -47,13 +47,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[AccountCollectionFlow]`](../../doc/models/account-collection-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[AccountCollectionFlow]`](../../doc/models/account-collection-flow.md).
 
 ## Example Usage
 
 ```python
-result = account_collection_flow_controller.list_account_collection_flows()
-print(result)
+result = account_collection_flow_api.list_account_collection_flows()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -80,13 +84,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`AccountCollectionFlow`](../../doc/models/account-collection-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`AccountCollectionFlow`](../../doc/models/account-collection-flow.md).
 
 ## Example Usage
 
 ```python
-result = account_collection_flow_controller.create_account_collection_flow()
-print(result)
+result = account_collection_flow_api.create_account_collection_flow()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -119,15 +127,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`AccountCollectionFlow`](../../doc/models/account-collection-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`AccountCollectionFlow`](../../doc/models/account-collection-flow.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = account_collection_flow_controller.get_account_collection_flow(id)
-print(result)
+result = account_collection_flow_api.get_account_collection_flow(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -156,7 +168,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`AccountCollectionFlow`](../../doc/models/account-collection-flow.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`AccountCollectionFlow`](../../doc/models/account-collection-flow.md).
 
 ## Example Usage
 
@@ -165,11 +177,15 @@ id = 'id0'
 
 body = AccountCollectionFlowUpdateRequest()
 
-result = account_collection_flow_controller.update_account_collection_flow(
+result = account_collection_flow_api.update_account_collection_flow(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

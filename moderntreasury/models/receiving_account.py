@@ -28,8 +28,8 @@ class ReceivingAccount(object):
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
         discarded_at (datetime): The model property of type datetime.
-        account_type (AccountTypeEnum): Can be `checking`, `savings` or `other`.
-        party_type (PartyTypeEnum): Either `individual` or `business`.
+        account_type (AccountType): Can be `checking`, `savings` or `other`.
+        party_type (PartyType): Either `individual` or `business`.
         party_address (Address): The model property of type Address.
         name (str): A nickname for the external account. This is only for internal
             usage and won't affect any payments
@@ -45,8 +45,10 @@ class ReceivingAccount(object):
         ledger_account_id (uuid|str): If the external account links to a ledger
             account in Modern Treasury, the id of the ledger account will be
             populated here.
-        verification_status (VerificationStatusEnum): The model property of type
-            VerificationStatusEnum.
+        verification_status (VerificationStatus): The model property of type
+            VerificationStatus.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -117,7 +119,8 @@ class ReceivingAccount(object):
         party_name=APIHelper.SKIP,
         contact_details=APIHelper.SKIP,
         ledger_account_id=APIHelper.SKIP,
-        verification_status=APIHelper.SKIP):
+        verification_status=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ReceivingAccount instance."""
         # Initialize members of the class
         if id is not APIHelper.SKIP:
@@ -163,6 +166,11 @@ class ReceivingAccount(object):
             self.ledger_account_id = ledger_account_id
         if verification_status is not APIHelper.SKIP:
             self.verification_status = verification_status
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -267,6 +275,11 @@ class ReceivingAccount(object):
             if dictionary.get("verification_status")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(id,
                    object,
@@ -284,7 +297,8 @@ class ReceivingAccount(object):
                    party_name,
                    contact_details,
                    ledger_account_id,
-                   verification_status)
+                   verification_status,
+                   additional_properties)
 
     @classmethod
     def validate(cls, dictionary):
@@ -394,6 +408,7 @@ class ReceivingAccount(object):
             if hasattr(self, "verification_status")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"id={_id!r}, "
@@ -413,6 +428,7 @@ class ReceivingAccount(object):
             f"contact_details={_contact_details!r}, "
             f"ledger_account_id={_ledger_account_id!r}, "
             f"verification_status={_verification_status!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -503,6 +519,7 @@ class ReceivingAccount(object):
             if hasattr(self, "verification_status")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"id={_id!s}, "
@@ -522,5 +539,6 @@ class ReceivingAccount(object):
             f"contact_details={_contact_details!s}, "
             f"ledger_account_id={_ledger_account_id!s}, "
             f"verification_status={_verification_status!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

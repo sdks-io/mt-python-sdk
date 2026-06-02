@@ -25,9 +25,9 @@ class PaymentOrderAsyncCreateRequest(object):
     """Implementation of the 'payment_order_async_create_request' model.
 
     Attributes:
-        mtype (Type5Enum): One of `ach`, `eft`, `wire`, `check`, `sen`, `book`,
-            `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
-        subtype (SubtypeEnum): An additional layer of classification for the type of
+        mtype (Type5): One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+            `sepa`, `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+        subtype (Subtype): An additional layer of classification for the type of
             payment order you are doing. This field is only used for `ach` payment
             orders currently. For `ach`  payment orders, the `subtype`  represents
             the SEC code. We currently support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`,
@@ -35,12 +35,12 @@ class PaymentOrderAsyncCreateRequest(object):
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000 (cents). For RTP, the maximum amount allowed by the
             network is $100,000.
-        direction (Direction5Enum): One of `credit`, `debit`. Describes the direction
+        direction (Direction5): One of `credit`, `debit`. Describes the direction
             money is flowing in the transaction. A `credit` moves money from your
             account to someone else's. A `debit` pulls money from someone else's
             account to your own. Note that wire, rtp, and check payments will always
             be `credit`.
-        priority (PriorityEnum): Either `normal` or `high`. For ACH and EFT payments,
+        priority (Priority): Either `normal` or `high`. For ACH and EFT payments,
             `high` represents a same-day ACH or EFT transfer, respectively. For check
             payments, `high` can mean an overnight check rather than standard mail.
         originating_account_id (uuid|str): The ID of one of your organization's
@@ -56,7 +56,7 @@ class PaymentOrderAsyncCreateRequest(object):
         accounting_ledger_class_id (uuid|str): The ID of one of your accounting
             ledger classes. Note that these will only be accessible if your
             accounting system has been connected.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         effective_date (date): Date transactions are to be posted to the
             participants' account. Defaults to the current business day or the next
             business day if the current day is a bank holiday or weekend. Format:
@@ -78,12 +78,12 @@ class PaymentOrderAsyncCreateRequest(object):
             field is the 3 digit CPA Code that will be attached to the payment.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
-        charge_bearer (ChargeBearerEnum): The party that will pay the fees for the
+        charge_bearer (ChargeBearer): The party that will pay the fees for the
             payment order. Only applies to wire payment orders. Can be one of shared,
             sender, or receiver, which correspond respectively with the SWIFT 71A
             values `SHA`, `OUR`, `BEN`.
-        foreign_exchange_indicator (ForeignExchangeIndicatorEnum): Indicates the type
-            of FX transfer to initiate, can be either `variable_to_fixed`,
+        foreign_exchange_indicator (ForeignExchangeIndicator): Indicates the type of
+            FX transfer to initiate, can be either `variable_to_fixed`,
             `fixed_to_variable`, or `null` if the payment order currency matches the
             originating account currency.
         foreign_exchange_contract (str): If present, indicates a specific foreign
@@ -108,10 +108,9 @@ class PaymentOrderAsyncCreateRequest(object):
             the Counterparty is used.
         expires_at (datetime): RFP payments require an expires_at. This value must be
             past the effective_date.
-        fallback_type (FallbackTypeEnum): A payment type to fallback to if the
-            original type is not valid for the receiving account. Currently, this
-            only supports falling back from RTP to ACH (type=rtp and
-            fallback_type=ach)
+        fallback_type (FallbackType): A payment type to fallback to if the original
+            type is not valid for the receiving account. Currently, this only
+            supports falling back from RTP to ACH (type=rtp and fallback_type=ach)
         receiving_account (ReceivingAccount1): Either `receiving_account` or
             `receiving_account_id` must be present. When using
             `receiving_account_id`, you may pass the id of an external account or an
@@ -122,6 +121,8 @@ class PaymentOrderAsyncCreateRequest(object):
             to the amount of the payment order.
         transaction_monitoring_enabled (bool): A flag that determines whether a
             payment order should go through transaction monitoring.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -249,7 +250,8 @@ class PaymentOrderAsyncCreateRequest(object):
         receiving_account=APIHelper.SKIP,
         ledger_transaction=APIHelper.SKIP,
         line_items=APIHelper.SKIP,
-        transaction_monitoring_enabled=APIHelper.SKIP):
+        transaction_monitoring_enabled=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a PaymentOrderAsyncCreateRequest instance."""
         # Initialize members of the class
         self.mtype = mtype
@@ -319,6 +321,11 @@ class PaymentOrderAsyncCreateRequest(object):
             self.line_items = line_items
         if transaction_monitoring_enabled is not APIHelper.SKIP:
             self.transaction_monitoring_enabled = transaction_monitoring_enabled
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -480,6 +487,11 @@ class PaymentOrderAsyncCreateRequest(object):
             if "transaction_monitoring_enabled" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(mtype,
                    amount,
@@ -513,7 +525,8 @@ class PaymentOrderAsyncCreateRequest(object):
                    receiving_account,
                    ledger_transaction,
                    line_items,
-                   transaction_monitoring_enabled)
+                   transaction_monitoring_enabled,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -666,6 +679,7 @@ class PaymentOrderAsyncCreateRequest(object):
             if hasattr(self, "transaction_monitoring_enabled")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"mtype={_mtype!r}, "
@@ -701,6 +715,7 @@ class PaymentOrderAsyncCreateRequest(object):
             f"ledger_transaction={_ledger_transaction!r}, "
             f"line_items={_line_items!r}, "
             f"transaction_monitoring_enabled={_transaction_monitoring_enabled!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -855,6 +870,7 @@ class PaymentOrderAsyncCreateRequest(object):
             if hasattr(self, "transaction_monitoring_enabled")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"mtype={_mtype!s}, "
@@ -890,5 +906,6 @@ class PaymentOrderAsyncCreateRequest(object):
             f"ledger_transaction={_ledger_transaction!s}, "
             f"line_items={_line_items!s}, "
             f"transaction_monitoring_enabled={_transaction_monitoring_enabled!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

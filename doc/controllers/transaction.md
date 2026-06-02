@@ -1,12 +1,12 @@
 # Transaction
 
 ```python
-transaction_controller = client.transaction
+transaction_api = client.transaction
 ```
 
 ## Class Name
 
-`TransactionController`
+`TransactionApi`
 
 ## Methods
 
@@ -64,13 +64,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[Transaction]`](../../doc/models/transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[Transaction]`](../../doc/models/transaction.md).
 
 ## Example Usage
 
 ```python
-result = transaction_controller.list_transactions()
-print(result)
+result = transaction_api.list_transactions()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -97,15 +101,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Transaction`](../../doc/models/transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Transaction`](../../doc/models/transaction.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = transaction_controller.get_transaction(id)
-print(result)
+result = transaction_api.get_transaction(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -140,15 +148,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Transaction`](../../doc/models/transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Transaction`](../../doc/models/transaction.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = transaction_controller.update_transaction(id)
-print(result)
+result = transaction_api.update_transaction(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

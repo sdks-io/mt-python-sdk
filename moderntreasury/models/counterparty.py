@@ -26,7 +26,7 @@ class Counterparty(object):
             Both the key and value must be strings.
         send_remittance_advice (bool): Send an email to the counterparty whenever an
             associated payment order is sent to the bank.
-        verification_status (VerificationStatus1Enum): The verification status of the
+        verification_status (VerificationStatus1): The verification status of the
             counterparty.
 
     """

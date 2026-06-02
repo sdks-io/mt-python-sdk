@@ -2,10 +2,11 @@
 # ruff: noqa: RUF022 | `__all__` is not sorted
 __all__ = [
     "api_helper",
+    "apis",
     "configuration",
-    "controllers",
     "exceptions",
     "http",
+    "logging",
     "models",
     "moderntreasury_client",
     "utilities",

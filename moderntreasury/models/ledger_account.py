@@ -23,14 +23,14 @@ class LedgerAccount(object):
         discarded_at (datetime): The model property of type datetime.
         name (str): The name of the ledger account.
         description (str): The description of the ledger account.
-        normal_balance (NormalBalanceEnum): The normal balance of the ledger account.
+        normal_balance (NormalBalance): The normal balance of the ledger account.
         balances (LedgerBalancesWithEffectiveAt): The model property of type
             LedgerBalancesWithEffectiveAt.
         lock_version (int): Lock version of the ledger account.
         ledger_id (uuid|str): The id of the ledger that this account belongs to.
         ledgerable_id (uuid|str): If the ledger account links to another object in
             Modern Treasury, the id will be populated here, otherwise null.
-        ledgerable_type (LedgerableTypeEnum): If the ledger account links to another
+        ledgerable_type (LedgerableType): If the ledger account links to another
             object in Modern Treasury, the type will be populated here, otherwise
             null. The value is one of internal_account or external_account.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.

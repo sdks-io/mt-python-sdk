@@ -16,6 +16,8 @@ class InternalAccountUpdateRequest(object):
             Pairs can be removed by passing an empty string or `null` as the value.
         parent_account_id (str): The parent internal account for this account.
         counterparty_id (str): The Counterparty associated to this account.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -39,7 +41,8 @@ class InternalAccountUpdateRequest(object):
         name=APIHelper.SKIP,
         metadata=APIHelper.SKIP,
         parent_account_id=APIHelper.SKIP,
-        counterparty_id=APIHelper.SKIP):
+        counterparty_id=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a InternalAccountUpdateRequest instance."""
         # Initialize members of the class
         if name is not APIHelper.SKIP:
@@ -50,6 +53,11 @@ class InternalAccountUpdateRequest(object):
             self.parent_account_id = parent_account_id
         if counterparty_id is not APIHelper.SKIP:
             self.counterparty_id = counterparty_id
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -86,11 +94,17 @@ class InternalAccountUpdateRequest(object):
             if dictionary.get("counterparty_id")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    metadata,
                    parent_account_id,
-                   counterparty_id)
+                   counterparty_id,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -114,12 +128,14 @@ class InternalAccountUpdateRequest(object):
             if hasattr(self, "counterparty_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
             f"metadata={_metadata!r}, "
             f"parent_account_id={_parent_account_id!r}, "
             f"counterparty_id={_counterparty_id!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -145,11 +161,13 @@ class InternalAccountUpdateRequest(object):
             if hasattr(self, "counterparty_id")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
             f"metadata={_metadata!s}, "
             f"parent_account_id={_parent_account_id!s}, "
             f"counterparty_id={_counterparty_id!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

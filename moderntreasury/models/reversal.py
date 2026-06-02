@@ -17,11 +17,11 @@ class Reversal(object):
             environment or false if it exists in the test environment.
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
-        status (Status19Enum): The current status of the reversal.
+        status (Status19): The current status of the reversal.
         payment_order_id (uuid|str): The ID of the relevant Payment Order.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
-        reason (ReasonEnum): The reason for the reversal.
+        reason (Reason): The reason for the reversal.
 
     """
 

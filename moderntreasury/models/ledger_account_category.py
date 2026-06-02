@@ -27,7 +27,7 @@ class LedgerAccountCategory(object):
             Both the key and value must be strings.
         ledger_id (uuid|str): The id of the ledger that this account category belongs
             to.
-        normal_balance (NormalBalance2Enum): The normal balance of the ledger account
+        normal_balance (NormalBalance2): The normal balance of the ledger account
             category.
         balances (LedgerBalances): The model property of type LedgerBalances.
 

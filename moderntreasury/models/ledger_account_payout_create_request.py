@@ -12,7 +12,7 @@ class LedgerAccountPayoutCreateRequest(object):
 
     Attributes:
         description (str): The description of the ledger account payout.
-        status (Status7Enum): The status of the ledger account payout. It is set to
+        status (Status7): The status of the ledger account payout. It is set to
             `pending` by default. To post a ledger account payout at creation, use
             `posted`.
         payout_ledger_account_id (uuid|str): The id of the payout ledger account
@@ -28,6 +28,8 @@ class LedgerAccountPayoutCreateRequest(object):
             Both the key and value must be strings.
         skip_payout_ledger_transaction (bool): It is set to `false` by default. It
             should be set to `true` when migrating existing payouts.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -65,7 +67,8 @@ class LedgerAccountPayoutCreateRequest(object):
         status=APIHelper.SKIP,
         effective_at_upper_bound=APIHelper.SKIP,
         metadata=APIHelper.SKIP,
-        skip_payout_ledger_transaction=APIHelper.SKIP):
+        skip_payout_ledger_transaction=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerAccountPayoutCreateRequest instance."""
         # Initialize members of the class
         if description is not APIHelper.SKIP:
@@ -83,6 +86,11 @@ class LedgerAccountPayoutCreateRequest(object):
             self.metadata = metadata
         if skip_payout_ledger_transaction is not APIHelper.SKIP:
             self.skip_payout_ledger_transaction = skip_payout_ledger_transaction
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -134,6 +142,11 @@ class LedgerAccountPayoutCreateRequest(object):
             if "skip_payout_ledger_transaction" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(payout_ledger_account_id,
                    funding_ledger_account_id,
@@ -141,7 +154,8 @@ class LedgerAccountPayoutCreateRequest(object):
                    status,
                    effective_at_upper_bound,
                    metadata,
-                   skip_payout_ledger_transaction)
+                   skip_payout_ledger_transaction,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -172,6 +186,7 @@ class LedgerAccountPayoutCreateRequest(object):
             if hasattr(self, "skip_payout_ledger_transaction")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"description={_description!r}, "
@@ -181,6 +196,7 @@ class LedgerAccountPayoutCreateRequest(object):
             f"effective_at_upper_bound={_effective_at_upper_bound!r}, "
             f"metadata={_metadata!r}, "
             f"skip_payout_ledger_transaction={_skip_payout_ledger_transaction!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -213,6 +229,7 @@ class LedgerAccountPayoutCreateRequest(object):
             if hasattr(self, "skip_payout_ledger_transaction")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"description={_description!s}, "
@@ -222,5 +239,6 @@ class LedgerAccountPayoutCreateRequest(object):
             f"effective_at_upper_bound={_effective_at_upper_bound!s}, "
             f"metadata={_metadata!s}, "
             f"skip_payout_ledger_transaction={_skip_payout_ledger_transaction!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

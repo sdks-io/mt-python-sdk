@@ -23,12 +23,12 @@ class LedgerEntry(object):
         discarded_at (datetime): The model property of type datetime.
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000. Can be any integer up to 36 digits.
-        direction (Direction5Enum): One of `credit`, `debit`. Describes the direction
+        direction (Direction5): One of `credit`, `debit`. Describes the direction
             money is flowing in the transaction. A `credit` moves money from your
             account to someone else's. A `debit` pulls money from someone else's
             account to your own. Note that wire, rtp, and check payments will always
             be `credit`.
-        status (Status9Enum): Equal to the state of the ledger transaction when the
+        status (Status9): Equal to the state of the ledger transaction when the
             ledger entry was created. One of `pending`, `posted`, or `archived`.
         ledger_account_id (uuid|str): The ledger account that this ledger entry is
             associated with.

@@ -16,11 +16,11 @@
 | `updated_at` | `datetime` | Required | - |
 | `discarded_at` | `datetime` | Required | - |
 | `amount` | `int` | Required | Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. |
-| `currency` | [`CurrencyEnum`](../../doc/models/currency-enum.md) | Required | Three-letter ISO currency code. |
+| `currency` | [`Currency`](../../doc/models/currency.md) | Required | Three-letter ISO currency code. |
 | `direction` | `str` | Required | Either `credit` or `debit`. |
 | `vendor_description` | `str` | Required | The transaction detail text that often appears in on your bank statement and in your banking portal. |
 | `vendor_code` | `str` | Required | When applicable, the bank-given code that determines the transaction's category. For most banks this is the BAI2/BTRS transaction code. |
-| `vendor_code_type` | [`VendorCodeType1Enum`](../../doc/models/vendor-code-type-1-enum.md) | Required | The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`, `swift`, or `us_bank`. |
+| `vendor_code_type` | [`VendorCodeType1`](../../doc/models/vendor-code-type-1.md) | Required | The type of `vendor_code` being reported. Can be one of `bai2`, `bankprov`, `bnk_dev`, `cleartouch`, `currencycloud`, `cross_river`, `dc_bank`, `dwolla`, `evolve`, `goldman_sachs`, `iso20022`, `jpmc`, `mx`, `signet`, `silvergate`, `swift`, or `us_bank`. |
 | `vendor_id` | `str` | Required | An identifier given to this transaction by the bank. |
 | `as_of_date` | `date` | Required | The date on which the transaction occurred. |
 | `as_of_time` | `datetime` | Required | The time on which the transaction occurred. Depending on the granularity of the timestamp information received from the bank, it may be `null`. |
@@ -30,7 +30,7 @@
 | `vendor_customer_id` | `str` | Required | An identifier given to this transaction by the bank, often `null`. |
 | `reconciled` | `bool` | Required | This field will be `true` if a transaction is reconciled by the Modern Treasury system. This means that it has transaction line items that sum up to the transaction's amount. |
 | `details` | `Dict[str, str]` | Required | This field contains additional information that the bank provided about the transaction. This is structured data. Some of the data in here might overlap with what is in the `vendor_description`. For example, the OBI could be a part of the vendor description, and it would also be included in here. The attributes that are passed through the details field will vary based on your banking partner. Currently, the following keys may be in the details object: `originator_name`, `originator_to_beneficiary_information`. |
-| `mtype` | [`Type11Enum`](../../doc/models/type-11-enum.md) | Required | The type of the transaction. Can be one of `ach`, `wire`, `check`, `rtp`, `book`, or `sen`. |
+| `mtype` | [`Type11`](../../doc/models/type-11.md) | Required | The type of the transaction. Can be one of `ach`, `wire`, `check`, `rtp`, `book`, or `sen`. |
 
 ## Example (as JSON)
 

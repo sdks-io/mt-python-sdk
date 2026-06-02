@@ -1,12 +1,12 @@
 # Ledger Transaction
 
 ```python
-ledger_transaction_controller = client.ledger_transaction
+ledger_transaction_api = client.ledger_transaction
 ```
 
 ## Class Name
 
-`LedgerTransactionController`
+`LedgerTransactionApi`
 
 ## Methods
 
@@ -44,7 +44,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`LedgerTransaction`](../../doc/models/ledger-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerTransaction`](../../doc/models/ledger-transaction.md).
 
 ## Example Usage
 
@@ -59,11 +59,15 @@ body = LedgerTransactionReversalCreateRequest(
     }
 )
 
-result = ledger_transaction_controller.create_ledger_transaction_reversal(
+result = ledger_transaction_api.create_ledger_transaction_reversal(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -107,13 +111,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[LedgerTransactionVersion]`](../../doc/models/ledger-transaction-version.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LedgerTransactionVersion]`](../../doc/models/ledger-transaction-version.md).
 
 ## Example Usage
 
 ```python
-result = ledger_transaction_controller.list_ledger_transaction_versions()
-print(result)
+result = ledger_transaction_api.list_ledger_transaction_versions()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -168,25 +176,29 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 | `posted_at` | `Dict[str, datetime]` | Query, Optional | Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use posted_at%5Bgt%5D=2000-01-01T12:00:00Z. |
 | `updated_at` | `Dict[str, datetime]` | Query, Optional | Use `gt` (>), `gte` (>=), `lt` (<), `lte` (<=), or `eq` (=) to filter by the posted at timestamp. For example, for all times after Jan 1 2000 12:00 UTC, use updated_at%5Bgt%5D=2000-01-01T12:00:00Z. |
 | `order_by` | [`OrderBy`](../../doc/models/order-by.md) | Query, Optional | Order by `created_at` or `effective_at` in `asc` or `desc` order. For example, to order by `effective_at asc`, use `order_by%5Beffective_at%5D=asc`. Ordering by only one field at a time is supported. |
-| `status` | [`Status22Enum`](../../doc/models/status-22-enum.md) | Query, Optional | - |
+| `status` | [`Status22`](../../doc/models/status-22.md) | Query, Optional | - |
 | `external_id` | `str` | Query, Optional | - |
 | `ledger_account_category_id` | `str` | Query, Optional | - |
 | `ledger_account_payout_id` | `str` | Query, Optional | - |
 | `reverses_ledger_transaction_id` | `str` | Query, Optional | - |
 | `ledgerable_id` | `str` | Query, Optional | - |
-| `ledgerable_type` | [`LedgerableType6Enum`](../../doc/models/ledgerable-type-6-enum.md) | Query, Optional | - |
+| `ledgerable_type` | [`LedgerableType6`](../../doc/models/ledgerable-type-6.md) | Query, Optional | - |
 
 ## Response Type
 
 **200**: successful
 
-[`List[LedgerTransaction]`](../../doc/models/ledger-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LedgerTransaction]`](../../doc/models/ledger-transaction.md).
 
 ## Example Usage
 
 ```python
-result = ledger_transaction_controller.list_ledger_transactions()
-print(result)
+result = ledger_transaction_api.list_ledger_transactions()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -221,7 +233,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`LedgerTransaction`](../../doc/models/ledger-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerTransaction`](../../doc/models/ledger-transaction.md).
 
 ## Example Usage
 
@@ -230,7 +242,7 @@ body = LedgerTransactionCreateRequest(
     ledger_entries=[
         LedgerEntryCreateRequest(
             amount=60,
-            direction=Direction5Enum.CREDIT,
+            direction=Direction5.CREDIT,
             ledger_account_id='00002600-0000-0000-0000-000000000000',
             metadata={
                 'key': 'value',
@@ -246,10 +258,14 @@ body = LedgerTransactionCreateRequest(
     }
 )
 
-result = ledger_transaction_controller.create_ledger_transaction(
+result = ledger_transaction_api.create_ledger_transaction(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -285,15 +301,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerTransaction`](../../doc/models/ledger-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerTransaction`](../../doc/models/ledger-transaction.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_transaction_controller.get_ledger_transaction(id)
-print(result)
+result = ledger_transaction_api.get_ledger_transaction(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -328,7 +348,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerTransaction`](../../doc/models/ledger-transaction.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerTransaction`](../../doc/models/ledger-transaction.md).
 
 ## Example Usage
 
@@ -343,11 +363,15 @@ body = LedgerTransactionUpdateRequest(
     }
 )
 
-result = ledger_transaction_controller.update_ledger_transaction(
+result = ledger_transaction_api.update_ledger_transaction(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -392,15 +416,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[LedgerTransactionVersion]`](../../doc/models/ledger-transaction-version.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LedgerTransactionVersion]`](../../doc/models/ledger-transaction-version.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_transaction_controller.list_ledger_transaction_versions_1(id)
-print(result)
+result = ledger_transaction_api.list_ledger_transaction_versions_1(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

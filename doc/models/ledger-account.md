@@ -17,12 +17,12 @@
 | `discarded_at` | `datetime` | Required | - |
 | `name` | `str` | Required | The name of the ledger account. |
 | `description` | `str` | Required | The description of the ledger account. |
-| `normal_balance` | [`NormalBalanceEnum`](../../doc/models/normal-balance-enum.md) | Required | The normal balance of the ledger account. |
+| `normal_balance` | [`NormalBalance`](../../doc/models/normal-balance.md) | Required | The normal balance of the ledger account. |
 | `balances` | [`LedgerBalancesWithEffectiveAt`](../../doc/models/ledger-balances-with-effective-at.md) | Required | - |
 | `lock_version` | `int` | Required | Lock version of the ledger account. |
 | `ledger_id` | `uuid\|str` | Required | The id of the ledger that this account belongs to. |
 | `ledgerable_id` | `uuid\|str` | Required | If the ledger account links to another object in Modern Treasury, the id will be populated here, otherwise null. |
-| `ledgerable_type` | [`LedgerableTypeEnum`](../../doc/models/ledgerable-type-enum.md) | Required | If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account. |
+| `ledgerable_type` | [`LedgerableType`](../../doc/models/ledgerable-type.md) | Required | If the ledger account links to another object in Modern Treasury, the type will be populated here, otherwise null. The value is one of internal_account or external_account. |
 | `metadata` | `Dict[str, str]` | Required | Additional data represented as key-value pairs. Both the key and value must be strings. |
 
 ## Example (as JSON)

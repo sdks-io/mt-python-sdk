@@ -14,6 +14,8 @@ class VirtualAccountUpdateRequest(object):
         name (str): The model property of type str.
         counterparty_id (uuid|str): The model property of type uuid|str.
         metadata (Dict[str, str]): The model property of type Dict[str, str].
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -38,7 +40,8 @@ class VirtualAccountUpdateRequest(object):
         self,
         name=APIHelper.SKIP,
         counterparty_id=APIHelper.SKIP,
-        metadata=APIHelper.SKIP):
+        metadata=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a VirtualAccountUpdateRequest instance."""
         # Initialize members of the class
         if name is not APIHelper.SKIP:
@@ -47,6 +50,11 @@ class VirtualAccountUpdateRequest(object):
             self.counterparty_id = counterparty_id
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -79,10 +87,16 @@ class VirtualAccountUpdateRequest(object):
             if dictionary.get("metadata")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    counterparty_id,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -101,11 +115,13 @@ class VirtualAccountUpdateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
             f"counterparty_id={_counterparty_id!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -126,10 +142,12 @@ class VirtualAccountUpdateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
             f"counterparty_id={_counterparty_id!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

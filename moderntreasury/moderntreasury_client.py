@@ -11,117 +11,107 @@ from apimatic_core.decorators.lazy_property import (
     LazyProperty,
 )
 
+from moderntreasury.apis.account_collection_flow_api import (
+    AccountCollectionFlowApi,
+)
+from moderntreasury.apis.account_detail_api import (
+    AccountDetailApi,
+)
+from moderntreasury.apis.balance_report_api import (
+    BalanceReportApi,
+)
+from moderntreasury.apis.base_api import BaseApi
+from moderntreasury.apis.connection_api import (
+    ConnectionApi,
+)
+from moderntreasury.apis.counterparty_api import (
+    CounterpartyApi,
+)
+from moderntreasury.apis.document_api import (
+    DocumentApi,
+)
+from moderntreasury.apis.event_api import EventApi
+from moderntreasury.apis.expected_payment_api import (
+    ExpectedPaymentApi,
+)
+from moderntreasury.apis.external_account_api import (
+    ExternalAccountApi,
+)
+from moderntreasury.apis.incoming_payment_detail_api import (
+    IncomingPaymentDetailApi,
+)
+from moderntreasury.apis.internal_account_api import (
+    InternalAccountApi,
+)
+from moderntreasury.apis.invoice_api import (
+    InvoiceApi,
+)
+from moderntreasury.apis.invoice_line_item_api import (
+    InvoiceLineItemApi,
+)
+from moderntreasury.apis.ledger_account_api import (
+    LedgerAccountApi,
+)
+from moderntreasury.apis.ledger_account_category_api import (
+    LedgerAccountCategoryApi,
+)
+from moderntreasury.apis.ledger_account_payout_api import (
+    LedgerAccountPayoutApi,
+)
+from moderntreasury.apis.ledger_account_statement_api import (
+    LedgerAccountStatementApi,
+)
+from moderntreasury.apis.ledger_api import LedgerApi
+from moderntreasury.apis.ledger_entry_api import (
+    LedgerEntryApi,
+)
+from moderntreasury.apis.ledger_event_handler_api import (
+    LedgerEventHandlerApi,
+)
+from moderntreasury.apis.ledger_transaction_api import (
+    LedgerTransactionApi,
+)
+from moderntreasury.apis.ledgerable_event_api import (
+    LedgerableEventApi,
+)
+from moderntreasury.apis.line_item_api import (
+    LineItemApi,
+)
+from moderntreasury.apis.paper_item_api import (
+    PaperItemApi,
+)
+from moderntreasury.apis.payment_flow_api import (
+    PaymentFlowApi,
+)
+from moderntreasury.apis.payment_order_api import (
+    PaymentOrderApi,
+)
+from moderntreasury.apis.payment_reference_api import (
+    PaymentReferenceApi,
+)
+from moderntreasury.apis.ping_api import PingApi
+from moderntreasury.apis.return_api import ReturnApi
+from moderntreasury.apis.reversal_api import (
+    ReversalApi,
+)
+from moderntreasury.apis.routing_detail_api import (
+    RoutingDetailApi,
+)
+from moderntreasury.apis.transaction_api import (
+    TransactionApi,
+)
+from moderntreasury.apis.transaction_line_item_api import (
+    TransactionLineItemApi,
+)
+from moderntreasury.apis.validation_api import (
+    ValidationApi,
+)
+from moderntreasury.apis.virtual_account_api import (
+    VirtualAccountApi,
+)
 from moderntreasury.configuration import (
     Configuration,
     Environment,
-)
-from moderntreasury.controllers.account_collection_flow_controller import (
-    AccountCollectionFlowController,
-)
-from moderntreasury.controllers.account_detail_controller import (
-    AccountDetailController,
-)
-from moderntreasury.controllers.balance_report_controller import (
-    BalanceReportController,
-)
-from moderntreasury.controllers.base_controller import (
-    BaseController,
-)
-from moderntreasury.controllers.connection_controller import (
-    ConnectionController,
-)
-from moderntreasury.controllers.counterparty_controller import (
-    CounterpartyController,
-)
-from moderntreasury.controllers.document_controller import (
-    DocumentController,
-)
-from moderntreasury.controllers.event_controller import (
-    EventController,
-)
-from moderntreasury.controllers.expected_payment_controller import (
-    ExpectedPaymentController,
-)
-from moderntreasury.controllers.external_account_controller import (
-    ExternalAccountController,
-)
-from moderntreasury.controllers.incoming_payment_detail_controller import (
-    IncomingPaymentDetailController,
-)
-from moderntreasury.controllers.internal_account_controller import (
-    InternalAccountController,
-)
-from moderntreasury.controllers.invoice_controller import (
-    InvoiceController,
-)
-from moderntreasury.controllers.invoice_line_item_controller import (
-    InvoiceLineItemController,
-)
-from moderntreasury.controllers.ledger_account_category_controller import (
-    LedgerAccountCategoryController,
-)
-from moderntreasury.controllers.ledger_account_controller import (
-    LedgerAccountController,
-)
-from moderntreasury.controllers.ledger_account_payout_controller import (
-    LedgerAccountPayoutController,
-)
-from moderntreasury.controllers.ledger_account_statement_controller import (
-    LedgerAccountStatementController,
-)
-from moderntreasury.controllers.ledger_controller import (
-    LedgerController,
-)
-from moderntreasury.controllers.ledger_entry_controller import (
-    LedgerEntryController,
-)
-from moderntreasury.controllers.ledger_event_handler_controller import (
-    LedgerEventHandlerController,
-)
-from moderntreasury.controllers.ledger_transaction_controller import (
-    LedgerTransactionController,
-)
-from moderntreasury.controllers.ledgerable_event_controller import (
-    LedgerableEventController,
-)
-from moderntreasury.controllers.line_item_controller import (
-    LineItemController,
-)
-from moderntreasury.controllers.paper_item_controller import (
-    PaperItemController,
-)
-from moderntreasury.controllers.payment_flow_controller import (
-    PaymentFlowController,
-)
-from moderntreasury.controllers.payment_order_controller import (
-    PaymentOrderController,
-)
-from moderntreasury.controllers.payment_reference_controller import (
-    PaymentReferenceController,
-)
-from moderntreasury.controllers.ping_controller import (
-    PingController,
-)
-from moderntreasury.controllers.return_controller import (
-    ReturnController,
-)
-from moderntreasury.controllers.reversal_controller import (
-    ReversalController,
-)
-from moderntreasury.controllers.routing_detail_controller import (
-    RoutingDetailController,
-)
-from moderntreasury.controllers.transaction_controller import (
-    TransactionController,
-)
-from moderntreasury.controllers.transaction_line_item_controller import (
-    TransactionLineItemController,
-)
-from moderntreasury.controllers.validation_controller import (
-    ValidationController,
-)
-from moderntreasury.controllers.virtual_account_controller import (
-    VirtualAccountController,
 )
 from moderntreasury.http.auth.basic_auth import (
     BasicAuth,
@@ -133,186 +123,185 @@ class ModerntreasuryClient(object):
 
     @LazyProperty
     def account_detail(self):
-        """Provide access to the AccountDetailController endpoints."""
-        return AccountDetailController(self.global_configuration)
+        """Provide access to the AccountDetailApi endpoints."""
+        return AccountDetailApi(self.global_configuration)
 
     @LazyProperty
     def balance_report(self):
-        """Provide access to the BalanceReportController endpoints."""
-        return BalanceReportController(self.global_configuration)
+        """Provide access to the BalanceReportApi endpoints."""
+        return BalanceReportApi(self.global_configuration)
 
     @LazyProperty
     def connection(self):
-        """Provide access to the ConnectionController endpoints."""
-        return ConnectionController(self.global_configuration)
+        """Provide access to the ConnectionApi endpoints."""
+        return ConnectionApi(self.global_configuration)
 
     @LazyProperty
     def counterparty(self):
-        """Provide access to the CounterpartyController endpoints."""
-        return CounterpartyController(self.global_configuration)
+        """Provide access to the CounterpartyApi endpoints."""
+        return CounterpartyApi(self.global_configuration)
 
     @LazyProperty
     def document(self):
-        """Provide access to the DocumentController endpoints."""
-        return DocumentController(self.global_configuration)
+        """Provide access to the DocumentApi endpoints."""
+        return DocumentApi(self.global_configuration)
 
     @LazyProperty
     def event(self):
-        """Provide access to the EventController endpoints."""
-        return EventController(self.global_configuration)
+        """Provide access to the EventApi endpoints."""
+        return EventApi(self.global_configuration)
 
     @LazyProperty
     def expected_payment(self):
-        """Provide access to the ExpectedPaymentController endpoints."""
-        return ExpectedPaymentController(self.global_configuration)
+        """Provide access to the ExpectedPaymentApi endpoints."""
+        return ExpectedPaymentApi(self.global_configuration)
 
     @LazyProperty
     def external_account(self):
-        """Provide access to the ExternalAccountController endpoints."""
-        return ExternalAccountController(self.global_configuration)
+        """Provide access to the ExternalAccountApi endpoints."""
+        return ExternalAccountApi(self.global_configuration)
 
     @LazyProperty
     def incoming_payment_detail(self):
-        """Provide access to the IncomingPaymentDetailController endpoints."""
-        return IncomingPaymentDetailController(self.global_configuration)
+        """Provide access to the IncomingPaymentDetailApi endpoints."""
+        return IncomingPaymentDetailApi(self.global_configuration)
 
     @LazyProperty
     def internal_account(self):
-        """Provide access to the InternalAccountController endpoints."""
-        return InternalAccountController(self.global_configuration)
+        """Provide access to the InternalAccountApi endpoints."""
+        return InternalAccountApi(self.global_configuration)
 
     @LazyProperty
     def invoice_line_item(self):
-        """Provide access to the InvoiceLineItemController endpoints."""
-        return InvoiceLineItemController(self.global_configuration)
+        """Provide access to the InvoiceLineItemApi endpoints."""
+        return InvoiceLineItemApi(self.global_configuration)
 
     @LazyProperty
     def invoice(self):
-        """Provide access to the InvoiceController endpoints."""
-        return InvoiceController(self.global_configuration)
+        """Provide access to the InvoiceApi endpoints."""
+        return InvoiceApi(self.global_configuration)
 
     @LazyProperty
     def ledger_account_category(self):
-        """Provide access to the LedgerAccountCategoryController endpoints."""
-        return LedgerAccountCategoryController(self.global_configuration)
+        """Provide access to the LedgerAccountCategoryApi endpoints."""
+        return LedgerAccountCategoryApi(self.global_configuration)
 
     @LazyProperty
     def ledger_account_payout(self):
-        """Provide access to the LedgerAccountPayoutController endpoints."""
-        return LedgerAccountPayoutController(self.global_configuration)
+        """Provide access to the LedgerAccountPayoutApi endpoints."""
+        return LedgerAccountPayoutApi(self.global_configuration)
 
     @LazyProperty
     def ledger_account_statement(self):
-        """Provide access to the LedgerAccountStatementController endpoints."""
-        return LedgerAccountStatementController(self.global_configuration)
+        """Provide access to the LedgerAccountStatementApi endpoints."""
+        return LedgerAccountStatementApi(self.global_configuration)
 
     @LazyProperty
     def ledger_account(self):
-        """Provide access to the LedgerAccountController endpoints."""
-        return LedgerAccountController(self.global_configuration)
+        """Provide access to the LedgerAccountApi endpoints."""
+        return LedgerAccountApi(self.global_configuration)
 
     @LazyProperty
     def ledger_entry(self):
-        """Provide access to the LedgerEntryController endpoints."""
-        return LedgerEntryController(self.global_configuration)
+        """Provide access to the LedgerEntryApi endpoints."""
+        return LedgerEntryApi(self.global_configuration)
 
     @LazyProperty
     def ledger_event_handler(self):
-        """Provide access to the LedgerEventHandlerController endpoints."""
-        return LedgerEventHandlerController(self.global_configuration)
+        """Provide access to the LedgerEventHandlerApi endpoints."""
+        return LedgerEventHandlerApi(self.global_configuration)
 
     @LazyProperty
     def ledger_transaction(self):
-        """Provide access to the LedgerTransactionController endpoints."""
-        return LedgerTransactionController(self.global_configuration)
+        """Provide access to the LedgerTransactionApi endpoints."""
+        return LedgerTransactionApi(self.global_configuration)
 
     @LazyProperty
     def ledgerable_event(self):
-        """Provide access to the LedgerableEventController endpoints."""
-        return LedgerableEventController(self.global_configuration)
+        """Provide access to the LedgerableEventApi endpoints."""
+        return LedgerableEventApi(self.global_configuration)
 
     @LazyProperty
     def ledger(self):
-        """Provide access to the LedgerController endpoints."""
-        return LedgerController(self.global_configuration)
+        """Provide access to the LedgerApi endpoints."""
+        return LedgerApi(self.global_configuration)
 
     @LazyProperty
     def line_item(self):
-        """Provide access to the LineItemController endpoints."""
-        return LineItemController(self.global_configuration)
+        """Provide access to the LineItemApi endpoints."""
+        return LineItemApi(self.global_configuration)
 
     @LazyProperty
     def paper_item(self):
-        """Provide access to the PaperItemController endpoints."""
-        return PaperItemController(self.global_configuration)
+        """Provide access to the PaperItemApi endpoints."""
+        return PaperItemApi(self.global_configuration)
 
     @LazyProperty
     def payment_order(self):
-        """Provide access to the PaymentOrderController endpoints."""
-        return PaymentOrderController(self.global_configuration)
+        """Provide access to the PaymentOrderApi endpoints."""
+        return PaymentOrderApi(self.global_configuration)
 
     @LazyProperty
     def payment_reference(self):
-        """Provide access to the PaymentReferenceController endpoints."""
-        return PaymentReferenceController(self.global_configuration)
+        """Provide access to the PaymentReferenceApi endpoints."""
+        return PaymentReferenceApi(self.global_configuration)
 
     @LazyProperty
     def ping(self):
-        """Provide access to the PingController endpoints."""
-        return PingController(self.global_configuration)
+        """Provide access to the PingApi endpoints."""
+        return PingApi(self.global_configuration)
 
     @LazyProperty
     def mreturn(self):
-        """Provide access to the ReturnController endpoints."""
-        return ReturnController(self.global_configuration)
+        """Provide access to the ReturnApi endpoints."""
+        return ReturnApi(self.global_configuration)
 
     @LazyProperty
     def reversal(self):
-        """Provide access to the ReversalController endpoints."""
-        return ReversalController(self.global_configuration)
+        """Provide access to the ReversalApi endpoints."""
+        return ReversalApi(self.global_configuration)
 
     @LazyProperty
     def routing_detail(self):
-        """Provide access to the RoutingDetailController endpoints."""
-        return RoutingDetailController(self.global_configuration)
+        """Provide access to the RoutingDetailApi endpoints."""
+        return RoutingDetailApi(self.global_configuration)
 
     @LazyProperty
     def transaction_line_item(self):
-        """Provide access to the TransactionLineItemController endpoints."""
-        return TransactionLineItemController(self.global_configuration)
+        """Provide access to the TransactionLineItemApi endpoints."""
+        return TransactionLineItemApi(self.global_configuration)
 
     @LazyProperty
     def transaction(self):
-        """Provide access to the TransactionController endpoints."""
-        return TransactionController(self.global_configuration)
+        """Provide access to the TransactionApi endpoints."""
+        return TransactionApi(self.global_configuration)
 
     @LazyProperty
     def validation(self):
-        """Provide access to the ValidationController endpoints."""
-        return ValidationController(self.global_configuration)
+        """Provide access to the ValidationApi endpoints."""
+        return ValidationApi(self.global_configuration)
 
     @LazyProperty
     def virtual_account(self):
-        """Provide access to the VirtualAccountController endpoints."""
-        return VirtualAccountController(self.global_configuration)
+        """Provide access to the VirtualAccountApi endpoints."""
+        return VirtualAccountApi(self.global_configuration)
 
     @LazyProperty
     def account_collection_flow(self):
-        """Provide access to the AccountCollectionFlowController endpoints."""
-        return AccountCollectionFlowController(self.global_configuration)
+        """Provide access to the AccountCollectionFlowApi endpoints."""
+        return AccountCollectionFlowApi(self.global_configuration)
 
     @LazyProperty
     def payment_flow(self):
-        """Provide access to the PaymentFlowController endpoints."""
-        return PaymentFlowController(self.global_configuration)
+        """Provide access to the PaymentFlowApi endpoints."""
+        return PaymentFlowApi(self.global_configuration)
 
     def __init__(self, http_client_instance=None,
                  override_http_client_configuration=False, http_call_back=None,
-                 timeout=60, max_retries=0, backoff_factor=2,
+                 timeout=30, max_retries=0, backoff_factor=2,
                  retry_statuses=None, retry_methods=None, proxy_settings=None,
-                 environment=Environment.PRODUCTION, basic_auth_user_name=None,
-                 basic_auth_password=None, basic_auth_credentials=None,
-                 config=None):
+                 logging_configuration=None, environment=Environment.PRODUCTION,
+                 basic_auth_credentials=None, config=None):
         """Initialize a new instance of ModerntreasuryClient."""
         self.config = config or Configuration(
             http_client_instance=http_client_instance,
@@ -320,16 +309,16 @@ class ModerntreasuryClient(object):
             http_call_back=http_call_back, timeout=timeout,
             max_retries=max_retries, backoff_factor=backoff_factor,
             retry_statuses=retry_statuses, retry_methods=retry_methods,
-            proxy_settings=proxy_settings, environment=environment,
-            basic_auth_user_name=basic_auth_user_name,
-            basic_auth_password=basic_auth_password,
+            proxy_settings=proxy_settings,
+            logging_configuration=logging_configuration,
+            environment=environment,
             basic_auth_credentials=basic_auth_credentials)
 
         self.global_configuration = GlobalConfiguration(self.config)\
-            .global_errors(BaseController.global_errors())\
+            .global_errors(BaseApi.global_errors())\
             .base_uri_executor(self.config.get_base_uri)\
-            .user_agent(BaseController.user_agent(),
-                BaseController.user_agent_parameters())
+            .user_agent(BaseApi.user_agent(),
+                BaseApi.user_agent_parameters())
 
         self.auth_managers = {
             "basic_auth": BasicAuth(self.config.basic_auth_credentials),

@@ -1,12 +1,12 @@
 # Invoice
 
 ```python
-invoice_controller = client.invoice
+invoice_api = client.invoice
 ```
 
 ## Class Name
 
-`InvoiceController`
+`InvoiceApi`
 
 ## Methods
 
@@ -39,13 +39,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[Invoice]`](../../doc/models/invoice.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[Invoice]`](../../doc/models/invoice.md).
 
 ## Example Usage
 
 ```python
-result = invoice_controller.list_invoices()
-print(result)
+result = invoice_api.list_invoices()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -72,13 +76,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Invoice`](../../doc/models/invoice.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Invoice`](../../doc/models/invoice.md).
 
 ## Example Usage
 
 ```python
-result = invoice_controller.create_invoice()
-print(result)
+result = invoice_api.create_invoice()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -103,15 +111,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Invoice`](../../doc/models/invoice.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Invoice`](../../doc/models/invoice.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = invoice_controller.get_invoice(id)
-print(result)
+result = invoice_api.get_invoice(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -138,14 +150,18 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Invoice`](../../doc/models/invoice.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Invoice`](../../doc/models/invoice.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = invoice_controller.update_invoice(id)
-print(result)
+result = invoice_api.update_invoice(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

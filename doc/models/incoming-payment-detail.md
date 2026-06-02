@@ -20,20 +20,20 @@
 | `transaction_line_item_id` | `uuid\|str` | Required | The ID of the reconciled Transaction Line Item or `null`. |
 | `transaction_id` | `uuid\|str` | Required | The ID of the reconciled Transaction or `null`. |
 | `ledger_transaction_id` | `uuid\|str` | Required | The ID of the ledger transaction linked to the incoming payment detail or `null`. |
-| `mtype` | [`Type4Enum`](../../doc/models/type-4-enum.md) | Required | One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or `wire`. |
+| `mtype` | [`Type4`](../../doc/models/type-4.md) | Required | One of: `ach`, `book`, `check`, `eft`, `interac`, `rtp`, `sepa`, `signet`, or `wire`. |
 | `data` | `Any` | Required | The raw data from the payment pre-notification file that we get from the bank. |
 | `amount` | `int` | Required | Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. |
-| `currency` | [`CurrencyEnum`](../../doc/models/currency-enum.md) | Required | Three-letter ISO currency code. |
-| `direction` | [`Direction4Enum`](../../doc/models/direction-4-enum.md) | Required | One of `credit` or `debit`. |
-| `status` | [`Status2Enum`](../../doc/models/status-2-enum.md) | Required | The current status of the incoming payment order. One of `pending`, `completed`, or `returned`. |
+| `currency` | [`Currency`](../../doc/models/currency.md) | Required | Three-letter ISO currency code. |
+| `direction` | [`Direction4`](../../doc/models/direction-4.md) | Required | One of `credit` or `debit`. |
+| `status` | [`Status2`](../../doc/models/status-2.md) | Required | The current status of the incoming payment order. One of `pending`, `completed`, or `returned`. |
 | `metadata` | `Dict[str, str]` | Required | Additional data represented as key-value pairs. Both the key and value must be strings. |
 | `as_of_date` | `date` | Required | The date on which the corresponding transaction will occur. |
 | `vendor_id` | `uuid\|str` | Required | The identifier of the vendor bank. |
 | `originating_routing_number` | `str` | Required | The routing number of the originating account for the incoming payment detail. |
-| `originating_routing_number_type` | [`OriginatingRoutingNumberTypeEnum`](../../doc/models/originating-routing-number-type-enum.md) | Required | The type of the originating routing number for the incoming payment detail. |
+| `originating_routing_number_type` | [`OriginatingRoutingNumberType`](../../doc/models/originating-routing-number-type.md) | Required | The type of the originating routing number for the incoming payment detail. |
 | `originating_account_number` | `str` | Optional | The account number of the originating account for the incoming payment detail. |
 | `originating_account_number_safe` | `str` | Required | The last 4 digits of the originating account_number for the incoming payment detail. |
-| `originating_account_number_type` | [`OriginatingAccountNumberTypeEnum`](../../doc/models/originating-account-number-type-enum.md) | Required | The type of the originating account number for the incoming payment detail. |
+| `originating_account_number_type` | [`OriginatingAccountNumberType`](../../doc/models/originating-account-number-type.md) | Required | The type of the originating account number for the incoming payment detail. |
 
 ## Example (as JSON)
 

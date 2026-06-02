@@ -26,6 +26,8 @@ class LedgerEventHandlerCreateRequest(object):
             LedgerEventHandlerConditions.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -58,7 +60,8 @@ class LedgerEventHandlerCreateRequest(object):
         description=APIHelper.SKIP,
         ledger_id=APIHelper.SKIP,
         conditions=APIHelper.SKIP,
-        metadata=APIHelper.SKIP):
+        metadata=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LedgerEventHandlerCreateRequest instance."""
         # Initialize members of the class
         self.name = name
@@ -71,6 +74,11 @@ class LedgerEventHandlerCreateRequest(object):
             self.conditions = conditions
         if metadata is not APIHelper.SKIP:
             self.metadata = metadata
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -116,13 +124,19 @@ class LedgerEventHandlerCreateRequest(object):
             if "metadata" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(name,
                    ledger_transaction_template,
                    description,
                    ledger_id,
                    conditions,
-                   metadata)
+                   metadata,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -148,6 +162,7 @@ class LedgerEventHandlerCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!r}, "
@@ -156,6 +171,7 @@ class LedgerEventHandlerCreateRequest(object):
             f"ledger_transaction_template={_ledger_transaction_template!r}, "
             f"conditions={_conditions!r}, "
             f"metadata={_metadata!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -183,6 +199,7 @@ class LedgerEventHandlerCreateRequest(object):
             if hasattr(self, "metadata")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"name={_name!s}, "
@@ -191,5 +208,6 @@ class LedgerEventHandlerCreateRequest(object):
             f"ledger_transaction_template={_ledger_transaction_template!s}, "
             f"conditions={_conditions!s}, "
             f"metadata={_metadata!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

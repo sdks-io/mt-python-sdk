@@ -14,25 +14,25 @@
 | `live_mode` | `bool` | Required | This field will be true if this object exists in the live environment or false if it exists in the test environment. |
 | `created_at` | `datetime` | Required | - |
 | `updated_at` | `datetime` | Required | - |
-| `mtype` | [`Type5Enum`](../../doc/models/type-5-enum.md) | Required | One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `signet`, `provexchange`. |
-| `subtype` | [`SubtypeEnum`](../../doc/models/subtype-enum.md) | Required | An additional layer of classification for the type of payment order you are doing. This field is only used for `ach` payment orders currently. For `ach`  payment orders, the `subtype`  represents the SEC code. We currently support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`. |
+| `mtype` | [`Type5`](../../doc/models/type-5.md) | Required | One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `signet`, `provexchange`. |
+| `subtype` | [`Subtype`](../../doc/models/subtype.md) | Required | An additional layer of classification for the type of payment order you are doing. This field is only used for `ach` payment orders currently. For `ach`  payment orders, the `subtype`  represents the SEC code. We currently support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`, `CIE`, and `TEL`. |
 | `amount` | `int` | Required | Value in specified currency's smallest unit. e.g. $10 would be represented as 1000 (cents). For RTP, the maximum amount allowed by the network is $100,000. |
-| `direction` | [`Direction5Enum`](../../doc/models/direction-5-enum.md) | Required | One of `credit`, `debit`. Describes the direction money is flowing in the transaction. A `credit` moves money from your account to someone else's. A `debit` pulls money from someone else's account to your own. Note that wire, rtp, and check payments will always be `credit`. |
-| `priority` | [`PriorityEnum`](../../doc/models/priority-enum.md) | Required | Either `normal` or `high`. For ACH and EFT payments, `high` represents a same-day ACH or EFT transfer, respectively. For check payments, `high` can mean an overnight check rather than standard mail. |
+| `direction` | [`Direction5`](../../doc/models/direction-5.md) | Required | One of `credit`, `debit`. Describes the direction money is flowing in the transaction. A `credit` moves money from your account to someone else's. A `debit` pulls money from someone else's account to your own. Note that wire, rtp, and check payments will always be `credit`. |
+| `priority` | [`Priority`](../../doc/models/priority.md) | Required | Either `normal` or `high`. For ACH and EFT payments, `high` represents a same-day ACH or EFT transfer, respectively. For check payments, `high` can mean an overnight check rather than standard mail. |
 | `originating_account_id` | `uuid\|str` | Required | The ID of one of your organization's internal accounts. |
 | `receiving_account_id` | `uuid\|str` | Required | The receiving account ID. Can be an `external_account` or `internal_account`. |
 | `accounting` | [`Accounting`](../../doc/models/accounting.md) | Required | - |
 | `accounting_category_id` | `uuid\|str` | Required | The ID of one of your accounting categories. Note that these will only be accessible if your accounting system has been connected. |
 | `accounting_ledger_class_id` | `uuid\|str` | Required | The ID of one of your accounting ledger classes. Note that these will only be accessible if your accounting system has been connected. |
-| `currency` | [`CurrencyEnum`](../../doc/models/currency-enum.md) | Required | Three-letter ISO currency code. |
+| `currency` | [`Currency`](../../doc/models/currency.md) | Required | Three-letter ISO currency code. |
 | `effective_date` | `date` | Required | Date transactions are to be posted to the participants' account. Defaults to the current business day or the next business day if the current day is a bank holiday or weekend. Format: yyyy-mm-dd. |
 | `description` | `str` | Required | An optional description for internal use. |
 | `statement_descriptor` | `str` | Required | An optional descriptor which will appear in the receiver's statement. For `check` payments this field will be used as the memo line. For `ach` the maximum length is 10 characters. Note that for ACH payments, the name on your bank account will be included automatically by the bank, so you can use the characters for other useful information. For `eft` the maximum length is 15 characters. |
 | `remittance_information` | `str` | Required | For `ach`, this field will be passed through on an addenda record. For `wire` payments the field will be passed through as the "Originator to Beneficiary Information", also known as OBI or Fedwire tag 6000. |
 | `purpose` | `str` | Required | For `wire`, this is usually the purpose which is transmitted via the "InstrForDbtrAgt" field in the ISO20022 file. If you are using Currencycloud, this is the `payment.purpose_code` field. For `eft`, this field is the 3 digit CPA Code that will be attached to the payment. |
 | `metadata` | `Dict[str, str]` | Required | Additional data represented as key-value pairs. Both the key and value must be strings. |
-| `charge_bearer` | [`ChargeBearerEnum`](../../doc/models/charge-bearer-enum.md) | Required | The party that will pay the fees for the payment order. Only applies to wire payment orders. Can be one of shared, sender, or receiver, which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`. |
-| `foreign_exchange_indicator` | [`ForeignExchangeIndicatorEnum`](../../doc/models/foreign-exchange-indicator-enum.md) | Required | Indicates the type of FX transfer to initiate, can be either `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order currency matches the originating account currency. |
+| `charge_bearer` | [`ChargeBearer`](../../doc/models/charge-bearer.md) | Required | The party that will pay the fees for the payment order. Only applies to wire payment orders. Can be one of shared, sender, or receiver, which correspond respectively with the SWIFT 71A values `SHA`, `OUR`, `BEN`. |
+| `foreign_exchange_indicator` | [`ForeignExchangeIndicator`](../../doc/models/foreign-exchange-indicator.md) | Required | Indicates the type of FX transfer to initiate, can be either `variable_to_fixed`, `fixed_to_variable`, or `null` if the payment order currency matches the originating account currency. |
 | `foreign_exchange_contract` | `str` | Required | If present, indicates a specific foreign exchange contract number that has been generated by your financial institution. |
 | `nsf_protected` | `bool` | Required | A boolean to determine if NSF Protection is enabled for this payment order. Note that this setting must also be turned on in your organization settings page. |
 | `originating_party_name` | `str` | Required | If present, this will replace your default company name on receiver's bank statement. This field can only be used for ACH payments currently. For ACH, only the first 16 characters of this string will be used. Any additional characters will be truncated. |
@@ -42,9 +42,9 @@
 | `ultimate_receiving_party_identifier` | `str` | Required | - |
 | `send_remittance_advice` | `bool` | Required | Send an email to the counterparty when the payment order is sent to the bank. If `null`, `send_remittance_advice` on the Counterparty is used. |
 | `expires_at` | `datetime` | Required | RFP payments require an expires_at. This value must be past the effective_date. |
-| `status` | [`Status3Enum`](../../doc/models/status-3-enum.md) | Required | The current status of the payment order. |
+| `status` | [`Status3`](../../doc/models/status-3.md) | Required | The current status of the payment order. |
 | `receiving_account` | [ReceivingAccount](../../doc/models/receiving-account.md) \| [internal_account](../../doc/models/internal-account.md) \| None | Required | This is a container for one-of cases. |
-| `receiving_account_type` | [`ReceivingAccountTypeEnum`](../../doc/models/receiving-account-type-enum.md) | Required | - |
+| `receiving_account_type` | [`ReceivingAccountType`](../../doc/models/receiving-account-type.md) | Required | - |
 | `counterparty_id` | `uuid\|str` | Required | If the payment order is tied to a specific Counterparty, their id will appear, otherwise `null`. |
 | `transaction_ids` | `List[uuid\|str]` | Required | The IDs of all the transactions associated to this payment order. Usually, you will only have a single transaction ID. However, if a payment order initially results in a Return, but gets redrafted and is later successfully completed, it can have many transactions. |
 | `ledger_transaction_id` | `uuid\|str` | Required | The ID of the ledger transaction linked to the payment order. |
@@ -73,7 +73,11 @@
   "receiving_account_id": "0000226a-0000-0000-0000-000000000000",
   "accounting": {
     "account_id": "0000183c-0000-0000-0000-000000000000",
-    "class_id": "00001c78-0000-0000-0000-000000000000"
+    "class_id": "00001c78-0000-0000-0000-000000000000",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "accounting_category_id": "00001b6e-0000-0000-0000-000000000000",
   "accounting_ledger_class_id": "000002a0-0000-0000-0000-000000000000",
@@ -110,7 +114,11 @@
     "object": "object4",
     "live_mode": false,
     "created_at": "2016-03-13T12:52:32.123Z",
-    "updated_at": "2016-03-13T12:52:32.123Z"
+    "updated_at": "2016-03-13T12:52:32.123Z",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "receiving_account_type": "internal_account",
   "counterparty_id": "00001ac0-0000-0000-0000-000000000000",

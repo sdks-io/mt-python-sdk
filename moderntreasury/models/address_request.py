@@ -17,6 +17,8 @@ class AddressRequest(object):
         region (str): Region or State.
         postal_code (str): The postal code of the address.
         country (str): Country code conforms to [ISO 3166-1 alpha-2]
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -55,7 +57,8 @@ class AddressRequest(object):
         locality=APIHelper.SKIP,
         region=APIHelper.SKIP,
         postal_code=APIHelper.SKIP,
-        country=APIHelper.SKIP):
+        country=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a AddressRequest instance."""
         # Initialize members of the class
         if line_1 is not APIHelper.SKIP:
@@ -70,6 +73,11 @@ class AddressRequest(object):
             self.postal_code = postal_code
         if country is not APIHelper.SKIP:
             self.country = country
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -114,13 +122,19 @@ class AddressRequest(object):
             if "country" in dictionary.keys()\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(line_1,
                    line_2,
                    locality,
                    region,
                    postal_code,
-                   country)
+                   country,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -154,6 +168,7 @@ class AddressRequest(object):
             if hasattr(self, "country")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"line_1={_line_1!r}, "
@@ -162,6 +177,7 @@ class AddressRequest(object):
             f"region={_region!r}, "
             f"postal_code={_postal_code!r}, "
             f"country={_country!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -197,6 +213,7 @@ class AddressRequest(object):
             if hasattr(self, "country")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"line_1={_line_1!s}, "
@@ -205,5 +222,6 @@ class AddressRequest(object):
             f"region={_region!s}, "
             f"postal_code={_postal_code!s}, "
             f"country={_country!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

@@ -1,6 +1,8 @@
 
 # Internal Account Create Request
 
+*This model accepts additional fields of type Any.*
+
 ## Structure
 
 `InternalAccountCreateRequest`
@@ -13,10 +15,11 @@
 | `name` | `str` | Required | The nickname of the account. |
 | `party_name` | `str` | Required | The legal name of the entity which owns the account. |
 | `party_address` | [`PartyAddress`](../../doc/models/party-address.md) | Optional | The address associated with the owner or null. |
-| `currency` | [`Currency1Enum`](../../doc/models/currency-1-enum.md) | Required | Either "USD" or "CAD". Internal accounts created at Increase only supports "USD". |
+| `currency` | [`Currency1`](../../doc/models/currency-1.md) | Required | Either "USD" or "CAD". Internal accounts created at Increase only supports "USD". |
 | `vendor_attributes` | `Dict[str, str]` | Optional | A hash of vendor specific attributes that will be used when creating the account at the vendor specified by the given connection. |
 | `parent_account_id` | `str` | Optional | The parent internal account of this new account. |
 | `counterparty_id` | `str` | Optional | The Counterparty associated to this account. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -37,10 +40,18 @@
     "locality": "locality6",
     "region": "region2",
     "postal_code": "postal_code8",
-    "country": "country0"
+    "country": "country0",
+    "exampleAdditionalProperty": {
+      "key1": "val1",
+      "key2": "val2"
+    }
   },
   "parent_account_id": "parent_account_id2",
-  "counterparty_id": "counterparty_id0"
+  "counterparty_id": "counterparty_id0",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 

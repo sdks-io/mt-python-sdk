@@ -12,8 +12,10 @@ class ContactDetailCreateRequest(object):
 
     Attributes:
         contact_identifier (str): The model property of type str.
-        contact_identifier_type (ContactIdentifierTypeEnum): The model property of
-            type ContactIdentifierTypeEnum.
+        contact_identifier_type (ContactIdentifierType): The model property of type
+            ContactIdentifierType.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -31,13 +33,19 @@ class ContactDetailCreateRequest(object):
     def __init__(
         self,
         contact_identifier=APIHelper.SKIP,
-        contact_identifier_type=APIHelper.SKIP):
+        contact_identifier_type=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a ContactDetailCreateRequest instance."""
         # Initialize members of the class
         if contact_identifier is not APIHelper.SKIP:
             self.contact_identifier = contact_identifier
         if contact_identifier_type is not APIHelper.SKIP:
             self.contact_identifier_type = contact_identifier_type
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -66,9 +74,15 @@ class ContactDetailCreateRequest(object):
             if dictionary.get("contact_identifier_type")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(contact_identifier,
-                   contact_identifier_type)
+                   contact_identifier_type,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -82,10 +96,12 @@ class ContactDetailCreateRequest(object):
             if hasattr(self, "contact_identifier_type")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"contact_identifier={_contact_identifier!r}, "
             f"contact_identifier_type={_contact_identifier_type!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -101,9 +117,11 @@ class ContactDetailCreateRequest(object):
             if hasattr(self, "contact_identifier_type")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"contact_identifier={_contact_identifier!s}, "
             f"contact_identifier_type={_contact_identifier_type!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

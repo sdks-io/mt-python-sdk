@@ -12,9 +12,11 @@ class RoutingDetail1(object):
 
     Attributes:
         routing_number (str): The model property of type str.
-        routing_number_type (RoutingNumberType1Enum): The model property of type
-            RoutingNumberType1Enum.
-        payment_type (PaymentType2Enum): The model property of type PaymentType2Enum.
+        routing_number_type (RoutingNumberType1): The model property of type
+            RoutingNumberType1.
+        payment_type (PaymentType2): The model property of type PaymentType2.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -33,13 +35,19 @@ class RoutingDetail1(object):
         self,
         routing_number=None,
         routing_number_type=None,
-        payment_type=APIHelper.SKIP):
+        payment_type=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a RoutingDetail1 instance."""
         # Initialize members of the class
         self.routing_number = routing_number
         self.routing_number_type = routing_number_type
         if payment_type is not APIHelper.SKIP:
             self.payment_type = payment_type
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -72,10 +80,16 @@ class RoutingDetail1(object):
             if dictionary.get("payment_type")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(routing_number,
                    routing_number_type,
-                   payment_type)
+                   payment_type,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -86,11 +100,13 @@ class RoutingDetail1(object):
             if hasattr(self, "payment_type")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"routing_number={_routing_number!r}, "
             f"routing_number_type={_routing_number_type!r}, "
             f"payment_type={_payment_type!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -103,10 +119,12 @@ class RoutingDetail1(object):
             if hasattr(self, "payment_type")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"routing_number={_routing_number!s}, "
             f"routing_number_type={_routing_number_type!s}, "
             f"payment_type={_payment_type!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

@@ -1,12 +1,12 @@
 # Ledger Account Payout
 
 ```python
-ledger_account_payout_controller = client.ledger_account_payout
+ledger_account_payout_api = client.ledger_account_payout
 ```
 
 ## Class Name
 
-`LedgerAccountPayoutController`
+`LedgerAccountPayoutApi`
 
 ## Methods
 
@@ -41,7 +41,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`LedgerAccountPayout`](../../doc/models/ledger-account-payout.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountPayout`](../../doc/models/ledger-account-payout.md).
 
 ## Example Usage
 
@@ -56,10 +56,14 @@ body = LedgerAccountPayoutCreateRequest(
     }
 )
 
-result = ledger_account_payout_controller.create_ledger_account_payout(
+result = ledger_account_payout_api.create_ledger_account_payout(
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -99,13 +103,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[LedgerAccountPayout]`](../../doc/models/ledger-account-payout.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[LedgerAccountPayout]`](../../doc/models/ledger-account-payout.md).
 
 ## Example Usage
 
 ```python
-result = ledger_account_payout_controller.list_ledger_account_payouts()
-print(result)
+result = ledger_account_payout_api.list_ledger_account_payouts()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -132,15 +140,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerAccountPayout`](../../doc/models/ledger-account-payout.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountPayout`](../../doc/models/ledger-account-payout.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = ledger_account_payout_controller.get_ledger_account_payout(id)
-print(result)
+result = ledger_account_payout_api.get_ledger_account_payout(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -175,7 +187,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`LedgerAccountPayout`](../../doc/models/ledger-account-payout.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`LedgerAccountPayout`](../../doc/models/ledger-account-payout.md).
 
 ## Example Usage
 
@@ -190,11 +202,15 @@ body = LedgerAccountPayoutUpdateRequest(
     }
 )
 
-result = ledger_account_payout_controller.update_ledger_account_payout(
+result = ledger_account_payout_api.update_ledger_account_payout(
     id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

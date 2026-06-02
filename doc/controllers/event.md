@@ -1,12 +1,12 @@
 # Event
 
 ```python
-event_controller = client.event
+event_api = client.event
 ```
 
 ## Class Name
 
-`EventController`
+`EventApi`
 
 ## Methods
 
@@ -47,13 +47,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[Event]`](../../doc/models/event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[Event]`](../../doc/models/event.md).
 
 ## Example Usage
 
 ```python
-result = event_controller.list_events()
-print(result)
+result = event_api.list_events()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -78,15 +82,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Event`](../../doc/models/event.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Event`](../../doc/models/event.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = event_controller.get_event(id)
-print(result)
+result = event_api.get_event(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

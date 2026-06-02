@@ -12,37 +12,27 @@ from moderntreasury.api_helper import APIHelper
 from moderntreasury.models.accounting import (
     Accounting,
 )
-from moderntreasury.models.charge_bearer_enum import (
-    ChargeBearerEnum,
+from moderntreasury.models.charge_bearer import (
+    ChargeBearer,
 )
-from moderntreasury.models.currency_enum import (
-    CurrencyEnum,
+from moderntreasury.models.currency import Currency
+from moderntreasury.models.direction_5 import (
+    Direction5,
 )
-from moderntreasury.models.direction_5_enum import (
-    Direction5Enum,
-)
-from moderntreasury.models.foreign_exchange_indicator_enum import (
-    ForeignExchangeIndicatorEnum,
+from moderntreasury.models.foreign_exchange_indicator import (
+    ForeignExchangeIndicator,
 )
 from moderntreasury.models.mreturn import Return
 from moderntreasury.models.payment_reference import (
     PaymentReference,
 )
-from moderntreasury.models.priority_enum import (
-    PriorityEnum,
+from moderntreasury.models.priority import Priority
+from moderntreasury.models.receiving_account_type import (
+    ReceivingAccountType,
 )
-from moderntreasury.models.receiving_account_type_enum import (
-    ReceivingAccountTypeEnum,
-)
-from moderntreasury.models.status_3_enum import (
-    Status3Enum,
-)
-from moderntreasury.models.subtype_enum import (
-    SubtypeEnum,
-)
-from moderntreasury.models.type_5_enum import (
-    Type5Enum,
-)
+from moderntreasury.models.status_3 import Status3
+from moderntreasury.models.subtype import Subtype
+from moderntreasury.models.type_5 import Type5
 
 
 class PaymentOrder(object):
@@ -55,9 +45,9 @@ class PaymentOrder(object):
             environment or false if it exists in the test environment.
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
-        mtype (Type5Enum): One of `ach`, `eft`, `wire`, `check`, `sen`, `book`,
-            `rtp`, `sepa`, `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
-        subtype (SubtypeEnum): An additional layer of classification for the type of
+        mtype (Type5): One of `ach`, `eft`, `wire`, `check`, `sen`, `book`, `rtp`,
+            `sepa`, `bacs`, `au_becs`, `interac`, `signet`, `provexchange`.
+        subtype (Subtype): An additional layer of classification for the type of
             payment order you are doing. This field is only used for `ach` payment
             orders currently. For `ach`  payment orders, the `subtype`  represents
             the SEC code. We currently support `CCD`, `PPD`, `IAT`, `CTX`, `WEB`,
@@ -65,12 +55,12 @@ class PaymentOrder(object):
         amount (int): Value in specified currency's smallest unit. e.g. $10 would be
             represented as 1000 (cents). For RTP, the maximum amount allowed by the
             network is $100,000.
-        direction (Direction5Enum): One of `credit`, `debit`. Describes the direction
+        direction (Direction5): One of `credit`, `debit`. Describes the direction
             money is flowing in the transaction. A `credit` moves money from your
             account to someone else's. A `debit` pulls money from someone else's
             account to your own. Note that wire, rtp, and check payments will always
             be `credit`.
-        priority (PriorityEnum): Either `normal` or `high`. For ACH and EFT payments,
+        priority (Priority): Either `normal` or `high`. For ACH and EFT payments,
             `high` represents a same-day ACH or EFT transfer, respectively. For check
             payments, `high` can mean an overnight check rather than standard mail.
         originating_account_id (uuid|str): The ID of one of your organization's
@@ -84,7 +74,7 @@ class PaymentOrder(object):
         accounting_ledger_class_id (uuid|str): The ID of one of your accounting
             ledger classes. Note that these will only be accessible if your
             accounting system has been connected.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         effective_date (date): Date transactions are to be posted to the
             participants' account. Defaults to the current business day or the next
             business day if the current day is a bank holiday or weekend. Format:
@@ -106,12 +96,12 @@ class PaymentOrder(object):
             field is the 3 digit CPA Code that will be attached to the payment.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
-        charge_bearer (ChargeBearerEnum): The party that will pay the fees for the
+        charge_bearer (ChargeBearer): The party that will pay the fees for the
             payment order. Only applies to wire payment orders. Can be one of shared,
             sender, or receiver, which correspond respectively with the SWIFT 71A
             values `SHA`, `OUR`, `BEN`.
-        foreign_exchange_indicator (ForeignExchangeIndicatorEnum): Indicates the type
-            of FX transfer to initiate, can be either `variable_to_fixed`,
+        foreign_exchange_indicator (ForeignExchangeIndicator): Indicates the type of
+            FX transfer to initiate, can be either `variable_to_fixed`,
             `fixed_to_variable`, or `null` if the payment order currency matches the
             originating account currency.
         foreign_exchange_contract (str): If present, indicates a specific foreign
@@ -135,11 +125,11 @@ class PaymentOrder(object):
             the Counterparty is used.
         expires_at (datetime): RFP payments require an expires_at. This value must be
             past the effective_date.
-        status (Status3Enum): The current status of the payment order.
+        status (Status3): The current status of the payment order.
         receiving_account (ReceivingAccount | InternalAccount | None): The receiving
             account. Can be an `external_account` or `internal_account`.
-        receiving_account_type (ReceivingAccountTypeEnum): The model property of type
-            ReceivingAccountTypeEnum.
+        receiving_account_type (ReceivingAccountType): The model property of type
+            ReceivingAccountType.
         counterparty_id (uuid|str): If the payment order is tied to a specific
             Counterparty, their id will appear, otherwise `null`.
         transaction_ids (List[uuid|str]): The IDs of all the transactions associated
@@ -652,11 +642,11 @@ class PaymentOrder(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.mtype,
                     type_callable=lambda value:
-                        Type5Enum.validate(value)) \
+                        Type5.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.subtype,
                     type_callable=lambda value:
-                        SubtypeEnum.validate(value),
+                        Subtype.validate(value),
                     is_value_nullable=True) \
                 and APIHelper.is_valid_type(
                     value=dictionary.amount,
@@ -668,11 +658,11 @@ class PaymentOrder(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.direction,
                     type_callable=lambda value:
-                        Direction5Enum.validate(value)) \
+                        Direction5.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.priority,
                     type_callable=lambda value:
-                        PriorityEnum.validate(value)) \
+                        Priority.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.originating_account_id,
                     type_callable=lambda value:
@@ -711,7 +701,7 @@ class PaymentOrder(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.currency,
                     type_callable=lambda value:
-                        CurrencyEnum.validate(value)) \
+                        Currency.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.effective_date,
                     type_callable=lambda value:
@@ -761,12 +751,12 @@ class PaymentOrder(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.charge_bearer,
                     type_callable=lambda value:
-                        ChargeBearerEnum.validate(value),
+                        ChargeBearer.validate(value),
                     is_value_nullable=True) \
                 and APIHelper.is_valid_type(
                     value=dictionary.foreign_exchange_indicator,
                     type_callable=lambda value:
-                        ForeignExchangeIndicatorEnum.validate(value),
+                        ForeignExchangeIndicator.validate(value),
                     is_value_nullable=True) \
                 and APIHelper.is_valid_type(
                     value=dictionary.foreign_exchange_contract,
@@ -842,13 +832,13 @@ class PaymentOrder(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.status,
                     type_callable=lambda value:
-                        Status3Enum.validate(value)) \
+                        Status3.validate(value)) \
                 and (UnionTypeLookUp.get("PaymentOrderReceivingAccount")
                 .validate(dictionary.receiving_account).is_valid) \
                 and APIHelper.is_valid_type(
                     value=dictionary.receiving_account_type,
                     type_callable=lambda value:
-                        ReceivingAccountTypeEnum.validate(value)) \
+                        ReceivingAccountType.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.counterparty_id,
                     type_callable=lambda value:
@@ -956,11 +946,11 @@ class PaymentOrder(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("type"),
                 type_callable=lambda value:
-                    Type5Enum.validate(value)) \
+                    Type5.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("subtype"),
                 type_callable=lambda value:
-                    SubtypeEnum.validate(value),
+                    Subtype.validate(value),
                 is_value_nullable=True) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("amount"),
@@ -972,11 +962,11 @@ class PaymentOrder(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("direction"),
                 type_callable=lambda value:
-                    Direction5Enum.validate(value)) \
+                    Direction5.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("priority"),
                 type_callable=lambda value:
-                    PriorityEnum.validate(value)) \
+                    Priority.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("originating_account_id"),
                 type_callable=lambda value:
@@ -1015,7 +1005,7 @@ class PaymentOrder(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("currency"),
                 type_callable=lambda value:
-                    CurrencyEnum.validate(value)) \
+                    Currency.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("effective_date"),
                 type_callable=lambda value:
@@ -1065,12 +1055,12 @@ class PaymentOrder(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("charge_bearer"),
                 type_callable=lambda value:
-                    ChargeBearerEnum.validate(value),
+                    ChargeBearer.validate(value),
                 is_value_nullable=True) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("foreign_exchange_indicator"),
                 type_callable=lambda value:
-                    ForeignExchangeIndicatorEnum.validate(value),
+                    ForeignExchangeIndicator.validate(value),
                 is_value_nullable=True) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("foreign_exchange_contract"),
@@ -1146,13 +1136,13 @@ class PaymentOrder(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("status"),
                 type_callable=lambda value:
-                    Status3Enum.validate(value)) \
+                    Status3.validate(value)) \
             and (UnionTypeLookUp.get("PaymentOrderReceivingAccount")
             .validate(dictionary.get("receiving_account")).is_valid) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("receiving_account_type"),
                 type_callable=lambda value:
-                    ReceivingAccountTypeEnum.validate(value)) \
+                    ReceivingAccountType.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("counterparty_id"),
                 type_callable=lambda value:

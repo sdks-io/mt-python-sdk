@@ -1,12 +1,12 @@
 # Reversal
 
 ```python
-reversal_controller = client.reversal
+reversal_api = client.reversal
 ```
 
 ## Class Name
 
-`ReversalController`
+`ReversalApi`
 
 ## Methods
 
@@ -42,15 +42,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[Reversal]`](../../doc/models/reversal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[Reversal]`](../../doc/models/reversal.md).
 
 ## Example Usage
 
 ```python
 payment_order_id = 'payment_order_id6'
 
-result = reversal_controller.list_reversals(payment_order_id)
-print(result)
+result = reversal_api.list_reversals(payment_order_id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -81,7 +85,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`Reversal`](../../doc/models/reversal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Reversal`](../../doc/models/reversal.md).
 
 ## Example Usage
 
@@ -89,7 +93,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 payment_order_id = '0000176c-0000-0000-0000-000000000000'
 
 body = ReversalCreateRequest(
-    reason=Reason1Enum.DATE_EARLIER_THAN_INTENDED,
+    reason=Reason1.DATE_EARLIER_THAN_INTENDED,
     metadata={
         'key': 'value',
         'foo': 'bar',
@@ -97,11 +101,15 @@ body = ReversalCreateRequest(
     }
 )
 
-result = reversal_controller.create_reversal(
+result = reversal_api.create_reversal(
     payment_order_id,
     body=body
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -137,7 +145,7 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`Reversal`](../../doc/models/reversal.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`Reversal`](../../doc/models/reversal.md).
 
 ## Example Usage
 
@@ -146,11 +154,15 @@ payment_order_id = '0000176c-0000-0000-0000-000000000000'
 
 reversal_id = '00000f9e-0000-0000-0000-000000000000'
 
-result = reversal_controller.get_reversal(
+result = reversal_api.get_reversal(
     payment_order_id,
     reversal_id
 )
-print(result)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors

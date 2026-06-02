@@ -12,10 +12,12 @@ class DocumentCreateRequest(object):
 
     Attributes:
         documentable_id (str): The unique identifier for the associated object.
-        documentable_type (DocumentableType1Enum): The model property of type
-            DocumentableType1Enum.
+        documentable_type (DocumentableType1): The model property of type
+            DocumentableType1.
         document_type (str): A category given to the document, can be `null`.
         file (binary): The model property of type binary.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -36,7 +38,8 @@ class DocumentCreateRequest(object):
         documentable_id=None,
         documentable_type=None,
         file=None,
-        document_type=APIHelper.SKIP):
+        document_type=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a DocumentCreateRequest instance."""
         # Initialize members of the class
         self.documentable_id = documentable_id
@@ -44,6 +47,11 @@ class DocumentCreateRequest(object):
         if document_type is not APIHelper.SKIP:
             self.document_type = document_type
         self.file = file
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -80,11 +88,17 @@ class DocumentCreateRequest(object):
             if dictionary.get("document_type")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(documentable_id,
                    documentable_type,
                    file,
-                   document_type)
+                   document_type,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -96,12 +110,14 @@ class DocumentCreateRequest(object):
             else None
         )
         _file=self.file
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"documentable_id={_documentable_id!r}, "
             f"documentable_type={_documentable_type!r}, "
             f"document_type={_document_type!r}, "
             f"file={_file!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -115,11 +131,13 @@ class DocumentCreateRequest(object):
             else None
         )
         _file=self.file
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"documentable_id={_documentable_id!s}, "
             f"documentable_type={_documentable_type!s}, "
             f"document_type={_document_type!s}, "
             f"file={_file!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

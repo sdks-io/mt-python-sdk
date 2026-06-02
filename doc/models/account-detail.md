@@ -16,7 +16,7 @@
 | `updated_at` | `datetime` | Required | - |
 | `discarded_at` | `datetime` | Required | - |
 | `account_number` | `str` | Optional | The account number for the bank account. |
-| `account_number_type` | [`AccountNumberTypeEnum`](../../doc/models/account-number-type-enum.md) | Required | One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank account number is in a generic format. |
+| `account_number_type` | [`AccountNumberType`](../../doc/models/account-number-type.md) | Required | One of `iban`, `clabe`, `wallet_address`, or `other`. Use `other` if the bank account number is in a generic format. |
 | `account_number_safe` | `str` | Required | The last 4 digits of the account_number. |
 
 ## Example (as JSON)

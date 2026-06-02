@@ -8,18 +8,16 @@ from moderntreasury.api_helper import APIHelper
 from moderntreasury.models.account_detail import (
     AccountDetail,
 )
-from moderntreasury.models.account_type_5_enum import (
-    AccountType5Enum,
+from moderntreasury.models.account_type_5 import (
+    AccountType5,
 )
 from moderntreasury.models.address import Address
 from moderntreasury.models.connection import (
     Connection,
 )
-from moderntreasury.models.currency_enum import (
-    CurrencyEnum,
-)
-from moderntreasury.models.party_type_5_enum import (
-    PartyType5Enum,
+from moderntreasury.models.currency import Currency
+from moderntreasury.models.party_type_5 import (
+    PartyType5,
 )
 from moderntreasury.models.routing_detail import (
     RoutingDetail,
@@ -36,15 +34,15 @@ class InternalAccount(object):
             environment or false if it exists in the test environment.
         created_at (datetime): The model property of type datetime.
         updated_at (datetime): The model property of type datetime.
-        account_type (AccountType5Enum): Can be checking, savings or other.
+        account_type (AccountType5): Can be checking, savings or other.
         party_name (str): The legal name of the entity which owns the account.
-        party_type (PartyType5Enum): Either individual or business.
+        party_type (PartyType5): Either individual or business.
         party_address (Address): The model property of type Address.
         name (str): A nickname for the account.
         account_details (List[AccountDetail]): An array of account detail objects.
         routing_details (List[RoutingDetail]): An array of routing detail objects.
         connection (Connection): The model property of type Connection.
-        currency (CurrencyEnum): Three-letter ISO currency code.
+        currency (Currency): Three-letter ISO currency code.
         metadata (Dict[str, str]): Additional data represented as key-value pairs.
             Both the key and value must be strings.
         parent_account_id (uuid|str): The parent InternalAccount of this account.
@@ -299,7 +297,7 @@ class InternalAccount(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.account_type,
                     type_callable=lambda value:
-                        AccountType5Enum.validate(value),
+                        AccountType5.validate(value),
                     is_value_nullable=True) \
                 and APIHelper.is_valid_type(
                     value=dictionary.party_name,
@@ -311,7 +309,7 @@ class InternalAccount(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.party_type,
                     type_callable=lambda value:
-                        PartyType5Enum.validate(value),
+                        PartyType5.validate(value),
                     is_value_nullable=True) \
                 and APIHelper.is_valid_type(
                     value=dictionary.party_address,
@@ -347,7 +345,7 @@ class InternalAccount(object):
                 and APIHelper.is_valid_type(
                     value=dictionary.currency,
                     type_callable=lambda value:
-                        CurrencyEnum.validate(value)) \
+                        Currency.validate(value)) \
                 and APIHelper.is_valid_type(
                     value=dictionary.metadata,
                     type_callable=lambda value:
@@ -421,7 +419,7 @@ class InternalAccount(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("account_type"),
                 type_callable=lambda value:
-                    AccountType5Enum.validate(value),
+                    AccountType5.validate(value),
                 is_value_nullable=True) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("party_name"),
@@ -433,7 +431,7 @@ class InternalAccount(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("party_type"),
                 type_callable=lambda value:
-                    PartyType5Enum.validate(value),
+                    PartyType5.validate(value),
                 is_value_nullable=True) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("party_address"),
@@ -469,7 +467,7 @@ class InternalAccount(object):
             and APIHelper.is_valid_type(
                 value=dictionary.get("currency"),
                 type_callable=lambda value:
-                    CurrencyEnum.validate(value)) \
+                    Currency.validate(value)) \
             and APIHelper.is_valid_type(
                 value=dictionary.get("metadata"),
                 type_callable=lambda value:

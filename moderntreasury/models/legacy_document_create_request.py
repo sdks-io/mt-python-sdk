@@ -13,6 +13,8 @@ class LegacyDocumentCreateRequest(object):
     Attributes:
         document_type (str): A category given to the document, can be `null`.
         file (binary): The model property of type binary.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -29,12 +31,18 @@ class LegacyDocumentCreateRequest(object):
     def __init__(
         self,
         file=None,
-        document_type=APIHelper.SKIP):
+        document_type=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a LegacyDocumentCreateRequest instance."""
         # Initialize members of the class
         if document_type is not APIHelper.SKIP:
             self.document_type = document_type
         self.file = file
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -63,9 +71,15 @@ class LegacyDocumentCreateRequest(object):
             if dictionary.get("document_type")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(file,
-                   document_type)
+                   document_type,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -75,10 +89,12 @@ class LegacyDocumentCreateRequest(object):
             else None
         )
         _file=self.file
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"document_type={_document_type!r}, "
             f"file={_file!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -90,9 +106,11 @@ class LegacyDocumentCreateRequest(object):
             else None
         )
         _file=self.file
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"document_type={_document_type!s}, "
             f"file={_file!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

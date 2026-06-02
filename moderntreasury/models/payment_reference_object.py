@@ -19,12 +19,11 @@ class PaymentReferenceObject(object):
         updated_at (datetime): The model property of type datetime.
         referenceable_id (str): The id of the referenceable to search for. Must be
             accompanied by the referenceable_type or will return an error.
-        referenceable_type (ReferenceableTypeEnum): One of the referenceable types.
-            This must be accompanied by the id of the referenceable or will return an
+        referenceable_type (ReferenceableType): One of the referenceable types. This
+            must be accompanied by the id of the referenceable or will return an
             error.
         reference_number (str): The actual reference number assigned by the bank.
-        reference_number_type (ReferenceNumberType1Enum): The type of reference
-            number.
+        reference_number_type (ReferenceNumberType1): The type of reference number.
 
     """
 

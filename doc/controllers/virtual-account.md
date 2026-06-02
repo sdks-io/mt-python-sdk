@@ -1,12 +1,12 @@
 # Virtual Account
 
 ```python
-virtual_account_controller = client.virtual_account
+virtual_account_api = client.virtual_account
 ```
 
 ## Class Name
 
-`VirtualAccountController`
+`VirtualAccountApi`
 
 ## Methods
 
@@ -48,13 +48,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`List[VirtualAccount]`](../../doc/models/virtual-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`List[VirtualAccount]`](../../doc/models/virtual-account.md).
 
 ## Example Usage
 
 ```python
-result = virtual_account_controller.list_virtual_accounts()
-print(result)
+result = virtual_account_api.list_virtual_accounts()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -87,13 +91,17 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **201**: successful
 
-[`VirtualAccount`](../../doc/models/virtual-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`VirtualAccount`](../../doc/models/virtual-account.md).
 
 ## Example Usage
 
 ```python
-result = virtual_account_controller.create_virtual_account()
-print(result)
+result = virtual_account_api.create_virtual_account()
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -125,15 +133,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`VirtualAccount`](../../doc/models/virtual-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`VirtualAccount`](../../doc/models/virtual-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = virtual_account_controller.get_virtual_account(id)
-print(result)
+result = virtual_account_api.get_virtual_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 ## Errors
@@ -166,15 +178,19 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`VirtualAccount`](../../doc/models/virtual-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`VirtualAccount`](../../doc/models/virtual-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = virtual_account_controller.update_virtual_account(id)
-print(result)
+result = virtual_account_api.update_virtual_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 
 
@@ -199,14 +215,18 @@ This endpoint requires [basic_auth](../../doc/auth/basic-authentication.md)
 
 **200**: successful
 
-[`VirtualAccount`](../../doc/models/virtual-account.md)
+This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `body` property of this instance returns the response data which is of type [`VirtualAccount`](../../doc/models/virtual-account.md).
 
 ## Example Usage
 
 ```python
 id = 'id0'
 
-result = virtual_account_controller.delete_virtual_account(id)
-print(result)
+result = virtual_account_api.delete_virtual_account(id)
+
+if result.is_success():
+    print(result.body)
+elif result.is_error():
+    print(result.errors)
 ```
 

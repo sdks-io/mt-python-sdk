@@ -16,10 +16,10 @@
 | `updated_at` | `datetime` | Required | - |
 | `amount_upper_bound` | `int` | Required | The highest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. |
 | `amount_lower_bound` | `int` | Required | The lowest amount this expected payment may be equal to. Value in specified currency's smallest unit. e.g. $10 would be represented as 1000. |
-| `direction` | [`Direction1Enum`](../../doc/models/direction-1-enum.md) | Required | One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit. |
+| `direction` | [`Direction1`](../../doc/models/direction-1.md) | Required | One of credit or debit. When you are receiving money, use credit. When you are being charged, use debit. |
 | `internal_account_id` | `uuid\|str` | Required | The ID of the Internal Account for the expected payment. |
-| `mtype` | [`Type1Enum`](../../doc/models/type-1-enum.md) | Required | One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen, sepa, signet, wire. |
-| `currency` | [`CurrencyEnum`](../../doc/models/currency-enum.md) | Required | Three-letter ISO currency code. |
+| `mtype` | [`Type1`](../../doc/models/type-1.md) | Required | One of: ach, au_becs, bacs, book, check, eft, interac, provxchange, rtp, sen, sepa, signet, wire. |
+| `currency` | [`Currency`](../../doc/models/currency.md) | Required | Three-letter ISO currency code. |
 | `date_upper_bound` | `date` | Required | The latest date the payment may come in. Format: yyyy-mm-dd |
 | `date_lower_bound` | `date` | Required | The earliest date the payment may come in. Format: yyyy-mm-dd |
 | `description` | `str` | Required | An optional description for internal use. |
@@ -31,8 +31,8 @@
 | `reconciliation_filters` | `Any` | Required | The reconciliation filters you have for this payment. |
 | `transaction_id` | `uuid\|str` | Required | The ID of the Transaction this expected payment object has been matched to. |
 | `transaction_line_item_id` | `uuid\|str` | Required | The ID of the Transaction Line Item this expected payment has been matched to. |
-| `status` | [`Status1Enum`](../../doc/models/status-1-enum.md) | Required | One of unreconciled, reconciled, or archived. |
-| `reconciliation_method` | [`ReconciliationMethodEnum`](../../doc/models/reconciliation-method-enum.md) | Required | One of manual if this expected payment was manually reconciled in the dashboard, automatic if it was automatically reconciled by Modern Treasury, or null if it is unreconciled. |
+| `status` | [`Status1`](../../doc/models/status-1.md) | Required | One of unreconciled, reconciled, or archived. |
+| `reconciliation_method` | [`ReconciliationMethod`](../../doc/models/reconciliation-method.md) | Required | One of manual if this expected payment was manually reconciled in the dashboard, automatic if it was automatically reconciled by Modern Treasury, or null if it is unreconciled. |
 | `ledger_transaction_id` | `uuid\|str` | Required | The ID of the ledger transaction linked to the expected payment. |
 
 ## Example (as JSON)

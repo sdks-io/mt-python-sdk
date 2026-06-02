@@ -12,9 +12,11 @@ class AccountDetailCreateRequest(object):
 
     Attributes:
         account_number (str): The account number for the bank account.
-        account_number_type (AccountNumberTypeEnum): One of `iban`, `clabe`,
+        account_number_type (AccountNumberType): One of `iban`, `clabe`,
             `wallet_address`, or `other`. Use `other` if the bank account number is
             in a generic format.
+        additional_properties (Dict[str, Any]): The additional properties for the
+            model.
 
     """
 
@@ -31,12 +33,18 @@ class AccountDetailCreateRequest(object):
     def __init__(
         self,
         account_number=None,
-        account_number_type=APIHelper.SKIP):
+        account_number_type=APIHelper.SKIP,
+        additional_properties=None):
         """Initialize a AccountDetailCreateRequest instance."""
         # Initialize members of the class
         self.account_number = account_number
         if account_number_type is not APIHelper.SKIP:
             self.account_number_type = account_number_type
+
+        # Add additional model properties to the instance
+        if additional_properties is None:
+            additional_properties = {}
+        self.additional_properties = additional_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -65,9 +73,15 @@ class AccountDetailCreateRequest(object):
             if dictionary.get("account_number_type")\
                 else APIHelper.SKIP
 
+        additional_properties = APIHelper.get_additional_properties(
+            dictionary={k: v for k, v in dictionary.items()
+                        if k not in cls._names.values()},
+            unboxing_function=lambda value: value)
+
         # Return an object of this model
         return cls(account_number,
-                   account_number_type)
+                   account_number_type,
+                   additional_properties)
 
     def __repr__(self):
         """Return a unambiguous string representation."""
@@ -77,10 +91,12 @@ class AccountDetailCreateRequest(object):
             if hasattr(self, "account_number_type")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"account_number={_account_number!r}, "
             f"account_number_type={_account_number_type!r}, "
+            f"additional_properties={_additional_properties!r}, "
             f")"
         )
 
@@ -92,9 +108,11 @@ class AccountDetailCreateRequest(object):
             if hasattr(self, "account_number_type")
             else None
         )
+        _additional_properties=self.additional_properties
         return (
             f"{self.__class__.__name__}("
             f"account_number={_account_number!s}, "
             f"account_number_type={_account_number_type!s}, "
+            f"additional_properties={_additional_properties!s}, "
             f")"
         )

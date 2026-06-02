@@ -1,6 +1,8 @@
 
 # Ledger Transaction Reversal Create Request
 
+*This model accepts additional fields of type Any.*
+
 ## Structure
 
 `LedgerTransactionReversalCreateRequest`
@@ -10,12 +12,13 @@
 | Name | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `description` | `str` | Optional | An optional free-form description for the reversal ledger transaction. Maximum of 1000 characters allowed. |
-| `status` | [`Status15Enum`](../../doc/models/status-15-enum.md) | Optional | Status of the reversal ledger transaction. It defaults to `posted` if not provided. |
+| `status` | [`Status15`](../../doc/models/status-15.md) | Optional | Status of the reversal ledger transaction. It defaults to `posted` if not provided. |
 | `metadata` | `Dict[str, str]` | Optional | Additional data to be added to the reversal ledger transaction as key-value pairs. Both the key and value must be strings. |
 | `effective_at` | `datetime` | Optional | The timestamp (ISO8601 format) at which the reversal ledger transaction happened for reporting purposes. It defaults to the `effective_at` of the original ledger transaction if not provided. |
 | `external_id` | `str` | Optional | Must be unique within the ledger. |
-| `ledgerable_type` | [`LedgerableType5Enum`](../../doc/models/ledgerable-type-5-enum.md) | Optional | Specify this if you'd like to link the reversal ledger transaction to a Payment object like Return or Reversal. |
+| `ledgerable_type` | [`LedgerableType5`](../../doc/models/ledgerable-type-5.md) | Optional | Specify this if you'd like to link the reversal ledger transaction to a Payment object like Return or Reversal. |
 | `ledgerable_id` | `uuid\|str` | Optional | Specify this if you'd like to link the reversal ledger transaction to a Payment object like Return or Reversal. |
+| `additional_properties` | `Dict[str, Any]` | Optional | - |
 
 ## Example (as JSON)
 
@@ -29,7 +32,11 @@
   "description": "description6",
   "status": "archived",
   "effective_at": "2016-03-13T12:52:32.123Z",
-  "external_id": "external_id2"
+  "external_id": "external_id2",
+  "exampleAdditionalProperty": {
+    "key1": "val1",
+    "key2": "val2"
+  }
 }
 ```
 
